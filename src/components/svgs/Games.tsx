@@ -1,10 +1,9 @@
-import * as React from 'react'
-import Svg, { Path, SvgProps } from 'react-native-svg'
+import React from 'react'
+import { Svg, Path, SvgProps } from 'react-native-svg'
 
 const Games = ({ ...props }: SvgProps) => (
   <Svg
-    width={21}
-    height={21}
+    viewBox='0 0 21 21'
     fill='none'
     {...props}
   >

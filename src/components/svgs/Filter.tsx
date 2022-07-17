@@ -1,10 +1,9 @@
-import * as React from 'react'
-import Svg, { SvgProps, Path } from 'react-native-svg'
+import React from 'react'
+import { Svg, Path, SvgProps } from 'react-native-svg'
 
-const SvgComponent = ({ ...props }: SvgProps ) => (
+const Filter = ({ ...props }: SvgProps ) => (
   <Svg
-    width={21}
-    height={19}
+    viewBox='0 0 21 19'
     fill='none'
     {...props}
   >
@@ -17,4 +16,4 @@ const SvgComponent = ({ ...props }: SvgProps ) => (
   </Svg>
 )
 
-export default SvgComponent
+export default Filter
