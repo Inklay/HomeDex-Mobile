@@ -132,7 +132,7 @@ for (let i = 0; i < species.count; i++) {
     pokemonData.sprite = v.sprites.other['official-artwork'].front_default
     if (v.sprites.other['official-artwork'].front_default === null)
       pokemonData.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`
-    if (v.forms.length > 0) {
+    if (v.forms.length > 0 && !pokemonData.is_default) {
       const f = await p.getPokemonFormByName(v.forms[0].url.substring(39).slice(0, -1))
       const names = []
       if (f.names.length > 0) {
