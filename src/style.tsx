@@ -109,7 +109,7 @@ export const Style = StyleSheet.create({
 
   pokemonList: {
     paddingHorizontal: 40,
-    maxHeight: height * 0.75
+    maxHeight: height - 316
   },
 
   homeHeaderContainer: {

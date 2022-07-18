@@ -10,11 +10,10 @@ import Filter from './src/components/svgs/Filter'
 import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
 import data from './assets/data/data.json'
-import Pokemon from './src/classes/Pokemon'
 
 export default function App() {
 
-  let pokemonList = data.pokemon.filter(p => p.is_default == true)
+  const [pokemonList] = React.useState(data.pokemon.filter(p => p.is_default == true))
 
   return (
     <View style={Style.container}>
