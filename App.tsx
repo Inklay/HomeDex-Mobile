@@ -11,10 +11,16 @@ import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
 import { pokemon } from './src/data'
 import { getName } from './src/utils'
+import FastImage from 'react-native-fast-image'
 
 export default function App() {
 
   const [pokemonList, setPokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
+
+  const sprites = []
+  for (let i = 0; i < pokemon.length; i++)
+    sprites.push({uri: pokemon[i].sprite})
+  FastImage.preload(sprites)
 
   function updatePokemonList(value: string) {
     if (parseInt(value) > 0)

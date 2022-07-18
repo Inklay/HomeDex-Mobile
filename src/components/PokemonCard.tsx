@@ -39,7 +39,8 @@ const PokemonCard: React.FC<Props> = ({pokemon, index}) => {
         </View>
       </View>
       <FastImage resizeMode='contain' style={Style.pokemonCardImage} source={{
-        uri: pokemon.sprite
+        uri: pokemon.sprite,
+        cache: FastImage.cacheControl.cacheOnly
       }}/>
     </View>
   )
