@@ -73,7 +73,7 @@ export const Style = StyleSheet.create({
   headerGradient: {
     width: '100%',
     height: height / 4 + 1,
-    paddingHorizontal: 40
+    paddingHorizontal: 20
   },
 
   appName: {
@@ -86,7 +86,7 @@ export const Style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginBottom: 37.5,
+    marginBottom: 20,
     marginTop: 42.5,
   },
 
@@ -131,12 +131,12 @@ export const Style = StyleSheet.create({
   },
 
   pokemonList: {
-    paddingHorizontal: 40,
-    maxHeight: height - 316
+    paddingHorizontal: 20,
+    maxHeight: height - 290
   },
 
   homeHeaderContainer: {
-    height: 316
+    height: 290
   },
 
   pokemonName: {
@@ -149,7 +149,6 @@ export const Style = StyleSheet.create({
     borderRadius: 3,
     padding: 5,
     flexDirection: 'row',
-    width: '',
     marginRight: 15
   },
 
@@ -167,16 +166,16 @@ export const Style = StyleSheet.create({
 
   cardDots: {
     position: 'absolute',
-    left: 90,
+    left: 70,
     top: -15
   },
 
   pokemonCardImage: {
     position: 'absolute',
     alignContent: 'flex-end',
-    width: 130,
-    height: 130,
-    top: -30,
-    left: width -225
+    width: 140,
+    height: 140,
+    top: -25,
+    left: width - 190
   }
 })
