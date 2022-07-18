@@ -9,11 +9,11 @@ import Sort from './src/components/svgs/Sort'
 import Filter from './src/components/svgs/Filter'
 import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
-import data from './assets/data/data.json'
+import { pokemon } from './src/data'
 
 export default function App() {
 
-  const [pokemonList] = React.useState(data.pokemon.filter(p => p.is_default == true))
+  const [pokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
 
   return (
     <View style={Style.container}>
@@ -31,7 +31,7 @@ export default function App() {
           </LinearGradient>
         </ImageBackground>
       </View>
-      <FlatList style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item}) => <PokemonCard pokemon={item}/>}/>
+      <FlatList style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard pokemon={item} index={index}/>}/>
     </View>
   )
 }

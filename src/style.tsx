@@ -141,5 +141,31 @@ export const Style = StyleSheet.create({
     color: TextColors.white,
     fontSize: 26,
     fontWeight: "700",
-  }
+  },
+
+  typeName: {
+    borderRadius: 3,
+    padding: 5,
+    flexDirection: 'row',
+    width: '',
+    marginRight: 15
+  },
+
+  typeNameText: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: TextColors.white,
+    marginLeft: 5,
+  },
+
+  pokemonTypesName: {
+    marginTop: 5,
+    flexDirection: 'row',
+  },
+
+  cardDots: {
+    position: 'absolute',
+    left: 90,
+    top: -15
+  },
 })

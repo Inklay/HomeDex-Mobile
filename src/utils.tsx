@@ -1,4 +1,24 @@
-import { TypeBackgroundColors, TypeColors } from "./style"
+import { TypeBackgroundColors, TypeColors } from './style'
+import { SvgProps } from 'react-native-svg'
+import Bug from './components/svgs/Types/Bug'
+import Dark from './components/svgs/Types/Dark'
+import Dragon from './components/svgs/Types/Dragon'
+import Electric from './components/svgs/Types/Electric'
+import Fairy from './components/svgs/Types/Fairy'
+import Fighting from './components/svgs/Types/Fighting'
+import Fire from './components/svgs/Types/Fire'
+import Flying from './components/svgs/Types/Flying'
+import Ghost from './components/svgs/Types/Ghost'
+import Grass from './components/svgs/Types/Grass'
+import Ground from './components/svgs/Types/Ground'
+import Ice from './components/svgs/Types/Ice'
+import Normal from './components/svgs/Types/Normal'
+import Poison from './components/svgs/Types/Poison'
+import Psychic from './components/svgs/Types/Psychic'
+import Rock from './components/svgs/Types/Rock'
+import Steel from './components/svgs/Types/Steel'
+import Water from './components/svgs/Types/Water'
+import Name from './classes/Name'
 
 export function getTypeBackgroundColor(type: number) : string {
   switch (type) {
@@ -78,4 +98,51 @@ export function getTypeColor(type: number) : string {
       return TypeColors.fairy
   }
   return TypeColors.normal
+}
+
+export function getTypeSVG(type: number) : ({ ...props }: SvgProps & SvgProps) => JSX.Element {
+  switch (type) {
+    case 2:
+      return Fighting
+    case 3:
+      return Flying
+    case 4:
+      return Poison
+    case 5:
+      return Ground
+    case 6:
+      return Rock
+    case 7:
+      return Bug
+    case 8:
+      return Ghost
+    case 9:
+      return Steel
+    case 10:
+      return Fire
+    case 11:
+      return Water
+    case 12:
+      return Grass
+    case 13:
+      return Electric
+    case 14:
+      return Psychic
+    case 15:
+      return Ice
+    case 16:
+      return Dragon
+    case 17:
+      return Dark
+    case 18:
+      return Fairy
+  }
+  return Normal
+}
+
+export function getName(names: Name[], language: string) : string {
+  const asked = names.find(n => n.language === language)
+  if (asked === undefined)
+    return names.find(n => n.language === 'en')!.name
+  return asked.name
 }
