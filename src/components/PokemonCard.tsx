@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text, Image  } from 'react-native'
+import { View, Text } from 'react-native'
 import Pokemon from '../classes/Pokemon'
 import { BackgroundColors, Style } from '../style'
 import { getName, getTypeBackgroundColor } from '../utils'
 import TypeName from './TypeName'
 import Dots from './svgs/Dots'
-import { convertCompilerOptionsFromJson } from 'typescript'
+import FastImage from 'react-native-fast-image'
 
 interface Props {
   pokemon: Pokemon,
@@ -38,7 +38,7 @@ const PokemonCard: React.FC<Props> = ({pokemon, index}) => {
           )}
         </View>
       </View>
-      <Image resizeMode='contain' style={Style.pokemonCardImage} source={{
+      <FastImage resizeMode='contain' style={Style.pokemonCardImage} source={{
         uri: pokemon.sprite
       }}/>
     </View>
