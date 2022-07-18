@@ -5,9 +5,10 @@ import Search from './svgs/Search'
 
 interface Props {
   placeholder: string
+  onValueChange: (value: string) => void
 }
 
-const Input: React.FC<Props> = ({placeholder}) => {
+const Input: React.FC<Props> = ({placeholder, onValueChange}) => {
   const [backgroundColor, setBackgroundColor] = React.useState(BackgroundColors.inputDefault)
 
   function OnFocus() {
@@ -25,7 +26,7 @@ const Input: React.FC<Props> = ({placeholder}) => {
       }
     ]}>
       <Search color={TextColors.grey} height="16" width="16"/>
-      <TextInput placeholder={placeholder} style={Style.input} onFocus={() => OnFocus()} onBlur={() => OnLostFocus()} />
+      <TextInput onChangeText={text => onValueChange(text)} placeholder={placeholder} style={Style.input} onFocus={() => OnFocus()} onBlur={() => OnLostFocus()} />
     </View>
   )
 }

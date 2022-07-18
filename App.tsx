@@ -10,10 +10,18 @@ import Filter from './src/components/svgs/Filter'
 import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
 import { pokemon } from './src/data'
+import { getName } from './src/utils'
 
 export default function App() {
 
-  const [pokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
+  const [pokemonList, setPokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
+
+  function updatePokemonList(value: string) {
+    if (parseInt(value) > 0)
+      setPokemonList(pokemon.filter(p => p.is_default == true && p.id.toString().search(value) !== -1))
+    else
+      setPokemonList(pokemon.filter(p => p.is_default == true && getName(p.names, 'fr').toLocaleLowerCase().search(value) !== -1))
+  }
 
   return (
     <View style={Style.container}>
@@ -27,7 +35,7 @@ export default function App() {
             </View>
             <Text style={Style.appName}>Homedex</Text>
             <Text style={Style.description}>Search for Pokémon by name or by national pokédex number.</Text>
-            <Input placeholder='What pokémon are you looking for ?'/>
+            <Input onValueChange={updatePokemonList} placeholder='What pokémon are you looking for ?'/>
           </LinearGradient>
         </ImageBackground>
       </View>
