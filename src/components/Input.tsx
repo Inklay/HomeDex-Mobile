@@ -8,8 +8,7 @@ interface Props {
 }
 
 const Input: React.FC<Props> = ({placeholder}) => {
-
-  let [backgroundColor, setBackgroundColor] = React.useState(BackgroundColors.inputDefault)
+  const [backgroundColor, setBackgroundColor] = React.useState(BackgroundColors.inputDefault)
 
   function OnFocus() {
     setBackgroundColor(BackgroundColors.inputPressed)
