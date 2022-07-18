@@ -20,7 +20,7 @@ const Dots = ({ ...props }: SvgProps ) => (
         y2={75}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0.75} />
+        <Stop stopColor="#fff" stopOpacity={0.5} />
         <Stop offset={1} stopColor="#fff" stopOpacity={0.1} />
       </LinearGradient>
     </Defs>

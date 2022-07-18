@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image  } from 'react-native'
 import Pokemon from '../classes/Pokemon'
 import { BackgroundColors, Style } from '../style'
 import { getName, getTypeBackgroundColor } from '../utils'
 import TypeName from './TypeName'
 import Dots from './svgs/Dots'
+import { convertCompilerOptionsFromJson } from 'typescript'
 
 interface Props {
   pokemon: Pokemon,
@@ -20,23 +21,27 @@ const PokemonCard: React.FC<Props> = ({pokemon, index}) => {
     else
       return pokemon.id.toString()
   }
-
   return (
     <View style={[
       Style.pokemonCard, {
         backgroundColor: getTypeBackgroundColor(pokemon.types[0])
     }]}>
-      <View style={{flexDirection: 'row'}}>
-        <Text style={Style.pokemonNumber}>#{fixId()}</Text>
-        <Dots style={Style.cardDots} color={BackgroundColors.white} height={32} width={74}/>
+      <View>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={Style.pokemonNumber}>#{fixId()}</Text>
+          <Dots style={Style.cardDots} color={BackgroundColors.white} height={32} width={74}/>
+        </View>
+        <Text style={Style.pokemonName}>{getName(pokemon.names, 'fr')}</Text>
+        <View style={Style.pokemonTypesName}>
+          {pokemon.types.map((t, idx) => 
+            <TypeName type={t} key={`${pokemon.id}-${pokemon.form_name}-${index}-type-${idx}`}/>
+          )}
+        </View>
       </View>
-      <Text style={Style.pokemonName}>{getName(pokemon.names, 'fr')}</Text>
-      <View style={Style.pokemonTypesName}>
-        {pokemon.types.map((t, idx) => 
-          <TypeName type={t} key={`${pokemon.id}-${pokemon.form_name}-${index}-type-${idx}`}/>
-        )}
-      </View>
-    </View> 
+      <Image resizeMode='contain' style={Style.pokemonCardImage} source={{
+        uri: pokemon.sprite
+      }}/>
+    </View>
   )
 }
 

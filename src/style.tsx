@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-const { height } = Dimensions.get('screen')
+const { height, width } = Dimensions.get('screen')
 
 export enum TextColors {
   white = 'white',
@@ -120,6 +120,8 @@ export const Style = StyleSheet.create({
     width: '100%',
     padding: 20,
     marginVertical: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
 
   pokemonNumber: {
@@ -168,4 +170,13 @@ export const Style = StyleSheet.create({
     left: 90,
     top: -15
   },
+
+  pokemonCardImage: {
+    position: 'absolute',
+    alignContent: 'flex-end',
+    width: 130,
+    height: 130,
+    top: -30,
+    left: width -225
+  }
 })
