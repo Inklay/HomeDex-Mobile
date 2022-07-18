@@ -1,8 +1,7 @@
-import { TypeBackgroundColors } from "./style"
-import Pokemon from './classes/Pokemon'
+import { TypeBackgroundColors, TypeColors } from "./style"
 
-export function getTypeBackgroundColor(pokemon: Pokemon) : string {
-  switch (pokemon.types[0]) {
+export function getTypeBackgroundColor(type: number) : string {
+  switch (type) {
     case 2:
       return TypeBackgroundColors.fighting
     case 3:
@@ -39,4 +38,44 @@ export function getTypeBackgroundColor(pokemon: Pokemon) : string {
       return TypeBackgroundColors.fairy
   }
   return TypeBackgroundColors.normal
+}
+
+export function getTypeColor(type: number) : string {
+  switch (type) {
+    case 2:
+      return TypeColors.fighting
+    case 3:
+      return TypeColors.flying
+    case 4:
+      return TypeColors.poison
+    case 5:
+      return TypeColors.ground
+    case 6:
+      return TypeColors.rock
+    case 7:
+      return TypeColors.bug
+    case 8:
+      return TypeColors.ghost
+    case 9:
+      return TypeColors.steel
+    case 10:
+      return TypeColors.fire
+    case 11:
+      return TypeColors.water
+    case 12:
+      return TypeColors.grass
+    case 13:
+      return TypeColors.electric
+    case 14:
+      return TypeColors.psychic
+    case 15:
+      return TypeColors.ice
+    case 16:
+      return TypeColors.dragon
+    case 17:
+      return TypeColors.dark
+    case 18:
+      return TypeColors.fairy
+  }
+  return TypeColors.normal
 }

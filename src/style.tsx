@@ -2,18 +2,18 @@ import { StyleSheet, Dimensions } from 'react-native'
 
 const { height } = Dimensions.get('screen')
 
-export class TextColors {
-  static white = 'white'
-  static black = '#17171B'
-  static grey = '#747476'
-  static number = '#17171B99'
+export enum TextColors {
+  white = 'white',
+  black = '#17171B',
+  grey = '#747476',
+  number = '#17171B99'
 }
 
-export class BackgroundColors {
-  static white = 'white'
-  static inputDefault = '#f2f2f2'
-  static inputPressed = '#e2e2e2'
-  static modal = '#17171B80'
+export enum BackgroundColors {
+  white = 'white',
+  inputDefault = '#f2f2f2',
+  inputPressed = '#e2e2e2',
+  modal = '#17171B80'
 }
 
 export enum TypeBackgroundColors {
@@ -35,6 +35,27 @@ export enum TypeBackgroundColors {
   rock = '#D4C294',
   steel = '#4C91B2',
   water = '#58ABF6',
+}
+
+export enum TypeColors {
+  bug = '#8CB230',
+  dark = '#58575F',
+  dragon = '#0F6AC0',
+  electric = '#EED535',
+  fairy = '#ED6EC7',
+  fighting = '#D04164',
+  fire = '#FD7D24',
+  flying = '#748FC9',
+  ghost = '#556AAE',
+  grass = '#62B957',
+  ground = '#DD7748',
+  ice = '#61CEC0',
+  normal = '#9DA0AA',
+  poison = '#A552CC',
+  psychic = '#EA5D60',
+  rock = '#BAAB82',
+  steel = '#417D9A',
+  water = '#4A90DA'
 }
 
 export const Style = StyleSheet.create({

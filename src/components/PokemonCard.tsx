@@ -24,7 +24,7 @@ const PokemonCard: React.FC<Props> = ({pokemon}) => {
   return (
     <View style={[
       Style.pokemonCard, {
-        backgroundColor: getTypeBackgroundColor(pokemon)
+        backgroundColor: getTypeBackgroundColor(pokemon.types[0])
     }]}>
       <Text style={Style.pokemonNumber}>#{fixId()}</Text>
       <Text style={Style.pokemonName}>{pokemon.names.find(n => n.language == language)?.name}</Text>
