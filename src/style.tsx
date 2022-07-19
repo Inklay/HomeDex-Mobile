@@ -86,8 +86,8 @@ export const Style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginBottom: 20,
-    marginTop: 42.5,
+    marginBottom: 10,
+    marginTop: 30,
   },
 
   homeActionRowIcon: {
@@ -103,9 +103,9 @@ export const Style = StyleSheet.create({
   inputWrapper: {
     width: '100%',
     paddingHorizontal: 25,
-    paddingVertical: 22,
+    paddingVertical: 10,
     borderRadius: 10,
-    marginTop: 25,
+    marginTop: 15,
     flexDirection: 'row',
     alignItems:'center'
   },
@@ -132,11 +132,11 @@ export const Style = StyleSheet.create({
 
   pokemonList: {
     paddingHorizontal: 20,
-    maxHeight: height - 290
+    maxHeight: height - 230
   },
 
   homeHeaderContainer: {
-    height: 290
+    height: 230
   },
 
   pokemonName: {
