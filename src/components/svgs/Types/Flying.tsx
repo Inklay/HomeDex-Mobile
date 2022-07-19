@@ -3,7 +3,7 @@ import { Svg, Path, SvgProps } from 'react-native-svg'
 
 const Flying = ({ ...props }: SvgProps ) => (
   <Svg
-    viewBox='0 0 25 25'
+    viewBox='0 0 25 23'
     fill='none'
     {...props}
   >

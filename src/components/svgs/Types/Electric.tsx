@@ -3,7 +3,7 @@ import { Svg, Path, SvgProps } from 'react-native-svg'
 
 const Electric = ({ ...props }: SvgProps ) => (
   <Svg
-    viewBox='0 0 25 25'
+    viewBox='0 0 17 25'
     fill='none'
     {...props}
   >

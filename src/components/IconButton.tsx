@@ -6,13 +6,15 @@ import { TextColors, Style } from '../style'
 interface Props {
   Icon: ({ ...props }: SvgProps & SvgProps) => JSX.Element
   trigger: () => void
+  color: string
+  size: number
 }
 
-const IconButton: React.FC<Props> = ({Icon, trigger}) => {
+const IconButton: React.FC<Props> = ({Icon, trigger, color, size}) => {
   return (
     <TouchableNativeFeedback onPress={trigger}>
       <View style={Style.homeActionRowIcon} >
-        <Icon color={TextColors.black} height="20" width="20"/>
+        <Icon color={color} height={size} width={size}/>
       </View>
     </TouchableNativeFeedback>
   )

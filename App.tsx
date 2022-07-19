@@ -1,7 +1,7 @@
 import React from 'react'
 import { ImageBackground, Text, View, FlatList, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Style } from './src/style'
+import { Style, TextColors } from './src/style'
 import Pokeball from './assets/images/Pokeball.png'
 import IconButton from './src/components/IconButton'
 import Games from './src/components/svgs/Games'
@@ -14,6 +14,7 @@ import { getName, getTypeColor } from './src/utils'
 import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from './src/components/TypeFilter'
+import Pokemon from './src/classes/Pokemon'
 
 export default function App() {
 
@@ -21,6 +22,7 @@ export default function App() {
   const [filterVisible, setFilterVisible] = React.useState(false)
   const [typeFilter, setTypeFilter] = React.useState([] as number[])
   const [search, setSearch] = React.useState('')
+  const [lockTypeFilter, setLockTypeFilter] = React.useState(false)
 
   function updateSearch(value: string) {
     const cleanedValue = value.toLocaleLowerCase()
@@ -28,17 +30,40 @@ export default function App() {
     filterPokemon(cleanedValue, typeFilter)
   }
 
-  function addTypes(value: number) {
+  function addType(value: number) {
     const newValue = [...typeFilter, value]
     setTypeFilter(newValue)
     filterPokemon(search, newValue)
+    if (newValue.length === 2)
+      setLockTypeFilter(true)
+  }
+
+  function removeType(value: number) {
+    const newValue = [...typeFilter]
+    const index = newValue.indexOf(value)
+    if (index > -1) 
+      newValue.splice(index, 1)
+    setTypeFilter(newValue)
+    filterPokemon(search, newValue)
+    if (newValue.length === 1)
+      setLockTypeFilter(false)
   }
 
   function filterPokemon(search: string, types: number[]) {
-    if (parseInt(search) > 0)
-      setPokemonList(pokemon.filter(p => p.is_default == true && p.id.toString().includes(search)))
-    else
-      setPokemonList(pokemon.filter(p => p.is_default == true && getName(p.names, 'fr').toLocaleLowerCase().includes(search)))
+    let list: Pokemon[] = []
+    pokemon.forEach(p => {
+      if (!p.is_default ||
+        (parseInt(search) > 0 && !p.id.toString().includes(search)) &&
+        !getName(p.names, 'fr').toLocaleLowerCase().includes(search))
+        return
+      for (let i = 0; i < types.length; i++) {
+        if ((p.types.length === 2 && p.types[0] !== types[i] && p.types[1] !== types[i]) ||
+        (p.types.length === 1 && p.types[0] !== types[i]))
+          return
+      }
+      list.push(p)
+    })
+    setPokemonList(list)
   }
 
   function showFilter() {
@@ -51,9 +76,9 @@ export default function App() {
         <ImageBackground source={Pokeball} resizeMode="cover" style={Style.homeHeader}>
           <LinearGradient colors={['#FFFFFFD0', 'white']} style={Style.headerGradient}>
             <View style={Style.homeActionRow}>
-              {/*<IconButton Icon={Games}/>*/}
-              <IconButton Icon={Sort} trigger={() => {}}/>
-              <IconButton Icon={Filter} trigger={showFilter}/>
+              {/*<IconButton Icon={Games} trigger={() => {}} color={TextColors.black} size={20}/>*/}
+              <IconButton Icon={Sort} trigger={() => {}} color={TextColors.black} size={20}/>
+              <IconButton Icon={Filter} trigger={showFilter}  color={TextColors.black} size={20}/>
             </View>
             <Text style={Style.appName}>Homedex</Text>
             <Text style={Style.description}>Search for Pokémon by name or by national pokédex number.</Text>
@@ -84,7 +109,7 @@ export default function App() {
               {
                 types.map((__, idx) => {
                   return (
-                    <TypeFilter type={idx + 1} locked={false} active={false} key={`type-filter-${idx}`}/>
+                    <TypeFilter active={typeFilter.find(t => t === idx + 1) !== undefined} add={addType} remove={removeType} type={idx + 1} locked={lockTypeFilter} key={`type-filter-${idx}`}/>
                   )
                 })
               }

@@ -216,6 +216,7 @@ export const Style = StyleSheet.create({
 
   typeFilterContainer: {
     paddingVertical: 10,
+    border: 5
   },
 
   typeFilter: {
