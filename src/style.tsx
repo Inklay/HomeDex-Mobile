@@ -87,11 +87,13 @@ export const Style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     marginBottom: 10,
-    marginTop: 30,
+    marginTop: 40,
   },
 
   homeActionRowIcon: {
-    marginLeft: 25
+    height: 20,
+    width: 20,
+    marginLeft: 25,
   },
 
   description: {
@@ -132,11 +134,11 @@ export const Style = StyleSheet.create({
 
   pokemonList: {
     paddingHorizontal: 20,
-    maxHeight: height - 230
+    maxHeight: height - 240
   },
 
   homeHeaderContainer: {
-    height: 230
+    height: 240
   },
 
   pokemonName: {
@@ -177,5 +179,22 @@ export const Style = StyleSheet.create({
     height: 140,
     top: -25,
     left: width - 190
-  }
+  },
+
+  bottomModal: {
+    margin: 0,
+    position: 'absolute',
+    width: '100%',
+    height: height * 0.75,
+    top: height * 0.25
+  },
+
+  modalContainer: {
+    borderTopEndRadius: 30,
+    borderTopStartRadius: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    height: height * 0.75,
+    backgroundColor: BackgroundColors.white,
+  },
 })

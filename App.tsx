@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground, Text, View, FlatList, Image } from 'react-native'
+import { ImageBackground, Text, View, FlatList } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Style } from './src/style'
 import Pokeball from './assets/images/Pokeball.png'
@@ -12,10 +12,12 @@ import PokemonCard from './src/components/PokemonCard'
 import { pokemon } from './src/data'
 import { getName } from './src/utils'
 import { StatusBar } from 'expo-status-bar'
+import Modal from 'react-native-modal'
 
 export default function App() {
 
   const [pokemonList, setPokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
+  const [filterVisible, setFilterVisible] = React.useState(false)
   
   function updatePokemonList(value: string) {
     value = value.toLocaleLowerCase()
@@ -25,15 +27,19 @@ export default function App() {
       setPokemonList(pokemon.filter(p => p.is_default == true && getName(p.names, 'fr').toLocaleLowerCase().includes(value)))
   }
 
+  function showFilter() {
+    setFilterVisible(true)
+  }
+
   return (
     <View style={Style.container}>
       <View style={Style.homeHeaderContainer}>
         <ImageBackground source={Pokeball} resizeMode="cover" style={Style.homeHeader}>
           <LinearGradient colors={['#FFFFFFD0', 'white']} style={Style.headerGradient}>
             <View style={Style.homeActionRow}>
-              <IconButton Icon={Games}/>
-              <IconButton Icon={Sort}/>
-              <IconButton Icon={Filter}/>
+              {/*<IconButton Icon={Games}/>*/}
+              <IconButton Icon={Sort} trigger={() => {}}/>
+              <IconButton Icon={Filter} trigger={showFilter}/>
             </View>
             <Text style={Style.appName}>Homedex</Text>
             <Text style={Style.description}>Search for Pokémon by name or by national pokédex number.</Text>
@@ -43,6 +49,23 @@ export default function App() {
       </View>
       <FlatList style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard pokemon={item} index={index}/>}/>
       <StatusBar translucent={true}/>
+      <Modal
+        isVisible={filterVisible}
+        onBackdropPress={() => setFilterVisible(false)}
+        onBackButtonPress={() => setFilterVisible(false)}
+        swipeDirection='down'
+        onSwipeComplete={() => setFilterVisible(false)}
+        animationInTiming={250}
+        animationOutTiming={250}
+        style={Style.bottomModal}
+        useNativeDriverForBackdrop={true}
+      >
+        <View style={Style.modalContainer}>
+          <Text>
+            test
+          </Text>
+        </View>
+      </Modal>
     </View>
   )
 }
