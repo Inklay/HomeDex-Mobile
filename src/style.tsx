@@ -192,9 +192,35 @@ export const Style = StyleSheet.create({
   modalContainer: {
     borderTopEndRadius: 30,
     borderTopStartRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
+    padding: 20,
     height: height * 0.75,
     backgroundColor: BackgroundColors.white,
+  },
+
+  modalName: {
+    color: TextColors.black,
+    fontWeight: '700',
+    fontSize: 26,
+  },
+
+  modalSection: {
+    marginTop: 25,
+  },
+
+  modalSectionName: {
+    fontSize: 16,
+    color: TextColors.black,
+    marginBottom: 10,
+    fontWeight: '700',
+  },
+
+  typeFilterContainer: {
+    paddingVertical: 10,
+  },
+
+  typeFilter: {
+    borderRadius: 35,
+    marginRight: 25,
+    padding: 5
   },
 })
