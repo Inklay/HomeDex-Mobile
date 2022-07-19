@@ -11,6 +11,7 @@ import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
 import { pokemon } from './src/data'
 import { getName } from './src/utils'
+import { StatusBar } from 'expo-status-bar'
 
 export default function App() {
 
@@ -41,6 +42,7 @@ export default function App() {
         </ImageBackground>
       </View>
       <FlatList style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard pokemon={item} index={index}/>}/>
+      <StatusBar translucent={true} />
     </View>
   )
 }
