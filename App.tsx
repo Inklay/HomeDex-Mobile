@@ -11,7 +11,6 @@ import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
 import { pokemon } from './src/data'
 import { getName } from './src/utils'
-import CachedImage from 'react-native-expo-cached-image'
 
 export default function App() {
 
@@ -20,9 +19,9 @@ export default function App() {
   function updatePokemonList(value: string) {
     value = value.toLocaleLowerCase()
     if (parseInt(value) > 0)
-      setPokemonList(pokemon.filter(p => p.is_default == true && p.id.toString().search(value) !== -1))
+      setPokemonList(pokemon.filter(p => p.is_default == true && p.id.toString().includes(value)))
     else
-      setPokemonList(pokemon.filter(p => p.is_default == true && getName(p.names, 'fr').toLocaleLowerCase().search(value) !== -1))
+      setPokemonList(pokemon.filter(p => p.is_default == true && getName(p.names, 'fr').toLocaleLowerCase().includes(value)))
   }
 
   return (
