@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "net.inklay.homedex"
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground, Text, View, FlatList } from 'react-native'
+import { ImageBackground, Text, View, FlatList, Image } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Style } from './src/style'
 import Pokeball from './assets/images/Pokeball.png'
@@ -11,18 +11,14 @@ import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
 import { pokemon } from './src/data'
 import { getName } from './src/utils'
-import FastImage from 'react-native-fast-image'
+import CachedImage from 'react-native-expo-cached-image'
 
 export default function App() {
 
   const [pokemonList, setPokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
-
-  const sprites = []
-  for (let i = 0; i < pokemon.length; i++)
-    sprites.push({uri: pokemon[i].sprite})
-  FastImage.preload(sprites)
-
+  
   function updatePokemonList(value: string) {
+    value = value.toLocaleLowerCase()
     if (parseInt(value) > 0)
       setPokemonList(pokemon.filter(p => p.is_default == true && p.id.toString().search(value) !== -1))
     else
@@ -46,6 +42,15 @@ export default function App() {
         </ImageBackground>
       </View>
       <FlatList style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard pokemon={item} index={index}/>}/>
+      <View style={{display: 'none'}}>
+        {
+          pokemon.map((p, idx) => {
+            <CachedImage key={idx} source={{
+              uri: p.sprite
+            }}/>
+          })
+        }
+      </View>
     </View>
   )
 }
