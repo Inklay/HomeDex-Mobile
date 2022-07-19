@@ -15,6 +15,7 @@ import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from './src/components/TypeFilter'
 import Pokemon from './src/classes/Pokemon'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default function App() {
 
@@ -92,8 +93,6 @@ export default function App() {
         isVisible={filterVisible}
         onBackdropPress={() => setFilterVisible(false)}
         onBackButtonPress={() => setFilterVisible(false)}
-        swipeDirection='down'
-        onSwipeComplete={() => setFilterVisible(false)}
         animationInTiming={250}
         animationOutTiming={250}
         style={Style.bottomModal}
@@ -106,14 +105,16 @@ export default function App() {
           <View style={Style.modalSection}>
             <Text style={Style.modalSectionName}>Types</Text>
             <ScrollView horizontal style={Style.typeFilterContainer}>
-              {
-                types.map((__, idx) => {
-                  return (
-                    <TypeFilter active={typeFilter.find(t => t === idx + 1) !== undefined} add={addType} remove={removeType} type={idx + 1} locked={lockTypeFilter} key={`type-filter-${idx}`}/>
-                  )
-                })
-              }
-            </ScrollView>
+              <TouchableOpacity style={{flexDirection: 'row'}}>
+                {
+                  types.map((__, idx) => {
+                    return (
+                      <TypeFilter active={typeFilter.find(t => t === idx + 1) !== undefined} add={addType} remove={removeType} type={idx + 1} locked={lockTypeFilter} key={`type-filter-${idx}`}/>
+                    )
+                  })
+                }
+                </TouchableOpacity>
+              </ScrollView>
           </View>
         </View>
       </Modal>

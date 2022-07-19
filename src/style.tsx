@@ -222,6 +222,6 @@ export const Style = StyleSheet.create({
   typeFilter: {
     borderRadius: 35,
     marginRight: 25,
-    padding: 5
+    padding: 15
   },
 })
