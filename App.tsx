@@ -73,7 +73,7 @@ export default function App() {
         } else if (p.form_name === 'hisui') {
           if (!filters.hisuian)
             return
-        } else if (!filters.forms)
+        } else if (!filters.other)
           return
       }
       if (parseInt(filters.search) > 0) {
