@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground, Text, View, FlatList, ScrollView } from 'react-native'
+import { ImageBackground, Text, View, FlatList, ScrollView, Switch } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Style, TextColors } from './src/style'
 import Pokeball from './assets/images/Pokeball.png'
@@ -16,50 +16,76 @@ import Modal from 'react-native-modal'
 import TypeFilter from './src/components/TypeFilter'
 import Pokemon from './src/classes/Pokemon'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import Filters from './src/classes/Filters'
+import FilterButton from './src/components/FilterButton'
 
 export default function App() {
 
   const [pokemonList, setPokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
   const [filterVisible, setFilterVisible] = React.useState(false)
-  const [typeFilter, setTypeFilter] = React.useState([] as number[])
-  const [search, setSearch] = React.useState('')
   const [lockTypeFilter, setLockTypeFilter] = React.useState(false)
+  const [filters, setFilters] = React.useState(new Filters())
 
   function updateSearch(value: string) {
     const cleanedValue = value.toLocaleLowerCase()
-    setSearch(cleanedValue)
-    filterPokemon(cleanedValue, typeFilter)
+    const newValue = {...filters}
+    newValue.search = cleanedValue
+    setFilters(newValue)
+    filterPokemon(newValue)
   }
 
   function addType(value: number) {
-    const newValue = [...typeFilter, value]
-    setTypeFilter(newValue)
-    filterPokemon(search, newValue)
-    if (newValue.length === 2)
+    const newValue = {...filters}
+    newValue.types.push(value)
+    setFilters(newValue)
+    filterPokemon(newValue)
+    if (newValue.types.length === 2)
       setLockTypeFilter(true)
   }
 
   function removeType(value: number) {
-    const newValue = [...typeFilter]
-    const index = newValue.indexOf(value)
+    const newValue = {...filters}
+    const index = newValue.types.indexOf(value)
     if (index > -1) 
-      newValue.splice(index, 1)
-    setTypeFilter(newValue)
-    filterPokemon(search, newValue)
-    if (newValue.length === 1)
+      newValue.types.splice(index, 1)
+      setFilters(newValue)
+    filterPokemon(newValue)
+    if (newValue.types.length === 1)
       setLockTypeFilter(false)
   }
 
-  function filterPokemon(search: string, types: number[]) {
+  function filterPokemon(filters: Filters) {
     let list: Pokemon[] = []
     pokemon.forEach(p => {
-      if (!p.is_default ||
-        (parseInt(search) > 0 && !p.id.toString().includes(search)) &&
-        !getName(p.names, 'fr').toLocaleLowerCase().includes(search))
+      if (!p.is_default) {
+        if (p.form_name.includes('mega')) {
+          if (!filters.mega)
+            return
+        } else if (p.form_name.includes('gmax')) {
+          if (!filters.gigantamax)
+            return
+        } else if (p.form_name === 'alola') {
+          if (!filters.alolan)
+            return
+        } else if (p.form_name === 'galar') {
+          if (!filters.galarian)
+            return
+        } else if (p.form_name === 'hisui') {
+          if (!filters.hisuian)
+            return
+        } else if (!filters.forms)
+          return
+      }
+      if (parseInt(filters.search) > 0) {
+        if (!p.id.toString().includes(filters.search))
+          return
+      } else if (!getName(p.names, 'fr').toLocaleLowerCase().includes(filters.search))
         return
-      for (let i = 0; i < types.length; i++) {
-        if ((p.types.length === 2 && p.types[0] !== types[i] && p.types[1] !== types[i]) ||
-        (p.types.length === 1 && p.types[0] !== types[i]))
+      for (let i = 0; i < filters.types.length; i++) {
+        if (p.types.length ===2) {
+          if (p.types[0] !== filters.types[i] && p.types[1] !== filters.types[i])
+            return
+        } else if (p.types[0] !== filters.types[i])
           return
       }
       list.push(p)
@@ -104,15 +130,26 @@ export default function App() {
           <Text style={Style.description}>Use advanced search to explore Pokémon by type and forms</Text>
           <View style={Style.modalSection}>
             <Text style={Style.modalSectionName}>Types</Text>
-            <ScrollView horizontal style={Style.typeFilterContainer}>
+            <ScrollView horizontal>
               <TouchableOpacity style={{flexDirection: 'row'}}>
                 {
                   types.map((__, idx) => {
                     return (
-                      <TypeFilter active={typeFilter.find(t => t === idx + 1) !== undefined} add={addType} remove={removeType} type={idx + 1} locked={lockTypeFilter} key={`type-filter-${idx}`}/>
+                      <TypeFilter active={filters.types.find(t => t === idx + 1) !== undefined} add={addType} remove={removeType} type={idx + 1} locked={lockTypeFilter} key={`type-filter-${idx}`}/>
                     )
                   })
                 }
+                </TouchableOpacity>
+              </ScrollView>
+              <Text style={Style.modalSectionName}>Forms</Text>
+              <ScrollView horizontal>
+                <TouchableOpacity style={{flexDirection: 'row'}}>
+                  <FilterButton name='Mega evolution' filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon}/>
+                  <FilterButton name='Gigantamax' filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon}/>
+                  <FilterButton name='Alolan forms' filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon}/>
+                  <FilterButton name='Galarian forms' filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon}/>
+                  <FilterButton name='Hisuian forms' filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon}/>
+                  <FilterButton name='Other forms' filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon}/>
                 </TouchableOpacity>
               </ScrollView>
           </View>

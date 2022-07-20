@@ -13,7 +13,9 @@ export enum BackgroundColors {
   white = 'white',
   inputDefault = '#f2f2f2',
   inputPressed = '#e2e2e2',
-  modal = '#17171B80'
+  modal = '#17171B80',
+  enabled = '#EA5D60',
+  enabledTrail = '#EA5D60B0'
 }
 
 export enum TypeBackgroundColors {
@@ -214,14 +216,11 @@ export const Style = StyleSheet.create({
     fontWeight: '700',
   },
 
-  typeFilterContainer: {
-    paddingVertical: 10,
-    border: 5
-  },
-
   typeFilter: {
     borderRadius: 35,
     marginRight: 25,
-    padding: 15
-  },
+    padding: 15,
+    width: 65,
+    marginBottom: 20,
+  }
 })

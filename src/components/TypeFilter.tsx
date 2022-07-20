@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableNativeFeedback, View } from 'react-native'
 import { BackgroundColors, Style } from '../style'
-import { getTypeBackgroundColor, getTypeColor, getTypeSVG } from '../utils'
+import { getTypeColor, getTypeSVG } from '../utils'
 
 interface Props {
   active: boolean
