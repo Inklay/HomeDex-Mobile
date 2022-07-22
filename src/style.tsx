@@ -207,6 +207,7 @@ export const Style = StyleSheet.create({
 
   modalSection: {
     marginTop: 25,
+    maxHeight: '75%',
   },
 
   modalSectionName: {
@@ -218,9 +219,13 @@ export const Style = StyleSheet.create({
 
   typeFilter: {
     borderRadius: 35,
-    marginRight: 25,
     padding: 15,
     width: 65,
     marginBottom: 20,
-  }
+  },
+
+  filterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
 })
