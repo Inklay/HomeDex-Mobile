@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableNativeFeedback, View, Text } from 'react-native'
+import { TouchableWithoutFeedback, View, Text } from 'react-native'
 import Filters from '../classes/Filters'
 import { Style, BackgroundColors, TextColors } from '../style'
 import Toggle from './svgs/Toggle'
@@ -53,9 +53,9 @@ const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, fil
           backgroundColor: backgroundColor,
         }
       ]}>
-        <TouchableNativeFeedback onPress={pressed}>
+        <TouchableWithoutFeedback onPress={pressed}>
           <Toggle height={35} width={35} color={SVGColor}/>
-        </TouchableNativeFeedback>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   )

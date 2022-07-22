@@ -113,7 +113,7 @@ export default function App() {
           </LinearGradient>
         </ImageBackground>
       </View>
-      <FlatList style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard pokemon={item} index={index}/>}/>
+      <FlatList initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard pokemon={item} index={index}/>}/>
       <StatusBar translucent/>
       <Modal
         isVisible={filterVisible}
