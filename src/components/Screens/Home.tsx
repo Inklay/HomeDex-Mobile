@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground, Text, View, FlatList, ScrollView, Switch } from 'react-native'
+import { ImageBackground, Text, View, FlatList, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Style, TextColors } from '../../style'
 import Pokeball from '../../../assets/images/Pokeball.png'
@@ -13,12 +13,16 @@ import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from '../TypeFilter'
 import Pokemon from '../../classes/Pokemon'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native'
 import Filters from '../../classes/Filters'
 import FilterButton from '../FilterButton'
 import accent from 'remove-accents'
 
-const Home = () => {
+interface Props {
+  navigation: any
+}
+
+const Home: React.FC<Props> = ({navigation}) => {
   const [pokemonList, setPokemonList] = React.useState(pokemon.filter(p => p.is_default == true))
   const [filterVisible, setFilterVisible] = React.useState(false)
   const [lockTypeFilter, setLockTypeFilter] = React.useState(false)
@@ -111,7 +115,7 @@ const Home = () => {
           </LinearGradient>
         </ImageBackground>
       </View>
-      <FlatList initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard pokemon={item} index={index}/>}/>
+      <FlatList initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index}/>}/>
       <StatusBar translucent/>
       <Modal
         isVisible={filterVisible}

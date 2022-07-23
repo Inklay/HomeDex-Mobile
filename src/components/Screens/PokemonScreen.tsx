@@ -1,7 +1,13 @@
 import React from 'react'
 import { View } from 'react-native'
+import Pokemon from '../../classes/Pokemon'
 
-const PokemonScreen = () => {
+interface Props {
+  navigation: any,
+  pokemon: Pokemon
+}
+
+const PokemonScreen: React.FC<Props> = ({navigation, pokemon}) => {
   return (
     <View>
       

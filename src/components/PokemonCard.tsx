@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, TouchableWithoutFeedback } from 'react-native'
 import Pokemon from '../classes/Pokemon'
 import { BackgroundColors, Style } from '../style'
 import { getName, getTypeBackgroundColor } from '../utils'
@@ -7,12 +7,14 @@ import TypeName from './TypeName'
 import Dots from './svgs/Dots'
 import CachedImage from 'react-native-expo-cached-image'
 
+
 interface Props {
   pokemon: Pokemon,
-  index: number
+  index: number,
+  navigation: any
 }
 
-const PokemonCard: React.FC<Props> = ({pokemon, index}) => {
+const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
   function fixId() : string {
     if (pokemon.id < 10)
       return `00${pokemon.id}`
@@ -20,28 +22,33 @@ const PokemonCard: React.FC<Props> = ({pokemon, index}) => {
       return `0${pokemon.id}`
     else
       return pokemon.id.toString()
+
+
   }
   return (
-    <View style={[
-      Style.pokemonCard, {
-        backgroundColor: getTypeBackgroundColor(pokemon.types[0])
-    }]}>
-      <View>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={Style.pokemonNumber}>#{fixId()}</Text>
-          <Dots style={Style.cardDots} color={BackgroundColors.white} height={32} width={74}/>
+    <TouchableWithoutFeedback onPress={() => {navigation.navigate('PokemonScreen', {pokemon: pokemon})}}>
+      <View style={[
+        Style.pokemonCard, {
+          backgroundColor: getTypeBackgroundColor(pokemon.types[0])
+        }]
+      }>
+        <View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={Style.pokemonNumber}>#{fixId()}</Text>
+            <Dots style={Style.cardDots} color={BackgroundColors.white} height={32} width={74}/>
+          </View>
+          <Text style={Style.pokemonName}>{getName(pokemon.names, 'fr')}</Text>
+          <View style={Style.pokemonTypesName}>
+            {pokemon.types.map((t, idx) => 
+              <TypeName type={t} key={`${pokemon.id}-${pokemon.form_name}-${index}-type-${idx}`}/>
+            )}
+          </View>
         </View>
-        <Text style={Style.pokemonName}>{getName(pokemon.names, 'fr')}</Text>
-        <View style={Style.pokemonTypesName}>
-          {pokemon.types.map((t, idx) => 
-            <TypeName type={t} key={`${pokemon.id}-${pokemon.form_name}-${index}-type-${idx}`}/>
-          )}
-        </View>
+        <CachedImage resizeMode='contain' style={Style.pokemonCardImage} source={{
+          uri: pokemon.sprite
+        }}/>
       </View>
-      <CachedImage resizeMode='contain' style={Style.pokemonCardImage} source={{
-        uri: pokemon.sprite
-      }}/>
-    </View>
+    </TouchableWithoutFeedback>
   )
 }
 
