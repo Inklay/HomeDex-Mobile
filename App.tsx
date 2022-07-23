@@ -9,8 +9,8 @@ import Sort from './src/components/svgs/Sort'
 import Filter from './src/components/svgs/Filter'
 import Input from './src/components/Input'
 import PokemonCard from './src/components/PokemonCard'
-import { pokemon, types } from './src/data'
-import { getName, getTypeColor } from './src/utils'
+import { pokemon } from './src/data'
+import { getName } from './src/utils'
 import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from './src/components/TypeFilter'
@@ -18,6 +18,7 @@ import Pokemon from './src/classes/Pokemon'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Filters from './src/classes/Filters'
 import FilterButton from './src/components/FilterButton'
+import accent from 'remove-accents'
 
 export default function App() {
 
@@ -27,9 +28,8 @@ export default function App() {
   const [filters, setFilters] = React.useState(new Filters())
 
   function updateSearch(value: string) {
-    const cleanedValue = value.toLocaleLowerCase()
     const newValue = {...filters}
-    newValue.search = cleanedValue
+    newValue.search = value
     setFilters(newValue)
     filterPokemon(newValue)
   }
@@ -55,6 +55,7 @@ export default function App() {
   }
 
   function filterPokemon(filters: Filters) {
+    const search = accent.remove(filters.search.toLocaleLowerCase())
     let list: Pokemon[] = []
     pokemon.forEach(p => {
       if (!p.is_default) {
@@ -76,10 +77,10 @@ export default function App() {
         } else if (!filters.other)
           return
       }
-      if (parseInt(filters.search) > 0) {
-        if (!p.id.toString().includes(filters.search))
+      if (parseInt(search) > 0) {
+        if (!p.id.toString().includes(search))
           return
-      } else if (!getName(p.names, 'fr').toLocaleLowerCase().includes(filters.search))
+      } else if (!accent.remove(getName(p.names, 'fr').toLocaleLowerCase()).includes(search))
         return
       for (let i = 0; i < filters.types.length; i++) {
         if (p.types.length ===2) {
