@@ -268,7 +268,7 @@ export const Style = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     fontWeight: '700',
-    color: TextColors.grey
+    color: TextColors.number
   },
 
   pokemonPageName: {
