@@ -2,11 +2,10 @@ import React from 'react'
 import { View, Text, TouchableWithoutFeedback } from 'react-native'
 import Pokemon from '../classes/Pokemon'
 import { BackgroundColors, Style } from '../style'
-import { getName, getTypeBackgroundColor } from '../utils'
+import { getName, getTypeBackgroundColor, fixId } from '../utils'
 import TypeName from './TypeName'
 import Dots from './svgs/Dots'
 import CachedImage from 'react-native-expo-cached-image'
-
 
 interface Props {
   pokemon: Pokemon,
@@ -15,14 +14,7 @@ interface Props {
 }
 
 const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
-  function fixId() : string {
-    if (pokemon.id < 10)
-      return `00${pokemon.id}`
-    if (pokemon.id < 100)
-      return `0${pokemon.id}`
-    else
-      return pokemon.id.toString()
-  }
+  
 
   return (
     <TouchableWithoutFeedback onPress={() => {navigation.navigate('PokemonScreen', {pokemon: pokemon})}}>
@@ -33,7 +25,7 @@ const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
       }>
         <View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={Style.pokemonNumber}>#{fixId()}</Text>
+            <Text style={Style.pokemonNumber}>#{fixId(pokemon)}</Text>
             <Dots style={Style.cardDots} color={BackgroundColors.white} height={32} width={74}/>
           </View>
           <Text style={Style.pokemonName}>{getName(pokemon.names, 'fr')}</Text>
@@ -43,9 +35,7 @@ const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
             )}
           </View>
         </View>
-        <CachedImage resizeMode='contain' style={Style.pokemonCardImage} source={{
-          uri: pokemon.sprite
-        }}/>
+        <CachedImage resizeMode='contain' style={Style.pokemonCardImage} source={{uri: pokemon.sprite}}/>
       </View>
     </TouchableWithoutFeedback>
   )

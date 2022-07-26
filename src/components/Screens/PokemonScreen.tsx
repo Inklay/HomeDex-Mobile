@@ -2,9 +2,10 @@ import React from 'react'
 import { View, Text, TouchableWithoutFeedback } from 'react-native'
 import Pokemon from '../../classes/Pokemon'
 import { BackgroundColors, Style } from '../../style'
-import { getName, getTypeBackgroundColor } from '../../utils'
+import { getName, getTypeBackgroundColor, fixId } from '../../utils'
 import CachedImage from 'react-native-expo-cached-image'
 import LeftArrow from '../svgs/LeftArrow'
+import TypeName from '../TypeName'
 
 interface Props {
   navigation: any,
@@ -23,12 +24,21 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
     <View style={Style.container}>
       <View style={[Style.pokemonPageTop, {backgroundColor: color}]}>
         <Text style={[Style.pokemonPageTopName, {color: color}]}>{getName(pokemon.names, 'fr').toLocaleUpperCase()}</Text>
-        <TouchableWithoutFeedback onPress={() => {
-          navigation.goBack()
-        }}>
+        <TouchableWithoutFeedback onPress={() => {navigation.goBack()}}>
           <LeftArrow style={Style.backIcon} color={BackgroundColors.white} height={20} width={20}/>
         </TouchableWithoutFeedback>
-        <CachedImage resizeMode='contain' style={Style.pokemonPageImage} source={{uri: pokemon.sprite}}/>
+        <View style={Style.pokemonPageHeader}>
+          <CachedImage resizeMode='contain' style={Style.pokemonPageImage} source={{uri: pokemon.sprite}}/>
+          <View>
+            <Text style={Style.pokemonPageNumber}>#{fixId(pokemon)}</Text>
+            <Text style={Style.pokemonPageName}>{getName(pokemon.names, 'fr')}</Text>
+            <View style={Style.pokemonTypesName}>
+              {pokemon.types.map((t, idx) => 
+                <TypeName type={t} key={`type-${idx}`}/>
+              )}
+            </View>
+          </View>
+        </View>
       </View>
     </View>
   )

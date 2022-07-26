@@ -19,6 +19,7 @@ import Rock from './components/svgs/Types/Rock'
 import Steel from './components/svgs/Types/Steel'
 import Water from './components/svgs/Types/Water'
 import Name from './classes/Name'
+import Pokemon from './classes/Pokemon'
 
 export function getTypeBackgroundColor(type: number) : string {
   switch (type) {
@@ -145,4 +146,13 @@ export function getName(names: Name[], language: string) : string {
   if (asked === undefined)
     return names.find(n => n.language === 'en')!.name
   return asked.name
+}
+
+export function fixId(pokemon: Pokemon) : string {
+  if (pokemon.id < 10)
+    return `00${pokemon.id}`
+  if (pokemon.id < 100)
+    return `0${pokemon.id}`
+  else
+    return pokemon.id.toString()
 }

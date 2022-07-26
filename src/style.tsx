@@ -235,7 +235,7 @@ export const Style = StyleSheet.create({
 
   pokemonPageTopName: {
     position: 'absolute',
-    marginTop: 40,
+    marginTop: 25,
     fontSize: 100,
     fontWeight: '700',
     width: 1000,
@@ -253,9 +253,27 @@ export const Style = StyleSheet.create({
     marginTop: 50
   },
 
+  pokemonPageHeader: {
+    marginTop: 50,
+    flexDirection: 'row'
+  },
+
   pokemonPageImage: {
+    marginRight: 15,
     width: 140,
     height: 140,
-    marginTop: 50,
+  },
+
+  pokemonPageNumber: {
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: '700',
+    color: TextColors.grey
+  },
+
+  pokemonPageName: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: TextColors.white
   },
 })
