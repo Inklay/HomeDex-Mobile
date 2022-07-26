@@ -228,4 +228,34 @@ export const Style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
+
+  pokemonPageTop: {
+    paddingHorizontal: 20
+  },
+
+  pokemonPageTopName: {
+    position: 'absolute',
+    marginTop: 40,
+    fontSize: 100,
+    fontWeight: '700',
+    width: 1000,
+    textAlign: 'center',
+    left: '50%',
+    transform: [{
+      translateX: -480
+    }],
+    textShadowColor: 'white',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 5
+  },
+
+  backIcon: {
+    marginTop: 50
+  },
+
+  pokemonPageImage: {
+    width: 140,
+    height: 140,
+    marginTop: 50,
+  },
 })

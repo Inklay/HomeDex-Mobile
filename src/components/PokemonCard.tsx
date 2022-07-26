@@ -22,9 +22,8 @@ const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
       return `0${pokemon.id}`
     else
       return pokemon.id.toString()
-
-
   }
+
   return (
     <TouchableWithoutFeedback onPress={() => {navigation.navigate('PokemonScreen', {pokemon: pokemon})}}>
       <View style={[
