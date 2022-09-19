@@ -1,6 +1,5 @@
 import Pokedex from 'pokedex-promise-v2'
 import fs from 'fs'
-import { type } from 'os'
 
 const p = new Pokedex()
 const data = {
