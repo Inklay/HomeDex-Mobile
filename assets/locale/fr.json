@@ -1,5 +1,20 @@
 {
   "home": {
-    
+    "description": "Cherchez le Pokémon que vous voulez avec son nom ou son numéro de pokédex national.",
+    "searchPlaceholder": "Quel Pokémon cherchez vous ?",
+    "filters": {
+      "filters": "Filtres",
+      "description": "Utilisez les filtres pour trouver les Pokémon par type et forms.",
+      "types": "Types",
+      "forms": {
+        "forms": "Formes",
+        "mega": "Mega\névolutions",
+        "gigantamax": "Gigamax",
+        "alolan": "Formes\nd'Alola",
+        "galarian": "Formes\nde Galar",
+        "hisuian": "Formes\nd'Hisui",
+        "other": "Autres\nformes"
+      }
+    }
   }
 }

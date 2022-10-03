@@ -7,7 +7,7 @@ import { getLocale } from './src/utils'
 
 export default function App() {
   const Stack = createNativeStackNavigator()
-  //getLocale()
+  getLocale()
 
   return (
     <NavigationContainer>
