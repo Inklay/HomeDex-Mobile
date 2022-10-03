@@ -55,7 +55,7 @@ const TypeFilter: React.FC<Props> = ({active, type, locked, add, remove}) => {
       }
     ]}>
       <TouchableWithoutFeedback onPress={pressed}>
-        <TypeSVG height={35} width={35} color={SVGColor}/>
+        <TypeSVG height={40} width={40} color={SVGColor}/>
       </TouchableWithoutFeedback>
     </View>
   )

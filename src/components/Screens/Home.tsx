@@ -8,7 +8,7 @@ import Filter from '../svgs/Filter'
 import Input from '../Input'
 import PokemonCard from '../PokemonCard'
 import { pokemon } from '../../data'
-import { getName } from '../../utils'
+import { getName, Locale } from '../../utils'
 import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from '../TypeFilter'
@@ -110,8 +110,8 @@ const Home: React.FC<Props> = ({navigation}) => {
               <IconButton Icon={Filter} trigger={showFilter}  color={TextColors.black} size={20}/>
             </View>
             <Text style={Style.appName}>Homedex</Text>
-            <Text style={Style.description}>Search for Pokémon by name or by national pokédex number.</Text>
-            <Input onValueChange={updateSearch} placeholder='What pokémon are you looking for ?'/>
+            <Text style={Style.description}>{Locale.home.description}</Text>
+            <Input onValueChange={updateSearch} placeholder={Locale.home.searchPlaceholder}/>
           </LinearGradient>
         </ImageBackground>
       </View>
@@ -128,13 +128,13 @@ const Home: React.FC<Props> = ({navigation}) => {
         propagateSwipe
       >
         <View style={Style.modalContainer}>
-          <Text style={Style.modalName}>Filters</Text>
-          <Text style={Style.description}>Use advanced search to explore Pokémon by type and forms</Text>
+          <Text style={Style.modalName}>{Locale.home.filters.filters}</Text>
+          <Text style={Style.description}>{Locale.home.filters.description}</Text>
           <View style={Style.modalSection}>
             <ScrollView>
               <TouchableWithoutFeedback>
                 <View>
-                  <Text style={Style.modalSectionName}>Types</Text>
+                  <Text style={Style.modalSectionName}>{Locale.home.filters.types}</Text>
                   <View style={Style.filterContainer}>
                     <TypeFilter active={filters.types.find(t => t === 1) !== undefined} add={addType} remove={removeType} type={1} locked={lockTypeFilter}/>
                     <TypeFilter active={filters.types.find(t => t === 2) !== undefined} add={addType} remove={removeType} type={2} locked={lockTypeFilter}/>
@@ -163,16 +163,16 @@ const Home: React.FC<Props> = ({navigation}) => {
                     <TypeFilter active={filters.types.find(t => t === 17) !== undefined} add={addType} remove={removeType} type={17} locked={lockTypeFilter}/>
                     <TypeFilter active={filters.types.find(t => t === 18) !== undefined} add={addType} remove={removeType} type={18} locked={lockTypeFilter}/>
                   </View>
-                  <Text style={Style.modalSectionName}>Forms</Text>
+                  <Text style={Style.modalSectionName}>{Locale.home.filters.forms.forms}</Text>
                   <View style={Style.filterContainer}>
-                    <FilterButton name='Mega evolution' filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon}/>
-                    <FilterButton name='Gigantamax' filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon}/>
-                    <FilterButton name='Alolan forms' filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon}/>
-                    <FilterButton name='Galarian forms' filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon}/>
+                    <FilterButton name={Locale.home.filters.forms.mega} filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon}/>
+                    <FilterButton name={Locale.home.filters.forms.gigantamax} filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon}/>
+                    <FilterButton name={Locale.home.filters.forms.alolan} filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon}/>
+                    <FilterButton name={Locale.home.filters.forms.galarian} filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon}/>
                   </View>
                   <View style={Style.filterContainer}>
-                    <FilterButton name='Hisuian forms' filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon}/>
-                    <FilterButton name='Other forms' filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon}/>
+                    <FilterButton name={Locale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon}/>
+                    <FilterButton name={Locale.home.filters.forms.other} filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon}/>
                   </View>
                 </View>
               </TouchableWithoutFeedback>

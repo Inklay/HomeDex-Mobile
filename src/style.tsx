@@ -219,7 +219,6 @@ export const Style = StyleSheet.create({
   typeFilter: {
     borderRadius: 35,
     padding: 15,
-    width: 65,
     marginBottom: 20,
   },
 
@@ -317,5 +316,5 @@ export const Style = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
     fontWeight: '700'
-  }
+  },
 })

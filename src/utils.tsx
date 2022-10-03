@@ -20,6 +20,12 @@ import Steel from './components/svgs/Types/Steel'
 import Water from './components/svgs/Types/Water'
 import Name from './classes/Name'
 import Pokemon from './classes/Pokemon'
+import * as LocaleType from './classes/Locale'
+import fr from '../assets/locale/fr.json'
+import en from '../assets/locale/en.json'
+import { NativeModules, Platform } from 'react-native'
+
+export let Locale = en as LocaleType.default
 
 export function getTypeBackgroundColor(type: number) : string {
   switch (type) {
@@ -155,4 +161,16 @@ export function fixId(pokemon: Pokemon) : string {
     return `0${pokemon.id}`
   else
     return pokemon.id.toString()
+}
+
+export function getLocale() : void {
+  const deviceLanguage = Platform.OS === 'ios' ?
+    NativeModules.SettingsManager.settings.AppleLocale ||
+    NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13+
+    : NativeModules.I18nManager.localeIdentifier
+  
+  if (deviceLanguage.startsWith('fr_'))
+    Locale = fr as LocaleType.default
+  else
+    Locale = en as LocaleType.default
 }

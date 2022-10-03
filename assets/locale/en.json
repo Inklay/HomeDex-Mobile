@@ -1,0 +1,20 @@
+{
+  "home": {
+    "description": "Search for Pokémon by name or by national pokédex number.",
+    "searchPlaceholder": "What pokémon are you looking for ?",
+    "filters": {
+      "filters": "Filters",
+      "description": "Use advanced search to explore Pokémon by type and forms.",
+      "types": "Types",
+      "forms": {
+        "forms": "Forms",
+        "mega": "Mega\nevolutions",
+        "gigantamax": "Gigantamax",
+        "alolan": "Alolan\nforms",
+        "galarian": "Galarian\nforms",
+        "hisuian": "Hisuian\nforms",
+        "other": "Other\nforms"
+      }
+    }
+  }
+}

@@ -41,20 +41,23 @@ const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, fil
 
   return (
     <View>
-      <Text style={[Style.description, {
-        marginBottom: 10,
-        width: 65,
-        textAlign: 'center'
-      }]}>
-        {name}
-      </Text>
+      <View style={{
+        height: 55,
+        justifyContent: 'center'
+      }}>
+        <Text style={[Style.description, {
+          textAlign: 'center'
+        }]}>
+          {name}
+        </Text>
+      </View>
       <View style={[
         Style.typeFilter, {
           backgroundColor: backgroundColor,
         }
       ]}>
         <TouchableWithoutFeedback onPress={pressed}>
-          <Toggle height={35} width={35} color={SVGColor}/>
+          <Toggle height={40} width={40} color={SVGColor}/>
         </TouchableWithoutFeedback>
       </View>
     </View>
