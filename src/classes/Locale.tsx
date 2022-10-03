@@ -18,4 +18,11 @@ export default interface Locale {
       }
     }
   }
+  pokemonScreen: {
+    about: string
+    stats: string
+    data: {
+      data: string
+    }
+  }
 }

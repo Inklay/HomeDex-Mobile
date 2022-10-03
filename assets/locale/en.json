@@ -17,5 +17,12 @@
         "other": "Other\nforms"
       }
     }
+  },
+  "pokemonScreen": {
+    "about": "About",
+    "stats": "Stats",
+    "data": {
+      "data": "Pokédex Data"
+    }
   }
 }

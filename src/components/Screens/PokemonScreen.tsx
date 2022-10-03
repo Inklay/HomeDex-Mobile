@@ -92,8 +92,8 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
           </View>
         </View>
         <View style={Style.pokemonScreenSelector}>
-          <Text style={screen === Screens.ABOUT ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>About</Text>
-          {/*<Text style={screen === Screens.STATS ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>Stats</Text>*/}
+          <Text style={screen === Screens.ABOUT ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.about}</Text>
+          {/*<Text style={screen === Screens.STATS ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.stats}</Text>*/}
         </View>
       </View>
       <View style={Style.pokemonScreenContent}>
@@ -101,7 +101,7 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
           <TouchableWithoutFeedback>
             <View>
               <Text style={Style.pokemonFlavourtext}>{getLatestFlavor()}</Text>
-              <Text style={[Style.pokemonScreenTitle, {color: color}]}>Pokédex Data</Text>
+              <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.data.data}</Text>
             </View>
           </TouchableWithoutFeedback>
         </ScrollView>
