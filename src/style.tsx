@@ -276,4 +276,32 @@ export const Style = StyleSheet.create({
     fontWeight: '700',
     color: TextColors.white
   },
+
+  pokemonScreenSelector: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    marginBottom: 20
+  },
+
+  pokemonScreenSelectorText: {
+    color: TextColors.white,
+    fontWeight: '700',
+    fontSize: 16,
+    opacity: 0.5
+  },
+
+  pokemonScreenSelectorTextSelected: {
+    color: TextColors.white,
+    fontWeight: '700',
+    fontSize: 16
+  },
+
+  pokemonScreenContent: {
+    backgroundColor: BackgroundColors.white,
+    height: '100%',
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
+    padding: 40
+  }
 })
