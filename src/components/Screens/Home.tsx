@@ -13,7 +13,7 @@ import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from '../TypeFilter'
 import Pokemon from '../../classes/Pokemon'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import Filters from '../../classes/Filters'
 import FilterButton from '../FilterButton'
 import accent from 'remove-accents'
@@ -132,48 +132,50 @@ const Home: React.FC<Props> = ({navigation}) => {
           <Text style={Style.description}>Use advanced search to explore Pokémon by type and forms</Text>
           <View style={Style.modalSection}>
             <ScrollView>
-              <TouchableOpacity>
-                <Text style={Style.modalSectionName}>Types</Text>
-                <View style={Style.filterContainer}>
-                  <TypeFilter active={filters.types.find(t => t === 1) !== undefined} add={addType} remove={removeType} type={1} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 2) !== undefined} add={addType} remove={removeType} type={2} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 3) !== undefined} add={addType} remove={removeType} type={3} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 4) !== undefined} add={addType} remove={removeType} type={4} locked={lockTypeFilter}/>
+              <TouchableWithoutFeedback>
+                <View>
+                  <Text style={Style.modalSectionName}>Types</Text>
+                  <View style={Style.filterContainer}>
+                    <TypeFilter active={filters.types.find(t => t === 1) !== undefined} add={addType} remove={removeType} type={1} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 2) !== undefined} add={addType} remove={removeType} type={2} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 3) !== undefined} add={addType} remove={removeType} type={3} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 4) !== undefined} add={addType} remove={removeType} type={4} locked={lockTypeFilter}/>
+                  </View>
+                  <View style={Style.filterContainer}>
+                    <TypeFilter active={filters.types.find(t => t === 5) !== undefined} add={addType} remove={removeType} type={5} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 6) !== undefined} add={addType} remove={removeType} type={6} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 7) !== undefined} add={addType} remove={removeType} type={7} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 8) !== undefined} add={addType} remove={removeType} type={8} locked={lockTypeFilter}/>
+                  </View>
+                  <View style={Style.filterContainer}>
+                    <TypeFilter active={filters.types.find(t => t === 9) !== undefined} add={addType} remove={removeType} type={9} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 10) !== undefined} add={addType} remove={removeType} type={10} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 11) !== undefined} add={addType} remove={removeType} type={11} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 12) !== undefined} add={addType} remove={removeType} type={12} locked={lockTypeFilter}/>
+                  </View>
+                  <View style={Style.filterContainer}>
+                    <TypeFilter active={filters.types.find(t => t === 13) !== undefined} add={addType} remove={removeType} type={13} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 14) !== undefined} add={addType} remove={removeType} type={14} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 15) !== undefined} add={addType} remove={removeType} type={15} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 16) !== undefined} add={addType} remove={removeType} type={16} locked={lockTypeFilter}/>
+                  </View>
+                  <View style={Style.filterContainer}>
+                    <TypeFilter active={filters.types.find(t => t === 17) !== undefined} add={addType} remove={removeType} type={17} locked={lockTypeFilter}/>
+                    <TypeFilter active={filters.types.find(t => t === 18) !== undefined} add={addType} remove={removeType} type={18} locked={lockTypeFilter}/>
+                  </View>
+                  <Text style={Style.modalSectionName}>Forms</Text>
+                  <View style={Style.filterContainer}>
+                    <FilterButton name='Mega evolution' filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon}/>
+                    <FilterButton name='Gigantamax' filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon}/>
+                    <FilterButton name='Alolan forms' filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon}/>
+                    <FilterButton name='Galarian forms' filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon}/>
+                  </View>
+                  <View style={Style.filterContainer}>
+                    <FilterButton name='Hisuian forms' filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon}/>
+                    <FilterButton name='Other forms' filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon}/>
+                  </View>
                 </View>
-                <View style={Style.filterContainer}>
-                  <TypeFilter active={filters.types.find(t => t === 5) !== undefined} add={addType} remove={removeType} type={5} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 6) !== undefined} add={addType} remove={removeType} type={6} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 7) !== undefined} add={addType} remove={removeType} type={7} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 8) !== undefined} add={addType} remove={removeType} type={8} locked={lockTypeFilter}/>
-                </View>
-                <View style={Style.filterContainer}>
-                  <TypeFilter active={filters.types.find(t => t === 9) !== undefined} add={addType} remove={removeType} type={9} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 10) !== undefined} add={addType} remove={removeType} type={10} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 11) !== undefined} add={addType} remove={removeType} type={11} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 12) !== undefined} add={addType} remove={removeType} type={12} locked={lockTypeFilter}/>
-                </View>
-                <View style={Style.filterContainer}>
-                  <TypeFilter active={filters.types.find(t => t === 13) !== undefined} add={addType} remove={removeType} type={13} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 14) !== undefined} add={addType} remove={removeType} type={14} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 15) !== undefined} add={addType} remove={removeType} type={15} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 16) !== undefined} add={addType} remove={removeType} type={16} locked={lockTypeFilter}/>
-                </View>
-                <View style={Style.filterContainer}>
-                  <TypeFilter active={filters.types.find(t => t === 17) !== undefined} add={addType} remove={removeType} type={17} locked={lockTypeFilter}/>
-                  <TypeFilter active={filters.types.find(t => t === 18) !== undefined} add={addType} remove={removeType} type={18} locked={lockTypeFilter}/>
-                </View>
-                <Text style={Style.modalSectionName}>Forms</Text>
-                <View style={Style.filterContainer}>
-                  <FilterButton name='Mega evolution' filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon}/>
-                  <FilterButton name='Gigantamax' filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon}/>
-                  <FilterButton name='Alolan forms' filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon}/>
-                  <FilterButton name='Galarian forms' filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon}/>
-                </View>
-                <View style={Style.filterContainer}>
-                  <FilterButton name='Hisuian forms' filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon}/>
-                  <FilterButton name='Other forms' filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon}/>
-                </View>
-              </TouchableOpacity>
+              </TouchableWithoutFeedback>
             </ScrollView>
           </View>
         </View>

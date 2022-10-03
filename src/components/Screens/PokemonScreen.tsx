@@ -6,6 +6,7 @@ import { getName, getTypeBackgroundColor, fixId } from '../../utils'
 import CachedImage from 'react-native-expo-cached-image'
 import LeftArrow from '../svgs/LeftArrow'
 import TypeName from '../TypeName'
+import Dots from '../svgs/Dots'
 
 interface Props {
   navigation: any,
@@ -32,11 +33,17 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
           <View>
             <Text style={Style.pokemonPageNumber}>#{fixId(pokemon)}</Text>
             <Text style={Style.pokemonPageName}>{getName(pokemon.names, 'fr')}</Text>
-            <View style={Style.pokemonTypesName}>
-              {pokemon.types.map((t, idx) => 
-                <TypeName type={t} key={`type-${idx}`}/>
-              )}
+            <View style={{flexDirection: 'row'}}>
+              <View style={Style.pokemonTypesName}>
+                {pokemon.types.map((t, idx) => 
+                  <TypeName type={t} key={`type-${idx}`}/>
+                )}
+              </View>
+              <Dots style={[Style.cardDots, {left: 180, top: 20}]} color={BackgroundColors.white} height={32} width={74}/>
             </View>
+          </View>
+          <View>
+            
           </View>
         </View>
       </View>

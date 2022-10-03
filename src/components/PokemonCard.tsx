@@ -14,8 +14,6 @@ interface Props {
 }
 
 const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
-  
-
   return (
     <TouchableWithoutFeedback onPress={() => {navigation.navigate('PokemonScreen', {pokemon: pokemon})}}>
       <View style={[
@@ -26,7 +24,7 @@ const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
         <View>
           <View style={{flexDirection: 'row'}}>
             <Text style={Style.pokemonNumber}>#{fixId(pokemon)}</Text>
-            <Dots style={Style.cardDots} color={BackgroundColors.white} height={32} width={74}/>
+            <Dots style={[Style.cardDots, {left: 70, top: -15}]} color={BackgroundColors.white} height={32} width={74}/>
           </View>
           <Text style={Style.pokemonName}>{getName(pokemon.names, 'fr')}</Text>
           <View style={Style.pokemonTypesName}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableNativeFeedback, View } from 'react-native'
+import { TouchableWithoutFeedback, View } from 'react-native'
 import { BackgroundColors, Style } from '../style'
 import { getTypeColor, getTypeSVG } from '../utils'
 
@@ -54,9 +54,9 @@ const TypeFilter: React.FC<Props> = ({active, type, locked, add, remove}) => {
         backgroundColor: backgroundColor,
       }
     ]}>
-      <TouchableNativeFeedback onPress={pressed}>
+      <TouchableWithoutFeedback onPress={pressed}>
         <TypeSVG height={35} width={35} color={SVGColor}/>
-      </TouchableNativeFeedback>
+      </TouchableWithoutFeedback>
     </View>
   )
 }

@@ -89,7 +89,7 @@ export const Style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     marginBottom: 10,
-    marginTop: 40,
+    marginTop: 50,
   },
 
   homeActionRowIcon: {
@@ -166,12 +166,11 @@ export const Style = StyleSheet.create({
   pokemonTypesName: {
     marginTop: 5,
     flexDirection: 'row',
+    justifyContent: 'flex-end'
   },
 
   cardDots: {
-    position: 'absolute',
-    left: 70,
-    top: -15
+    position: 'absolute'
   },
 
   pokemonCardImage: {
@@ -238,11 +237,11 @@ export const Style = StyleSheet.create({
     marginTop: 25,
     fontSize: 100,
     fontWeight: '700',
-    width: 1000,
+    width: 2000,
     textAlign: 'center',
     left: '50%',
     transform: [{
-      translateX: -480
+      translateX: -980
     }],
     textShadowColor: 'white',
     textShadowOffset: {width: 0, height: 0},
@@ -255,7 +254,8 @@ export const Style = StyleSheet.create({
 
   pokemonPageHeader: {
     marginTop: 50,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 40,
   },
 
   pokemonPageImage: {
