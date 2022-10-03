@@ -166,7 +166,7 @@ export const Style = StyleSheet.create({
   pokemonTypesName: {
     marginTop: 5,
     flexDirection: 'row',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-start'
   },
 
   cardDots: {
