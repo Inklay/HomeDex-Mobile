@@ -75,6 +75,7 @@ for (let i = 0; i < species.count; i++) {
   const names = []
   const pokedex_numbers = []
   const egg_groups = []
+  const flavor_texts= []
   for (let j = 0; j < s.egg_groups.length; j++)
     egg_groups.push(parseInt(s.egg_groups[j].url.substring(36).slice(0, -1)))
   for (let j = 0; j < s.genera.length; j++)
@@ -92,6 +93,22 @@ for (let i = 0; i < species.count; i++) {
       name: s.pokedex_numbers[j].pokedex.name,
       number: s.pokedex_numbers[j].entry_number
     })
+  for (let j = s.flavor_text_entries.length - 1; j > 0; j--) {
+    const idx = flavor_texts.findIndex(t => t.game === s.flavor_text_entries[j].version.name)
+    if (idx === -1)
+      flavor_texts.push({
+        game: s.flavor_text_entries[j].version.name,
+        texts: [{
+          language: s.flavor_text_entries[j].language.name,
+          name: s.flavor_text_entries[j].flavor_text
+        }]
+      })
+    else
+      flavor_texts[idx].texts.push({
+        language: s.flavor_text_entries[j].language.name,
+        name: s.flavor_text_entries[j].flavor_text
+      })
+  }
   const tempData = {
     base_friendship: s.base_happiness,
     capture_rate: s.capture_rate,
@@ -102,7 +119,8 @@ for (let i = 0; i < species.count; i++) {
     has_gender_difference: s.has_gender_differences,
     id: s.id,
     names: names,
-    pokedex_numbers: pokedex_numbers
+    pokedex_numbers: pokedex_numbers,
+    flavor_texts: flavor_texts
   }
   for (let j = 0; j < s.varieties.length; j++) {
     const pokemonData = {...tempData}

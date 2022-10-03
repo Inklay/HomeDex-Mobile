@@ -1,4 +1,5 @@
 import Category from "./Category"
+import FlavorText from "./FlavorText"
 import Name from "./Name"
 import PokemonAbility from "./PokemonABility"
 
@@ -19,4 +20,5 @@ export default interface Pokemon {
   form_name: string
   sprite: string
   abilities: PokemonAbility[]
+  flavor_texts: FlavorText[]
 }

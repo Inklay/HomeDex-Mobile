@@ -80,7 +80,7 @@ export const Style = StyleSheet.create({
 
   appName: {
     fontSize: 32,
-    fontWeight: "700",
+    fontWeight: '700',
     color: TextColors.black
   },
 
@@ -255,7 +255,7 @@ export const Style = StyleSheet.create({
   pokemonPageHeader: {
     marginTop: 50,
     flexDirection: 'row',
-    marginBottom: 40,
+    marginBottom: 10,
   },
 
   pokemonPageImage: {
@@ -302,6 +302,20 @@ export const Style = StyleSheet.create({
     height: '100%',
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
-    padding: 40
+    paddingHorizontal: 20,
+    paddingVertical: 40
+  },
+  
+  pokemonFlavourtext: {
+    color: TextColors.grey,
+    fontSize: 16,
+    fontWeight: '400',
+    marginBottom: 30
+  },
+
+  pokemonScreenTitle: {
+    marginBottom: 20,
+    fontSize: 16,
+    fontWeight: '700'
   }
 })

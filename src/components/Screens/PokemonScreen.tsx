@@ -29,6 +29,46 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
   const color = getTypeBackgroundColor(pokemon.types[0])
   let screen = Screens.ABOUT
 
+  function getLatestFlavor() : string | undefined {
+    const gameOrder = [
+      'legends-arceus',
+      'sword',
+      'shield',
+      'lets-go-eevee',
+      'lets-go-pikachu',
+      'omega-ruby',
+      'alpha-sapphire',
+      'y',
+      'x',
+      'black-2',
+      'white-2',
+      'black',
+      'white',
+      'heartgold',
+      'soulvilver',
+      'plaitnum',
+      'diamond',
+      'pearl',
+      'emerald',
+      'firered',
+      'leafgreen',
+      'ruby',
+      'sapphire',
+      'crystal',
+      'silver',
+      'gold',
+      'yellow',
+      'blue',
+      'red'
+    ]
+    for (let i = 0; i < gameOrder.length; i++) {
+      const text = pokemon.flavor_texts.find(t => t.game === gameOrder[i])
+      if (text !== undefined)
+        return getName(text.texts, 'fr').replace('\n', ' ')
+    }
+    return undefined
+  }
+
   return (
     <View style={[Style.container, {backgroundColor: color}]}>
       <View style={Style.pokemonPageTop}>
@@ -60,6 +100,8 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
         <ScrollView>
           <TouchableWithoutFeedback>
             <View>
+              <Text style={Style.pokemonFlavourtext}>{getLatestFlavor()}</Text>
+              <Text style={[Style.pokemonScreenTitle, {color: color}]}>Pokédex Data</Text>
             </View>
           </TouchableWithoutFeedback>
         </ScrollView>
