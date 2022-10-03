@@ -6,6 +6,7 @@ import { getName, getTypeBackgroundColor, fixId } from '../utils'
 import TypeName from './TypeName'
 import Dots from './svgs/Dots'
 import CachedImage from 'react-native-expo-cached-image'
+import { Locale } from '../utils'
 
 interface Props {
   pokemon: Pokemon,
@@ -26,7 +27,7 @@ const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
             <Text style={Style.pokemonNumber}>#{fixId(pokemon)}</Text>
             <Dots style={[Style.cardDots, {left: 70, top: -15}]} color={BackgroundColors.white} height={32} width={74}/>
           </View>
-          <Text style={Style.pokemonName}>{getName(pokemon.names, 'fr')}</Text>
+          <Text style={Style.pokemonName}>{getName(pokemon.names, Locale.locale)}</Text>
           <View style={Style.pokemonTypesName}>
             {pokemon.types.map((t, idx) => 
               <TypeName type={t} key={`${pokemon.id}-${pokemon.form_name}-${index}-type-${idx}`}/>

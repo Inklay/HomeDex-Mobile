@@ -1,4 +1,5 @@
 {
+  "locale": "fr",
   "home": {
     "description": "Cherchez le Pokémon que vous voulez avec son nom ou son numéro de pokédex national.",
     "searchPlaceholder": "Quel Pokémon cherchez vous ?",

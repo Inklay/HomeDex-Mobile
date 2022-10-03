@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import Pokemon from '../../classes/Pokemon'
 import { BackgroundColors, Style } from '../../style'
-import { getName, getTypeBackgroundColor, fixId } from '../../utils'
+import { getName, getTypeBackgroundColor, fixId, Locale } from '../../utils'
 import CachedImage from 'react-native-expo-cached-image'
 import LeftArrow from '../svgs/LeftArrow'
 import TypeName from '../TypeName'
@@ -64,7 +64,7 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
     for (let i = 0; i < gameOrder.length; i++) {
       const text = pokemon.flavor_texts.find(t => t.game === gameOrder[i])
       if (text !== undefined)
-        return getName(text.texts, 'fr').replace('\n', ' ')
+        return getName(text.texts, Locale.locale).replace('\n', ' ')
     }
     return undefined
   }
@@ -72,7 +72,7 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
   return (
     <View style={[Style.container, {backgroundColor: color}]}>
       <View style={Style.pokemonPageTop}>
-        <Text style={[Style.pokemonPageTopName, {color: color}]}>{getName(pokemon.names, 'fr').toLocaleUpperCase()}</Text>
+        <Text style={[Style.pokemonPageTopName, {color: color}]}>{getName(pokemon.names, Locale.locale).toLocaleUpperCase()}</Text>
         <TouchableWithoutFeedback onPress={() => {navigation.goBack()}}>
           <LeftArrow style={Style.backIcon} color={BackgroundColors.white} height={20} width={20}/>
         </TouchableWithoutFeedback>
@@ -80,7 +80,7 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
           <CachedImage resizeMode='contain' style={Style.pokemonPageImage} source={{uri: pokemon.sprite}}/>
           <View>
             <Text style={Style.pokemonPageNumber}>#{fixId(pokemon)}</Text>
-            <Text style={Style.pokemonPageName}>{getName(pokemon.names, 'fr')}</Text>
+            <Text style={Style.pokemonPageName}>{getName(pokemon.names, Locale.locale)}</Text>
             <View style={{flexDirection: 'row'}}>
               <View style={Style.pokemonTypesName}>
                 {pokemon.types.map((t, idx) => 

@@ -81,7 +81,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       if (parseInt(search) > 0) {
         if (!p.id.toString().includes(search))
           return
-      } else if (!accent.remove(getName(p.names, 'fr').toLocaleLowerCase()).includes(search))
+      } else if (!accent.remove(getName(p.names, Locale.locale).toLocaleLowerCase()).includes(search))
         return
       for (let i = 0; i < filters.types.length; i++) {
         if (p.types.length ===2) {

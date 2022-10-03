@@ -1,4 +1,5 @@
 export default interface Locale {
+  locale: string
   home: {
     description: string
     searchPlaceholder: string

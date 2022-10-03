@@ -1,4 +1,5 @@
 {
+  "locale": "en",
   "home": {
     "description": "Search for Pokémon by name or by national pokédex number.",
     "searchPlaceholder": "What pokémon are you looking for ?",

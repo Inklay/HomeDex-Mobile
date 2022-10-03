@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { BackgroundColors, Style } from '../style'
-import { getName, getTypeColor, getTypeSVG } from '../utils'
+import { getName, getTypeColor, getTypeSVG, Locale } from '../utils'
 import { types } from '../data'
 
 interface Props {
@@ -17,7 +17,7 @@ const TypeName: React.FC<Props> = ({type}) => {
       }
     ]}>
       <TypeSVG height={15} width={15} color={BackgroundColors.white}/>
-      <Text style={Style.typeNameText}>{getName(types[type - 1], 'fr')}</Text>
+      <Text style={Style.typeNameText}>{getName(types[type - 1], Locale.locale)}</Text>
     </View>
   )
 }
