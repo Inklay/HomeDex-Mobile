@@ -134,6 +134,7 @@ for (let i = 0; i < species.count; i++) {
     pokemonData.types = types
     pokemonData.abilities = abilities
     pokemonData.sprite = v.sprites.other['official-artwork'].front_default
+    pokemonData.stats = stats
     if (v.sprites.other['official-artwork'].front_default === null)
       pokemonData.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`
     if (v.forms.length > 0 && !pokemonData.is_default) {
