@@ -7,7 +7,7 @@ import CachedImage from 'react-native-expo-cached-image'
 import LeftArrow from '../svgs/LeftArrow'
 import TypeName from '../TypeName'
 import Dots from '../svgs/Dots'
-import { abilities } from '../../data'
+import { abilities, eggGroups } from '../../data'
 
 interface Props {
   navigation: any,
@@ -123,6 +123,10 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
     }
   }
 
+  function getEggGroup(idx: number) : string {
+    return getName(eggGroups[pokemon.egg_groups[idx] - 1], Locale.locale)
+  }
+
   const female = 0.125 * pokemon.gender_rate * 100
   const male = 100 - female
 
@@ -185,22 +189,22 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
               </View>
               <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.abilities.abilities}</Text>
               <View style={Style.pokemonScreenFieldContainer}>
-                <Text style={Style.pokemonScreenField}>{`${Locale.pokemonScreen.abilities.ability} 1`}</Text>
+                <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.abilities.ability} 1</Text>
                 <Text style={Style.pokemonScreenFieldData}>{getAbility(1)}</Text>
               </View>
               { pokemon.abilities.length === 3 ?
                 <View style={Style.pokemonScreenFieldContainer}>
-                  <Text style={Style.pokemonScreenField}>{`${Locale.pokemonScreen.abilities.ability} 2`}</Text>
+                  <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.abilities.ability} 2</Text>
                   <Text style={Style.pokemonScreenFieldData}>{getAbility(2)}</Text>
                 </View> : <View></View>
               }
               <View style={Style.pokemonScreenFieldContainer}>
-                <Text style={Style.pokemonScreenField}>{`${Locale.pokemonScreen.abilities.hidden}`}</Text>
+                <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.abilities.hidden}</Text>
                 <Text style={Style.pokemonScreenFieldData}>{getAbility(0, true)}</Text>
               </View>
               <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.breeding.breeding}</Text>
               <View style={Style.pokemonScreenFieldContainer}>
-                <Text style={Style.pokemonScreenField}>{`${Locale.pokemonScreen.breeding.gender_ratio}`}</Text>
+                <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.breeding.gender_ratio}</Text>
                 { pokemon.gender_rate !== -1 ?
                   <View style={{flexDirection: 'row'}}>
                     <Text style={[Style.pokemonScreenFieldData, {color: TypeColors.flying}]}>♂${male}%</Text>
@@ -210,6 +214,18 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
                   <Text style={Style.pokemonScreenFieldData}>{Locale.pokemonScreen.breeding.genderless}</Text>
                 }
               </View>
+              <View style={Style.pokemonScreenFieldContainer}>
+                <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.breeding.egg_group} 1</Text>
+                <Text style={Style.pokemonScreenFieldData}>{getEggGroup(0)}</Text>
+              </View>
+              { pokemon.egg_groups.length === 2 ? 
+                <View style={Style.pokemonScreenFieldContainer}>
+                  <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.breeding.egg_group} 2</Text>
+                  <Text style={Style.pokemonScreenFieldData}>{getEggGroup(1
+                    )}</Text>
+                </View> : 
+                <View></View>
+              }
             </View>
           </TouchableWithoutFeedback>
         </ScrollView>

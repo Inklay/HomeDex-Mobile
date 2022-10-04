@@ -302,7 +302,7 @@ export const Style = StyleSheet.create({
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
     paddingHorizontal: 20,
-    paddingVertical: 40
+    paddingVertical: 40,
   },
   
   pokemonFlavourtext: {
