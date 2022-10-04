@@ -345,5 +345,29 @@ export const Style = StyleSheet.create({
     fontWeight: '500',
     color: TextColors.black,
     width: 100
+  },
+
+  pokemonScreenStatsFieldData: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: TextColors.grey,
+    width: 30
+  },
+
+  StatBarContainer: {
+    width: 150,
+    marginHorizontal: 20,
+    justifyContent: 'center'
+  },
+
+  StatBarBackground: {
+    backgroundColor: BackgroundColors.inputDefault,
+    borderRadius: 50,
+    height: 5
+  },
+
+  StatBar: {
+    borderRadius: 50,
+    height: 5
   }
 })
