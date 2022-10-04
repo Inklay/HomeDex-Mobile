@@ -51,7 +51,17 @@
       }
     },
     "stats": {
-      "stats": "Stats"
+      "stats": "Stats",
+      "baseStats": {
+        "baseStats": "Stats de base",
+        "hp": "PV",
+        "attack": "Attaque",
+        "defense": "Défense",
+        "spa": "Atq. Spé",
+        "spd": "Def. Spé",
+        "speed": "Vitesse",
+        "total": "Total"
+      }
     }
   }
 }

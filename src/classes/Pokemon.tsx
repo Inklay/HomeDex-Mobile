@@ -2,6 +2,7 @@ import Category from "./Category"
 import FlavorText from "./FlavorText"
 import Name from "./Name"
 import PokemonAbility from "./PokemonABility"
+import Stats from "./Stats"
 
 export default interface Pokemon {
   base_friendship: number | null
@@ -21,4 +22,5 @@ export default interface Pokemon {
   sprite: string
   abilities: PokemonAbility[]
   flavor_texts: FlavorText[]
+  stats: Stats[]
 }

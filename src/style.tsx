@@ -338,5 +338,12 @@ export const Style = StyleSheet.create({
 
   spacer: {
     height: 20
+  },
+
+  pokemonScreenStatsField: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: TextColors.black,
+    width: 100
   }
 })

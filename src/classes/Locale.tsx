@@ -52,6 +52,16 @@ export default interface Locale {
     }
     stats: {
       stats: string
+      baseStats: {
+        baseStats: string,
+        hp: string
+        attack: string
+        defense: string
+        spa: string
+        spd: string
+        speed: string
+        total: string
+      }
     }
   }
 }
