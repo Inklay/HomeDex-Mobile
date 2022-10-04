@@ -73,6 +73,3 @@ web-build/
 dist/
 
 # @end expo-cli
-
-# huge JSON
-assets/data/data.json
