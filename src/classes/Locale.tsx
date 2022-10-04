@@ -23,6 +23,16 @@ export default interface Locale {
     stats: string
     data: {
       data: string
+      category: string
+      height: string
+      weight: string
+      catch_rate: string
+      base_friendship: string
+    }
+    abilities: {
+      abilities: string
+      ability: string,
+      hiden: string
     }
   }
 }

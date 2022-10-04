@@ -309,12 +309,30 @@ export const Style = StyleSheet.create({
     color: TextColors.grey,
     fontSize: 16,
     fontWeight: '400',
-    marginBottom: 30
+    marginBottom: 10
   },
 
   pokemonScreenTitle: {
-    marginBottom: 20,
-    fontSize: 16,
+    marginVertical: 20,
+    fontSize: 20,
     fontWeight: '700'
   },
+
+  pokemonScreenFieldContainer: {
+    marginBottom: 10,
+    flexDirection: 'row'
+  },
+
+  pokemonScreenField: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: TextColors.black,
+    width: 140
+  },
+
+  pokemonScreenFieldData: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: TextColors.grey
+  }
 })

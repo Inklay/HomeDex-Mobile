@@ -22,7 +22,17 @@
     "about": "À props",
     "stats": "Stats",
     "data": {
-      "data": "Données du Pokédex"
+      "data": "Données du Pokédex",
+      "category": "Catégorie",
+      "height": "Taille",
+      "weight": "Poids",
+      "catch_rate": "Taux de capture",
+      "base_friendship": "Bonheur de base"
+    },
+    "abilities": {
+      "abilities": "Talents",
+      "ability": "Talent",
+      "hidden": "Talent caché"
     }
   }
 }

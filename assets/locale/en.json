@@ -22,7 +22,17 @@
     "about": "About",
     "stats": "Stats",
     "data": {
-      "data": "Pokédex Data"
+      "data": "Pokédex Data",
+      "category": "Category",
+      "height": "Height",
+      "weight": "Weight",
+      "catch_rate": "Catch rate",
+      "base_friendship": "Base friendship"
+    },
+    "abilities": {
+      "abilities": "Abilities",
+      "ability": "Ability",
+      "hidden": "Hidden ability"
     }
   }
 }
