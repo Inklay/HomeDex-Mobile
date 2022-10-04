@@ -55,10 +55,10 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
         </View>
         <View style={Style.pokemonScreenSelector}>
           <TouchableWithoutFeedback onPress={() => setScreen(Screens.ABOUT)}>
-            <Text style={screen === Screens.ABOUT ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.about}</Text>
+            <Text style={screen === Screens.ABOUT ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.about.about}</Text>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={() => setScreen(Screens.STATS)}>
-            <Text style={screen === Screens.STATS ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.stats}</Text>
+            <Text style={screen === Screens.STATS ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.stats.stats}</Text>
           </TouchableWithoutFeedback>
         </View>
       </View>

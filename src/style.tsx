@@ -334,5 +334,9 @@ export const Style = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     color: TextColors.grey
+  },
+
+  spacer: {
+    height: 20
   }
 })
