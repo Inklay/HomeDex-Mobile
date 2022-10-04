@@ -27,7 +27,16 @@
       "height": "Taille",
       "weight": "Poids",
       "catch_rate": "Taux de capture",
-      "base_friendship": "Bonheur de base"
+      "base_friendship": "Bonheur de base",
+      "growth_rate": {
+        "growth_rate": "Courbe d'exp",
+        "slow": "Lente",
+        "medium": "Moyenne",
+        "fast": "Rapide",
+        "medium_slow": "Plutôt lente",
+        "slow_then_very_fast": "Lente puis très rapide",
+        "fast_then_very_slow": "rapide puis très lente"
+      }
     },
     "abilities": {
       "abilities": "Talents",

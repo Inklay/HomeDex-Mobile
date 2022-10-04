@@ -28,11 +28,20 @@ export default interface Locale {
       weight: string
       catch_rate: string
       base_friendship: string
+      growth_rate: {
+        growth_rate: string
+        slow: string
+        medium: string
+        fast: string
+        medium_slow: string
+        slow_then_very_fast: string
+        fast_then_very_slow: string
+      }
     }
     abilities: {
       abilities: string
       ability: string,
-      hiden: string
+      hidden: string
     }
   }
 }

@@ -105,6 +105,24 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
     return undefined
   }
 
+  function formatGrowthRate() : string {
+    switch (pokemon.growth_rate) {
+      case 'slow':
+        return Locale.pokemonScreen.data.growth_rate.slow
+      case 'medium':
+        return Locale.pokemonScreen.data.growth_rate.medium
+      case 'fast':
+        return Locale.pokemonScreen.data.growth_rate.fast
+      case 'medium-slow':
+        return Locale.pokemonScreen.data.growth_rate.medium_slow
+      case 'fast-then-very-slow':
+        return Locale.pokemonScreen.data.growth_rate.fast_then_very_slow
+      case 'slow-then-very-fast':
+      default:
+        return Locale.pokemonScreen.data.growth_rate.slow_then_very_fast
+    }
+  }
+
   return (
     <View style={[Style.container, {backgroundColor: color}]}>
       <View style={Style.pokemonPageTop}>
@@ -157,6 +175,10 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
               <View style={Style.pokemonScreenFieldContainer}>
                 <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.data.base_friendship}</Text>
                 <Text style={Style.pokemonScreenFieldData}>{pokemon.base_friendship}</Text>
+              </View>
+              <View style={Style.pokemonScreenFieldContainer}>
+                <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.data.growth_rate.growth_rate}</Text>
+                <Text style={Style.pokemonScreenFieldData}>{formatGrowthRate()}</Text>
               </View>
               <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.abilities.abilities}</Text>
               <View style={Style.pokemonScreenFieldContainer}>

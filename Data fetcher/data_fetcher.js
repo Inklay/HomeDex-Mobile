@@ -36,19 +36,6 @@ for (let i = 0; i < 18; i++) {
 }
 console.log('Types data fetched !')
 
-console.log('Fetching stats data...')
-for (let i = 0; i < 6; i++) {
-  const s = await p.getStatByName(i + 1)
-  let stat = []
-  for (let j = 0; j < s.names.length; j++)
-    stat.push({
-      name: s.names[j].name,
-      language: s.names[j].language.name
-    })
-  data.stats.push(stat)
-}
-console.log('Stats data fetched !')
-
 console.log('Fetching abilities data...')
 const abilities = await p.getAbilitiesList()
 for (let i = 0; i < abilities.count; i++) {
