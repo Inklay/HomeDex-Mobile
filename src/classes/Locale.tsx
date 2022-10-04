@@ -43,5 +43,11 @@ export default interface Locale {
       ability: string,
       hidden: string
     }
+    breeding: {
+      breeding: string,
+      gender_ratio: string
+      egg_group: string
+      genderless: string
+    }
   }
 }

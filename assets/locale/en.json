@@ -42,6 +42,12 @@
       "abilities": "Abilities",
       "ability": "Ability",
       "hidden": "Hidden ability"
+    },
+    "breeding": {
+      "breeding": "Breeding",
+      "gender_ratio": "Gender ratio",
+      "egg_group": "Egg group",
+      "genderless": "Genderless"
     }
   }
 }

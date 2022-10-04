@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import Pokemon from '../../classes/Pokemon'
-import { BackgroundColors, Style } from '../../style'
+import { BackgroundColors, Style, TypeColors } from '../../style'
 import { getName, getTypeBackgroundColor, fixId, Locale } from '../../utils'
 import CachedImage from 'react-native-expo-cached-image'
 import LeftArrow from '../svgs/LeftArrow'
@@ -123,6 +123,9 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
     }
   }
 
+  const female = 0.125 * pokemon.gender_rate * 100
+  const male = 100 - female
+
   return (
     <View style={[Style.container, {backgroundColor: color}]}>
       <View style={Style.pokemonPageTop}>
@@ -194,6 +197,18 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
               <View style={Style.pokemonScreenFieldContainer}>
                 <Text style={Style.pokemonScreenField}>{`${Locale.pokemonScreen.abilities.hidden}`}</Text>
                 <Text style={Style.pokemonScreenFieldData}>{getAbility(0, true)}</Text>
+              </View>
+              <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.breeding.breeding}</Text>
+              <View style={Style.pokemonScreenFieldContainer}>
+                <Text style={Style.pokemonScreenField}>{`${Locale.pokemonScreen.breeding.gender_ratio}`}</Text>
+                { pokemon.gender_rate !== -1 ?
+                  <View style={{flexDirection: 'row'}}>
+                    <Text style={[Style.pokemonScreenFieldData, {color: TypeColors.flying}]}>♂${male}%</Text>
+                    <Text style={Style.pokemonScreenFieldData}> / </Text>
+                    <Text style={[Style.pokemonScreenFieldData, {color: TypeColors.fairy}]}>♀${female}%</Text> 
+                  </View> :
+                  <Text style={Style.pokemonScreenFieldData}>{Locale.pokemonScreen.breeding.genderless}</Text>
+                }
               </View>
             </View>
           </TouchableWithoutFeedback>

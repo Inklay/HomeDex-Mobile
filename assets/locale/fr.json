@@ -19,7 +19,7 @@
     }
   },
   "pokemonScreen": {
-    "about": "À props",
+    "about": "À propos",
     "stats": "Stats",
     "data": {
       "data": "Données du Pokédex",
@@ -42,6 +42,12 @@
       "abilities": "Talents",
       "ability": "Talent",
       "hidden": "Talent caché"
+    },
+    "breeding": {
+      "breeding": "Reproduction",
+      "gender_ratio": "Ratio",
+      "egg_group": "Groupe d'Œuf",
+      "genderless": "Asexué"
     }
   }
 }

@@ -298,7 +298,7 @@ export const Style = StyleSheet.create({
 
   pokemonScreenContent: {
     backgroundColor: BackgroundColors.white,
-    height: '100%',
+    height: '70%',
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
     paddingHorizontal: 20,
