@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text } from 'react-native'
 import Pokemon from '../../classes/Pokemon'
 import { abilities, eggGroups } from '../../data'
@@ -13,6 +13,25 @@ interface Props {
 
 const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
 
+  const [ability1, setAbility1] = React.useState('')
+  const [ability2, setAbility2] = React.useState('')
+  const [abilityH, setAbilityH] = React.useState('')
+
+  useEffect(() => {
+    getAbilities()
+  }, [])
+
+  function getAbilities() : void {
+    for (let i = 0; i < pokemon.abilities.length; i++) {
+      if (pokemon.abilities[i].is_hidden)
+        setAbilityH(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
+      else if (ability1 === '')
+        setAbility1(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
+      else
+        setAbility2(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
+    }
+  }
+  
   function getLatestFlavor() : string | undefined {
     const gameOrder = [
       'legends-arceus',
@@ -65,27 +84,6 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
     const kilos = Math.floor(pokemon.weight * 10) / 10
     const lbs = Math.floor(pokemon.weight * 2.205 * 10) / 10
     return `${kilos}kg / ${lbs}lbs`
-  }
-
-  function getAbility(idx: number, hidden: boolean = false) : string | undefined {
-    if (hidden)
-      return getName(abilities[pokemon.abilities.find(a => a.is_hidden === true)!.ability - 1], Locale.locale)
-    let passed = false
-    for (let i = 0; i < pokemon.abilities.length; i++) {
-      if (pokemon.abilities[i].is_hidden)
-        continue
-      if (idx === 2) {
-        if (passed)
-          return getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale)
-        else {
-          passed = true
-          continue
-        }
-      }
-      if (idx === 1)
-        return getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale)
-    }
-    return undefined
   }
 
   function formatGrowthRate() : string {
@@ -144,18 +142,20 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
       <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.about.abilities.abilities}</Text>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.abilities.ability} 1</Text>
-        <Text style={Style.pokemonScreenFieldData}>{getAbility(1)}</Text>
+        <Text style={Style.pokemonScreenFieldData}>{ability1}</Text>
       </View>
-      { pokemon.abilities.length === 3 ?
+      { ability2 !== '' ?
         <View style={Style.pokemonScreenFieldContainer}>
           <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.abilities.ability} 2</Text>
-          <Text style={Style.pokemonScreenFieldData}>{getAbility(2)}</Text>
+          <Text style={Style.pokemonScreenFieldData}>{ability2}</Text>
         </View> : <View></View>
       }
-      <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.abilities.hidden}</Text>
-        <Text style={Style.pokemonScreenFieldData}>{getAbility(0, true)}</Text>
-      </View>
+      { abilityH !== '' ?
+        <View style={Style.pokemonScreenFieldContainer}>
+          <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.abilities.hidden}</Text>
+          <Text style={Style.pokemonScreenFieldData}>{abilityH}</Text>
+        </View> : <View></View>
+      }
       <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.about.breeding.breeding}</Text>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.breeding.gender_ratio}</Text>
