@@ -69,6 +69,10 @@ export default interface Locale {
         effectiveness: string,
         infos: string
       }
+    },
+    evo: {
+      evo: string
+      chain: string
     }
   }
 }

@@ -69,6 +69,10 @@
         "effectiveness": "Type effectiveness",
         "infos": "The effectiveness of each type on "
       }
+    },
+    "evo": {
+      "evo": "Evolution",
+      "chain": "Evolution Chart"
     }
   }
 }

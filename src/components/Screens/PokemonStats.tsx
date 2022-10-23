@@ -5,7 +5,6 @@ import { BackgroundColors, Style } from '../../style'
 import { getName, Locale } from '../../utils'
 import Spacer from '../Spacer'
 import StatBar from '../StatBar'
-import TypeBadge from '../TypeBadge'
 import TypeEffectiveness from '../TypeEffectiveness'
 
 interface Props {

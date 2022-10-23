@@ -9,6 +9,7 @@ import TypeName from '../TypeName'
 import Dots from '../svgs/Dots'
 import PokemonAbout from './PokemonAbout'
 import PokemonStats from './PokemonStats'
+import PokemonEvolution from './PokemonEvolution'
 
 interface Props {
   navigation: any,
@@ -23,7 +24,8 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
   enum Screens {
     NONE = 0,
     ABOUT = 1,
-    STATS = 2
+    STATS = 2,
+    EVOLUTION = 3
   }
 
   const pokemon = route.params.pokemon
@@ -60,6 +62,9 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
           <TouchableWithoutFeedback onPress={() => setScreen(Screens.STATS)}>
             <Text style={screen === Screens.STATS ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.stats.stats}</Text>
           </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => setScreen(Screens.EVOLUTION)}>
+            <Text style={screen === Screens.EVOLUTION ? Style.pokemonScreenSelectorTextSelected : Style.pokemonScreenSelectorText}>{Locale.pokemonScreen.evo.evo}</Text>
+          </TouchableWithoutFeedback>
         </View>
       </View>
       <View style={Style.pokemonScreenContent}>
@@ -69,6 +74,8 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
               <PokemonAbout pokemon={pokemon} color={color}/> :
               screen === Screens.STATS ?
               <PokemonStats pokemon={pokemon} color={color}/> :
+              screen === Screens.EVOLUTION ?
+              <PokemonEvolution pokemon={pokemon} color={color}/> :
               <View></View>
             }
           </TouchableWithoutFeedback>

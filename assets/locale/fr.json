@@ -69,6 +69,10 @@
         "effectiveness": "Sensibilités",
         "infos": "L'efficacité de chaque type sur "
       }
+    },
+    "evo": {
+      "evo": "Évolution",
+      "chain": "Chaine d'Évolution"
     }
   }
 }
