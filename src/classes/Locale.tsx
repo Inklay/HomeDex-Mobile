@@ -62,6 +62,9 @@ export default interface Locale {
         speed: string
         total: string
       }
+      min: string
+      max: string
+      infos: string
     }
   }
 }

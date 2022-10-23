@@ -351,11 +351,11 @@ export const Style = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     color: TextColors.grey,
-    width: 30
+    width: 35
   },
 
   StatBarContainer: {
-    width: 150,
+    width: 130,
     marginHorizontal: 20,
     justifyContent: 'center'
   },
@@ -369,5 +369,12 @@ export const Style = StyleSheet.create({
   StatBar: {
     borderRadius: 50,
     height: 5
+  },
+
+  StatInfoText: {
+    marginTop: 10,
+    fontWeight: '500',
+    fontSize: 12,
+    color: TextColors.grey
   }
 })

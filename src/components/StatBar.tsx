@@ -12,7 +12,7 @@ const StatBar: React.FC<Props> = ({stat, color}) => {
   return (
     <View style={Style.StatBarContainer}>
       <View style={Style.StatBarBackground}>
-        <View style={[Style.StatBar, {backgroundColor: color, width: 150 * (stat / 255)}]}/>
+        <View style={[Style.StatBar, {backgroundColor: color, width: 130 * (stat / 255)}]}/>
       </View>
     </View>
   )
