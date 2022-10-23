@@ -43,6 +43,165 @@ function getMinStat(idx: number) : number {
 
 function getTypeEffectiveness(type: number) {
   let eff = 1
+  const t1 = pokemon.types[0]
+  const t2 = pokemon.types.length === 2 ? pokemon.types[1] : -1
+
+  // Normal
+  if (t1 === 1 || t2 === 1) {
+    if (type === 2)
+      eff *= 0.5
+    else if (type === 8)
+      return 0
+  }
+
+  // Fighting
+  if (t1 === 2 || t2 === 2) {
+    if (type === 3 || type === 14 || type === 18)
+      eff *= 2
+    else if (type === 6 || type === 7 || type === 17)
+      eff *= 0.5
+  }
+
+  // Flying
+  if (t1 === 3 || t2 === 3) {
+    if (type === 6 || type === 13 || type === 15)
+      eff *= 2
+    else if (type === 2 || type === 7 || type === 12)
+      eff *= 0.5
+    else if (type === 5)
+      return 0
+  }
+
+  // Poison
+  if (t1 === 4 || t2 === 4) {
+    if (type === 5 || type === 14)
+      eff *= 2
+    else if (type === 2 || type === 4 || type === 7 || type === 12 || type === 18)
+      eff *= 0.5
+  }
+
+  // Ground
+  if (t1 === 5 || t2 === 5) {
+    if (type === 11 || type === 12 || type === 15)
+      eff *= 2
+    else if (type === 4 || type === 6)
+      eff *= 0.5
+    if (type === 13)
+      return 0
+  }
+
+  // Rock
+  if (t1 === 6 || t2 === 6) {
+    if (type === 2 || type === 5 || type === 9 || type === 11 || type === 12)
+      eff *= 2
+    else if (type === 1 || type === 3 || type === 4 || type === 10)
+      eff *= 0.5
+  }
+
+  // Bug
+  if (t1 === 7 || t2 === 7) {
+    if (type === 3 || type === 6 || type === 10)
+      eff *= 2
+    else if (type === 2 || type === 6 || type === 12)
+      eff *= 0.5
+  }
+
+  // Ghost
+  if (t1 === 8 || t2 === 8) {
+    if (type === 8 || type === 17)
+      eff *= 2
+    else if (type === 4 || type === 7)
+      eff *= 0.5
+    else if (type === 1 || type === 2)
+      return 0
+  }
+
+  // Steel
+  if (t1 === 9 || t2 === 9) {
+    if (type === 3 || type === 5 || type === 10)
+      eff *= 2
+    else if (type === 1 || type === 3 || type === 6 || type === 7 || type === 9 || type === 12 || type === 14 || type === 15 || type === 16 || type === 18)
+      eff *= 0.5
+    else if (type === 4)
+      return 0
+  }
+
+  // Fire
+  if (t1 === 10 || t2 === 10) {
+    if (type === 5 || type === 6 || type === 11)
+      eff *= 2
+    else if (type === 7 || type === 9 || type === 10 || type === 12 || type === 15 || type === 18)
+      eff *= 0.5
+  }
+
+  // Water
+  if (t1 === 11 || t2 === 11) {
+    if (type === 12 || type === 13)
+      eff *= 2
+    else if (type === 9 || type === 10 || type === 11 || type === 15)
+      eff *= 0.5
+  }
+
+  // Grass
+  if (t1 === 12 || t2 === 12) {
+    if (type === 3 || type === 4 || type === 7 || type === 10 || type === 15)
+      eff *= 2
+    else if (type === 5 || type === 11 || type === 12 || type === 13)
+      eff *= 0.5
+  }
+
+  // Eletric
+  if (t1 === 13 || t2 === 13) {
+    if (type === 5)
+      eff *= 2
+    else if (type === 3 || type === 9 || type === 13)
+      eff *= 0.5
+  }
+
+  // Psychic
+  if (t1 === 14 || t2 === 14) {
+    if (type === 7 || type === 8 || type === 17)
+      eff *= 2
+    else if (type === 2 || type === 14)
+      eff *= 0.5
+  }
+
+  // Ice
+  if (t1 === 15 || t2 === 15) {
+    if (type === 2 || type === 6 || type === 9 || type === 10)
+      eff *= 2
+    else if (type === 15)
+      eff *= 0.5
+  }
+
+  // Dragon
+  if (t1 === 16 || t2 === 16) {
+    if (type === 15 || type === 16 || type === 18)
+      eff *= 2
+    else if (type === 10 || type === 11 || type === 12 || type === 13)
+      eff *= 0.5
+  }
+
+  // Dark
+  if (t1 === 17 || t2 === 17) {
+    if (type === 2 || type === 7 || type === 18)
+      eff *= 2
+    else if (type === 8 || type === 14)
+      eff *= 0.5
+    else if (type === 14)
+      return 0
+  }
+
+  // Fairy
+  if (t1 === 18 || t2 === 18) {
+    if (type === 4 || type === 9)
+      eff *= 2
+    else if (type === 2 || type === 7 || type === 17)
+      eff *= 0.5
+    else if (type === 16)
+      return 0
+  }
+
   return eff
 }
 
