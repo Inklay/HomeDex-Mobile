@@ -65,6 +65,10 @@ export default interface Locale {
       min: string
       max: string
       infos: string
+      types: {
+        effectiveness: string,
+        infos: string
+      }
     }
   }
 }

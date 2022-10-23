@@ -354,27 +354,46 @@ export const Style = StyleSheet.create({
     width: 35
   },
 
-  StatBarContainer: {
+  statBarContainer: {
     width: 130,
     marginHorizontal: 20,
     justifyContent: 'center'
   },
 
-  StatBarBackground: {
+  statBarBackground: {
     backgroundColor: BackgroundColors.inputDefault,
     borderRadius: 50,
     height: 5
   },
 
-  StatBar: {
+  statBar: {
     borderRadius: 50,
     height: 5
   },
 
-  StatInfoText: {
+  statInfoText: {
     marginTop: 10,
     fontWeight: '500',
     fontSize: 12,
     color: TextColors.grey
+  },
+
+  typeBadge: {
+    padding: 5,
+    borderRadius: 3
+  },
+
+  typeEffectiveness: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20
+  },
+
+  typeEffectivenessText: {
+    textAlign: 'center',
+    fontWeight: '400',
+    fontSize: 16,
+    color: TextColors.grey,
+    marginTop: 5
   }
 })

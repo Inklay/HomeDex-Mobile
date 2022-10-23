@@ -10,9 +10,9 @@ interface Props {
 
 const StatBar: React.FC<Props> = ({stat, color}) => {
   return (
-    <View style={Style.StatBarContainer}>
-      <View style={Style.StatBarBackground}>
-        <View style={[Style.StatBar, {backgroundColor: color, width: 130 * (stat / 255)}]}/>
+    <View style={Style.statBarContainer}>
+      <View style={Style.statBarBackground}>
+        <View style={[Style.statBar, {backgroundColor: color, width: 130 * (stat / 255)}]}/>
       </View>
     </View>
   )

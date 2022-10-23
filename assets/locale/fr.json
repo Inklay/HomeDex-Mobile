@@ -64,7 +64,11 @@
       },
       "min": "Min",
       "max": "Max",
-      "infos": "Les valeurs à droites sont pour un Pokémon au niveau 100. Les valeurs maximum sont calculées avec une bonne nature, 252 Evs et 31 IVs. Les valeurs minimum sont calculées avec une mauvaise nature, 0 Evs et 0 IVs."
+      "infos": "Les valeurs à droites sont pour un Pokémon au niveau 100. Les valeurs maximum sont calculées avec une bonne nature, 252 Evs et 31 IVs. Les valeurs minimum sont calculées avec une mauvaise nature, 0 Evs et 0 IVs.",
+      "types": {
+        "effectiveness": "Sensibilités",
+        "infos": "L'efficacité de chaque type sur "
+      }
     }
   }
 }
