@@ -144,7 +144,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
         <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.abilities.ability} 1</Text>
         <Text style={Style.pokemonScreenFieldData}>{ability1}</Text>
       </View>
-      { ability2 !== '' ?
+      { (ability2 !== '' && ability1 !== ability2) ?
         <View style={Style.pokemonScreenFieldContainer}>
           <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.abilities.ability} 2</Text>
           <Text style={Style.pokemonScreenFieldData}>{ability2}</Text>
