@@ -67,7 +67,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
     for (let i = 0; i < gameOrder.length; i++) {
       const text = pokemon.flavor_texts.find(t => t.game === gameOrder[i])
       if (text !== undefined)
-        return getName(text.texts, Locale.locale).replace('\n', ' ')
+        return getName(text.texts, Locale.locale).replace(/\n/g, ' ')
     }
     return undefined
   }
