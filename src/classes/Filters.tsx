@@ -4,8 +4,8 @@ export default class Filters {
   types: number[] = []
   mega: boolean = false
   gigantamax: boolean = false
-  alolan: boolean = false
-  galarian: boolean = false
-  hisuian: boolean = false
+  alolan: boolean = true
+  galarian: boolean = true
+  hisuian: boolean = true
   other: boolean = false
 }
