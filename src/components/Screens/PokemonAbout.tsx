@@ -24,11 +24,11 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
   function getAbilities() : void {
     for (let i = 0; i < pokemon.abilities.length; i++) {
       if (pokemon.abilities[i].is_hidden)
-        setAbilityH(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
+        setAbilityH(getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale))
       else if (ability1 === '')
-        setAbility1(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
+        setAbility1(getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale))
       else
-        setAbility2(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
+        setAbility2(getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale))
     }
   }
   

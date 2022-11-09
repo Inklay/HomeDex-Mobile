@@ -23,14 +23,14 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({navigation}) => {
-  const [pokemonList, setPokemonList] = React.useState(() => { let list: Pokemon[] = []; return list})
+  const [pokemonList, setPokemonList] = React.useState(pokemon)
   const [filterVisible, setFilterVisible] = React.useState(false)
   const [lockTypeFilter, setLockTypeFilter] = React.useState(false)
   const [filters, setFilters] = React.useState(new Filters())
 
   React.useEffect(() => {
     filterPokemon(filters)
-  })
+  }, [])
 
   function updateSearch(value: string) {
     const newValue = {...filters}
