@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import Pokemon from '../../classes/Pokemon'
-import { types } from '../../data'
 import { BackgroundColors, Style } from '../../style'
 import { getName, Locale } from '../../utils'
 import Spacer from '../Spacer'
@@ -66,7 +65,6 @@ function getTypeEffectiveness(type: number) {
   let eff = 1
   const t1 = pokemon.types[0]
   const t2 = pokemon.types.length === 2 ? pokemon.types[1] : -1
-  console.log(t2)
 
   if (t1 === Types.NORMAL || t2 === Types.NORMAL) {
     if (type === Types.FIGHTING)

@@ -1,11 +1,6 @@
 import React from 'react'
-import { ImageBackground, Text, View, FlatList, ScrollView } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Style, TextColors } from '../../style'
-import Pokeball from '../../../assets/images/Pokeball.png'
-import IconButton from '../IconButton'
-import Filter from '../svgs/Filter'
-import Input from '../Input'
+import { Text, View, ScrollView } from 'react-native'
+import { Style } from '../../style'
 import PokemonCard from '../PokemonCard'
 import { pokemon } from '../../data'
 import { getName, Locale } from '../../utils'
@@ -17,6 +12,8 @@ import { TouchableWithoutFeedback } from 'react-native'
 import Filters from '../../classes/Filters'
 import FilterButton from '../FilterButton'
 import accent from 'remove-accents'
+import HomeHeader from '../HomeHeader'
+import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated'
 
 interface Props {
   navigation: any
@@ -27,6 +24,8 @@ const Home: React.FC<Props> = ({navigation}) => {
   const [filterVisible, setFilterVisible] = React.useState(false)
   const [lockTypeFilter, setLockTypeFilter] = React.useState(false)
   const [filters, setFilters] = React.useState(new Filters())
+
+  const scrollY = useSharedValue(0)
 
   React.useEffect(() => {
     filterPokemon(filters)
@@ -81,7 +80,8 @@ const Home: React.FC<Props> = ({navigation}) => {
             return
         } else if (!filters.other)
           return
-      }
+      } else
+        return
       if (parseInt(search) > 0) {
         if (!p.id.toString().includes(search))
           return
@@ -103,23 +103,17 @@ const Home: React.FC<Props> = ({navigation}) => {
     setFilterVisible(true)
   }
 
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (e) => {
+      scrollY.value = e.contentOffset.y
+    }
+  })
+
   return (
     <View style={Style.container}>
-      <View style={Style.homeHeaderContainer}>
-        <ImageBackground source={Pokeball} resizeMode="cover" style={Style.homeHeader}>
-          <LinearGradient colors={['#FFFFFFD0', 'white']} style={Style.headerGradient}>
-            <View style={Style.homeActionRow}>
-              {/*<IconButton Icon={Games} trigger={() => {}} color={TextColors.black} size={20}/>
-              <IconButton Icon={Sort} trigger={() => {}} color={TextColors.black} size={20}/>*/}
-              <IconButton Icon={Filter} trigger={showFilter}  color={TextColors.black} size={20}/>
-            </View>
-            <Text style={Style.appName}>Homedex</Text>
-            <Text style={Style.description}>{Locale.home.description}</Text>
-            <Input onValueChange={updateSearch} placeholder={Locale.home.searchPlaceholder}/>
-          </LinearGradient>
-        </ImageBackground>
-      </View>
-      <FlatList initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index}/>}/>
+      <HomeHeader showFilter={showFilter} updateSearch={updateSearch} scrollY={scrollY}/>
+      <Animated.FlatList scrollEventThrottle={10}
+        onScroll={scrollHandler} initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index}/>}/>
       <StatusBar translucent/>
       <Modal
         isVisible={filterVisible}

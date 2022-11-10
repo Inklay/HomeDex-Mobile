@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('screen')
+export const { height, width } = Dimensions.get('screen')
 
 export enum TextColors {
   white = 'white',
@@ -69,13 +69,17 @@ export const Style = StyleSheet.create({
 
   homeHeader: {
     width: '100%',
-    height: height / 4,
+    maxHeight: height / 4
   },
 
   headerGradient: {
     width: '100%',
-    height: height / 4 + 1,
+    height: '100%',
     paddingHorizontal: 20
+  },
+
+  homeHeaderContainer: {
+    height: 240
   },
 
   appName: {
@@ -136,11 +140,7 @@ export const Style = StyleSheet.create({
 
   pokemonList: {
     paddingHorizontal: 20,
-    maxHeight: height - 240
-  },
-
-  homeHeaderContainer: {
-    height: 240
+    height: height - 240
   },
 
   pokemonName: {
