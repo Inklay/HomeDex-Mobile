@@ -80,8 +80,7 @@ const Home: React.FC<Props> = ({navigation}) => {
             return
         } else if (!filters.other)
           return
-      } else
-        return
+      }
       if (parseInt(search) > 0) {
         if (!p.id.toString().includes(search))
           return
