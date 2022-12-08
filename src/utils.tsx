@@ -156,8 +156,10 @@ export function getName(names: Name[], language: string) : string {
 
 export function fixId(pokemon: Pokemon) : string {
   if (pokemon.id < 10)
-    return `00${pokemon.id}`
+    return `000${pokemon.id}`
   if (pokemon.id < 100)
+    return `00${pokemon.id}`
+  if (pokemon.id < 1000)
     return `0${pokemon.id}`
   else
     return pokemon.id.toString()
