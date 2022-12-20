@@ -7,7 +7,6 @@ interface Props {
   color: string
 }
 
-
 const StatBar: React.FC<Props> = ({stat, color}) => {
   return (
     <View style={Style.statBarContainer}>
