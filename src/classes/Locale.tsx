@@ -102,12 +102,10 @@ export default interface Locale {
     water_3: string
     bug: string
     flying: string
-    ground: string
+    field: string
     fairy: string
-    plant: string
     human_like: string
     mineral: string
-    indeterminate: string
     amorphous: string
     dragon: string
     grass: string
