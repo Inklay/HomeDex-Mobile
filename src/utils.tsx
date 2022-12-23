@@ -207,24 +207,20 @@ export function getEggGroupName(eggGroup: number) : string {
     case 6:
       return Locale.egg_groups.flying
     case 7:
-      return Locale.egg_groups.ground
-    case 8:
       return Locale.egg_groups.fairy
-    case 9:
+    case 8:
       return Locale.egg_groups.grass
-    case 10:
+    case 9:
       return Locale.egg_groups.human_like
-    case 11:
+    case 10:
       return Locale.egg_groups.mineral
-    case 12:
-      return Locale.egg_groups.indeterminate
-    case 13:
+    case 11:
       return Locale.egg_groups.amorphous
-    case 14:
+    case 12:
       return Locale.egg_groups.dragon
-    case 16:
+    case 13:
       return Locale.egg_groups.ditto
-    case 17:
+    case 14:
       return Locale.egg_groups.no_egg
     default:
       return Locale.egg_groups.monster
