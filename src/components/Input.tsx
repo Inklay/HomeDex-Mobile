@@ -25,7 +25,7 @@ const Input: React.FC<Props> = ({placeholder, onValueChange}) => {
         backgroundColor: backgroundColor
       }
     ]}>
-      <Search color={TextColors.grey} height="16" width="16"/>
+      <Search color={TextColors.grey} height='16' width='16'/>
       <TextInput onChangeText={text => onValueChange(text)} placeholder={placeholder} style={Style.input} onFocus={() => OnFocus()} onBlur={() => OnLostFocus()} />
     </View>
   )

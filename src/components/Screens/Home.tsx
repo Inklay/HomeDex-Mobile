@@ -63,10 +63,10 @@ const Home: React.FC<Props> = ({navigation}) => {
     let list: Pokemon[] = []
     pokemon.forEach(p => {
       if (!p.is_default) {
-        if (p.form_name.includes('mega')) {
+        if (p.form_name === 'mega') {
           if (!filters.mega)
             return
-        } else if (p.form_name.includes('gmax')) {
+        } else if (p.form_name === 'gmax') {
           if (!filters.gigantamax)
             return
         } else if (p.form_name === 'alola') {
@@ -77,6 +77,9 @@ const Home: React.FC<Props> = ({navigation}) => {
             return
         } else if (p.form_name === 'hisui') {
           if (!filters.hisuian)
+            return
+        } else if (p.form_name === 'paldea') {
+          if (!filters.paldean)
             return
         } else if (!filters.other)
           return

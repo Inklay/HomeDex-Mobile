@@ -44,7 +44,7 @@ const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY}) => {
 
   return (
     <Animated.View style={[Style.homeHeaderContainer, headerStyle]}>
-      <ImageBackground source={Pokeball} resizeMode="cover" style={Style.homeHeader}>
+      <ImageBackground source={Pokeball} resizeMode='cover' style={Style.homeHeader}>
         <LinearGradient colors={['#FFFFFFD0', 'white']} style={Style.headerGradient}>
           <View style={Style.homeActionRow}>
             {/*<IconButton Icon={Games} trigger={() => {}} color={TextColors.black} size={20}/>

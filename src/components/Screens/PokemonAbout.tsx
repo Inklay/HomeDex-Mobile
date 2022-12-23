@@ -73,17 +73,15 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
   }
 
   function formatHeight() : string {
-    const meters = Math.floor(pokemon.height * 10) / 10
-    const totalInches = Math.round(meters * 39.36)
+    const totalInches = Math.round(pokemon.height * 39.36)
     const foot = Math.floor(totalInches / 12)
     const inches = totalInches % 12
-    return `${meters}m / ${foot}'${inches}"`
+    return `${pokemon.height}m / ${foot}'${inches}"`
   }
 
   function formatWeight() : string {
-    const kilos = Math.floor(pokemon.weight * 10) / 10
-    const lbs = Math.floor(pokemon.weight * 2.205 * 10) / 10
-    return `${kilos}kg / ${lbs}lbs`
+    const lbs = Math.floor(pokemon.weight * 2.205)
+    return `${pokemon.weight}kg / ${lbs}lbs`
   }
 
   function formatGrowthRate() : string {

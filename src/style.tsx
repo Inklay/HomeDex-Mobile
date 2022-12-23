@@ -135,7 +135,7 @@ export const Style = StyleSheet.create({
   pokemonNumber: {
     color: TextColors.number,
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: '700',
   },
 
   pokemonList: {
@@ -146,7 +146,7 @@ export const Style = StyleSheet.create({
   pokemonName: {
     color: TextColors.white,
     fontSize: 26,
-    fontWeight: "700",
+    fontWeight: '700',
   },
 
   typeName: {

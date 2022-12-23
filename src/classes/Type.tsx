@@ -1,3 +1,3 @@
-import Names from "./Name"
+import Names from './Name'
 
 export type Type = Names[]

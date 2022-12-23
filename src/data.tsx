@@ -4,7 +4,7 @@ import { Ability } from './classes/Ability'
 import { Type } from './classes/Type'
 import { EggGroup } from './classes/EggGroup'
 
-const dataTypped = data as {"pokemon": Pokemon[], "types": Type[], "egg_groups": EggGroup[], "abilities": Ability[]}
+const dataTypped = data as {'pokemon': Pokemon[], 'types': Type[], 'egg_groups': EggGroup[], 'abilities': Ability[]}
 
 export const pokemon = dataTypped.pokemon as Pokemon[]
 export const types = dataTypped.types as Type[]
