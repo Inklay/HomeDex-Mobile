@@ -152,7 +152,8 @@ function processForms ($) {
               name: $('table.roundy > tbody > tr > td > table > tbody > tr > td > big> big > b').text(),
               language: 'en'
             }
-          ]
+          ],
+          form_name: 'default'
         })
         return
       }
@@ -161,13 +162,31 @@ function processForms ($) {
         if (!isVisible($, formElement)) {
           return
         }
+        // Get form name for filtering
+        const fullName = $(formElement).children('small').text()
+        const lowerCaseName = fullName.toLowerCase()
+        let formName = 'other'
+        if (lowerCaseName.includes('mega')) {
+          formName = 'mega'
+        } else if (lowerCaseName.includes('gigantamax')) {
+          formName = 'gmax'
+        } else if (lowerCaseName.includes('alola')) {
+          formName = 'alola'
+        } else if (lowerCaseName.includes('galar')) {
+          formName = 'galar'
+        } else if (lowerCaseName.includes('hisui')) {
+          formName = 'hisui'
+        } else if (lowerCaseName.includes('paldea')) {
+          formName = 'paldea'
+        }
         forms.push({
           names: [
             {
-              name: $(formElement).children('small').text(),
+              name: fullName,
               language: 'en'
             }
-          ]
+          ],
+          form_name: formName
         })
       })
     })
@@ -182,7 +201,6 @@ async function getPokemonData (pokemonURL) {
   const dexNumbers = processDexNumbers($)
   const types = processType($, pokemons[0].names[0].name)
   for (let i = 0; i < pokemons.length; i++) {
-    pokemons[i].is_default = (i === 0)
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
     // If the form has the same type as the base form
@@ -199,6 +217,8 @@ await getPokemonData(pokemonURLList[0])
 await getPokemonData(pokemonURLList[1])
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
+await getPokemonData(pokemonURLList[24])
+await getPokemonData(pokemonURLList[51])
 await getPokemonData(pokemonURLList[129])
 await getPokemonData(pokemonURLList[799])
 await getPokemonData(pokemonURLList[1005])
