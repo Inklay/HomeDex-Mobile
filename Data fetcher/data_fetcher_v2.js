@@ -216,6 +216,27 @@ function processCatchRate ($) {
   return parseInt(fixedCatchRate)
 }
 
+function processHeight ($) {
+  const heightList = []
+  const heightElementArray = $('table.roundy > tbody > tr > td.roundy > b > a[title=\'List of Pokémon by height\']')
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+  for (let i = 0; i < heightElementArray.length; i += 2) {
+    if (!isVisible($, heightElementArray[i])) {
+      continue
+    }
+    const height = $(heightElementArray[i]).children('td').next().text()
+    const name = $(heightElementArray[i + 1]).children('td').children('small').text()
+    heightList.push({
+      height: parseFloat(height),
+      name
+    })
+  }
+  return heightList
+}
+
 async function getPokemonData (pokemonURL) {
   const URL = `${baseURL}${pokemonURL}`
   const pageHTML = await (await fetch(URL)).text()
@@ -225,6 +246,7 @@ async function getPokemonData (pokemonURL) {
   const types = processType($, pokemons[0].names[0].name)
   const baseFriendship = processBaseFriendship($)
   const catchRate = processCatchRate($)
+  const height = processHeight($)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
@@ -235,6 +257,13 @@ async function getPokemonData (pokemonURL) {
     pokemons[i].types = formTypes.types
     pokemons[i].base_friendship = baseFriendship
     pokemons[i].catch_rate = catchRate
+    let formHeight = height.find(type => type.name === pokemons[i].names[0].name)
+    // If the form has the same height as the base form
+    if (formHeight === undefined) {
+      formHeight = height[0]
+    }
+    pokemons[i].height = formHeight.height
+    console.log(pokemons[i].height)
   }
 }
 
