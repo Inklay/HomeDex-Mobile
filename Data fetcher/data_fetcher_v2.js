@@ -237,6 +237,27 @@ function processHeight ($) {
   return heightList
 }
 
+function processWeight ($) {
+  const weightList = []
+  const weightElementArray = $('table.roundy > tbody > tr > td.roundy > b > a[title=\'Weight\']')
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+  for (let i = 0; i < weightElementArray.length; i += 2) {
+    if (!isVisible($, weightElementArray[i])) {
+      continue
+    }
+    const weight = $(weightElementArray[i]).children('td').next().text()
+    const name = $(weightElementArray[i + 1]).children('td').children('small').text()
+    weightList.push({
+      weight: parseFloat(weight),
+      name
+    })
+  }
+  return weightList
+}
+
 async function getPokemonData (pokemonURL) {
   const URL = `${baseURL}${pokemonURL}`
   const pageHTML = await (await fetch(URL)).text()
@@ -247,6 +268,7 @@ async function getPokemonData (pokemonURL) {
   const baseFriendship = processBaseFriendship($)
   const catchRate = processCatchRate($)
   const height = processHeight($)
+  const weight = processWeight($)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
@@ -257,13 +279,18 @@ async function getPokemonData (pokemonURL) {
     pokemons[i].types = formTypes.types
     pokemons[i].base_friendship = baseFriendship
     pokemons[i].catch_rate = catchRate
-    let formHeight = height.find(type => type.name === pokemons[i].names[0].name)
+    let formHeight = height.find(height => height.name === pokemons[i].names[0].name)
     // If the form has the same height as the base form
     if (formHeight === undefined) {
       formHeight = height[0]
     }
     pokemons[i].height = formHeight.height
-    console.log(pokemons[i].height)
+    let formWeight = weight.find(weight => weight.name === pokemons[i].names[0].name)
+    // If the form has the same weight as the base form
+    if (formWeight === undefined) {
+      formWeight = weight[0]
+    }
+    pokemons[i].weight = formWeight.weight
   }
 }
 
