@@ -76,6 +76,41 @@ function getTypeNumber (type) {
   }
 }
 
+function getEggGroupsNumber (eggGroup) {
+  switch (eggGroup) {
+    case 'Water 1':
+      return 2
+    case 'Water 2':
+      return 3
+    case 'Water 3':
+      return 4
+    case 'Bug':
+      return 5
+    case 'Flying':
+      return 6
+    case 'Fairy':
+      return 7
+    case 'Grass':
+      return 8
+    case 'Human_Like':
+      return 9
+    case 'Mineral':
+      return 10
+    case 'Amorphous':
+      return 11
+    case 'Dragon':
+      return 12
+    case 'Ditto':
+      return 13
+    case 'No Eggs Discovered':
+      return 14
+    case 'Field':
+      return 15
+    default:
+      return 1
+  }
+}
+
 function processType ($, pokemonName) {
   const types = []
   $('table.roundy > tbody > tr > td.roundy > b > a[title=\'Type\']')
@@ -258,6 +293,32 @@ function processWeight ($) {
   return weightList
 }
 
+function processEggGroups ($) {
+  const eggGroups = []
+  $('a[title=\'Egg Group\']')
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+    .children('td')
+    .children('a')
+    .each((__, element) => {
+      eggGroups.push(getEggGroupsNumber($(element).text()))
+    })
+  return eggGroups
+}
+
+function fixRandomStuff (pokemon) {
+  if (pokemon.dex_numbers.nat === 25) {
+    if (pokemon.form_name === 'other') {
+      pokemon.egg_groups = [14]
+    } else {
+      pokemon.egg_groups = [15, 7]
+    }
+  }
+  return pokemon
+}
+
 async function getPokemonData (pokemonURL) {
   const URL = `${baseURL}${pokemonURL}`
   const pageHTML = await (await fetch(URL)).text()
@@ -269,6 +330,7 @@ async function getPokemonData (pokemonURL) {
   const catchRate = processCatchRate($)
   const height = processHeight($)
   const weight = processWeight($)
+  const eggGroups = processEggGroups($)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
@@ -291,6 +353,8 @@ async function getPokemonData (pokemonURL) {
       formWeight = weight[0]
     }
     pokemons[i].weight = formWeight.weight
+    pokemons[i].egg_groups = eggGroups
+    pokemons[i] = fixRandomStuff(pokemons[i])
   }
 }
 
