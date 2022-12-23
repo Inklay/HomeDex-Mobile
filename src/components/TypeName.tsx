@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { BackgroundColors, Style } from '../style'
-import { getName, getTypeColor, getTypeName, getTypeSVG } from '../utils'
+import { getTypeColor, getTypeName, getTypeSVG } from '../utils'
 
 interface Props {
   type: number

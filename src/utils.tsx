@@ -194,6 +194,45 @@ export function getName(names: Name[], language: string) : string {
   return asked.name
 }
 
+export function getEggGroupName(eggGroup: number) : string {
+  switch (eggGroup) {
+    case 2:
+      return Locale.egg_groups.water_1
+    case 3:
+      return Locale.egg_groups.water_2
+    case 4:
+      return Locale.egg_groups.water_3
+    case 5:
+      return Locale.egg_groups.bug
+    case 6:
+      return Locale.egg_groups.flying
+    case 7:
+      return Locale.egg_groups.ground
+    case 8:
+      return Locale.egg_groups.fairy
+    case 9:
+      return Locale.egg_groups.plant
+    case 10:
+      return Locale.egg_groups.human_like
+    case 11:
+      return Locale.egg_groups.mineral
+    case 12:
+      return Locale.egg_groups.indeterminate
+    case 13:
+      return Locale.egg_groups.amorphous
+    case 14:
+      return Locale.egg_groups.dragon
+    case 15:
+      return Locale.egg_groups.grass
+    case 16:
+      return Locale.egg_groups.ditto
+    case 17:
+      return Locale.egg_groups.no_egg
+    default:
+      return Locale.egg_groups.monster
+  }
+}
+
 export function fixId(pokemon: Pokemon) : string {
   if (pokemon.id < 10)
     return `000${pokemon.id}`

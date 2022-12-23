@@ -94,5 +94,24 @@ export default interface Locale {
     dark: string
     steel: string
     fairy: string
+  },
+  egg_groups: {
+    monster: string
+    water_1: string
+    water_2: string
+    water_3: string
+    bug: string
+    flying: string
+    ground: string
+    fairy: string
+    plant: string
+    human_like: string
+    mineral: string
+    indeterminate: string
+    amorphous: string
+    dragon: string
+    grass: string
+    ditto: string
+    no_egg: string
   }
 }

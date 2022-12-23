@@ -94,5 +94,24 @@
     "dark": "Ténèbres",
     "steel": "Acier",
     "fairy": "Fée"
+  },
+  "egg_groups": {
+    "monster": "Monstrueux",
+    "water_1": "Aquatique 1",
+    "water_2": "Aquatique 2",
+    "water_3": "Aquatique 3",
+    "bug": "Insectoïde",
+    "flying": "Aérien",
+    "ground": "Terrestre",
+    "fairy": "Féérique",
+    "plant": "Plant",
+    "human_like": "Humanoïde",
+    "mineral": "Minéral",
+    "indeterminate": "Indeterminate",
+    "amorphous": "Amorphe",
+    "dragon": "Draconique",
+    "grass": "Végétal",
+    "ditto": "Métamorph",
+    "no_egg": "Inconnu"
   }
 }

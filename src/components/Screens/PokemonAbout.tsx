@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { View, Text } from 'react-native'
 import Pokemon from '../../classes/Pokemon'
-import { abilities, eggGroups } from '../../data'
+import { abilities } from '../../data'
 import { Style, TypeColors } from '../../style'
-import { getName, Locale } from '../../utils'
+import { getName, Locale, getEggGroupName } from '../../utils'
 import Spacer from '../Spacer'
 
 interface Props {
@@ -103,7 +103,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
   }
 
   function getEggGroup(idx: number) : string {
-    return getName(eggGroups[pokemon.egg_groups[idx] - 1], Locale.locale)
+    return getEggGroupName(pokemon.egg_groups[idx])
   }
 
   const female = 0.125 * pokemon.gender_rate * 100
