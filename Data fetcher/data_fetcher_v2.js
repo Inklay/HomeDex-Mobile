@@ -204,6 +204,18 @@ function processBaseFriendship ($) {
   return parseInt(baseFrienship)
 }
 
+function processCatchRate ($) {
+  const catchRate = $('table.roundy > tbody > tr > td.roundy > b > a[title=\'Catch rate\']')
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+    .children('td')
+    .text()
+  const fixedCatchRate = catchRate.slice(0, catchRate.search(' '))
+  return parseInt(fixedCatchRate)
+}
+
 async function getPokemonData (pokemonURL) {
   const URL = `${baseURL}${pokemonURL}`
   const pageHTML = await (await fetch(URL)).text()
@@ -212,6 +224,7 @@ async function getPokemonData (pokemonURL) {
   const dexNumbers = processDexNumbers($)
   const types = processType($, pokemons[0].names[0].name)
   const baseFriendship = processBaseFriendship($)
+  const catchRate = processCatchRate($)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
@@ -221,6 +234,7 @@ async function getPokemonData (pokemonURL) {
     }
     pokemons[i].types = formTypes.types
     pokemons[i].base_friendship = baseFriendship
+    pokemons[i].catch_rate = catchRate
   }
 }
 
