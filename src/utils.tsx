@@ -222,6 +222,8 @@ export function getEggGroupName(eggGroup: number) : string {
       return Locale.egg_groups.ditto
     case 14:
       return Locale.egg_groups.no_egg
+    case 15:
+      return Locale.egg_groups.field
     default:
       return Locale.egg_groups.monster
   }
