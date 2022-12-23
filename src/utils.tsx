@@ -147,6 +147,46 @@ export function getTypeSVG(type: number) : ({ ...props }: SvgProps & SvgProps) =
   return Normal
 }
 
+export function getTypeName(type: number) : string {
+  switch (type) {
+    case 2:
+      return Locale.types.fighting
+    case 3:
+      return Locale.types.flying
+    case 4:
+      return Locale.types.poison
+    case 5:
+      return Locale.types.ground
+    case 6:
+      return Locale.types.rock
+    case 7:
+      return Locale.types.bug
+    case 8:
+      return Locale.types.ghost
+    case 9:
+      return Locale.types.steel
+    case 10:
+      return Locale.types.fire
+    case 11:
+      return Locale.types.water
+    case 12:
+      return Locale.types.grass
+    case 13:
+      return Locale.types.electric
+    case 14:
+      return Locale.types.psychic
+    case 15:
+      return Locale.types.ice
+    case 16:
+      return Locale.types.dragon
+    case 17:
+      return Locale.types.dark
+    case 18:
+      return Locale.types.fairy
+  }
+  return Locale.types.normal
+}
+
 export function getName(names: Name[], language: string) : string {
   const asked = names.find(n => n.language === language)
   if (asked === undefined)
