@@ -308,6 +308,45 @@ function processEggGroups ($) {
   return eggGroups
 }
 
+function processGenderRatio ($) {
+  let femaleRatio
+  $('a[title=\'List of Pokémon by gender ratio\']')
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+    .each((index, element) => {
+      const ratioText = $(element).children('td').children('a').children('span').text()
+      if ((index === 0 && ratioText !== undefined && ratioText.search('unknown') !== -1) || (index === 1 && femaleRatio === undefined)) {
+        femaleRatio = ratioText
+      }
+    })
+  if (femaleRatio === 'Gender unknown') {
+    return -1
+  }
+  if (femaleRatio === '100% female') {
+    return 8
+  }
+  if (femaleRatio === '12.5% male,87.5 female') {
+    return 7
+  }
+  if (femaleRatio === '25% male,75% female') {
+    return 6
+  }
+  if (femaleRatio === '50% male,50% female') {
+    return 4
+  }
+  if (femaleRatio === '75% male,25% female') {
+    return 2
+  }
+  if (femaleRatio === '87.5% male,12.5% female') {
+    return 1
+  }
+  if (femaleRatio === '100% male') {
+    return 0
+  }
+}
+
 function fixRandomStuff (pokemon) {
   if (pokemon.dex_numbers.nat === 25) {
     if (pokemon.form_name === 'other') {
@@ -331,6 +370,7 @@ async function getPokemonData (pokemonURL) {
   const height = processHeight($)
   const weight = processWeight($)
   const eggGroups = processEggGroups($)
+  const genderRatio = processGenderRatio($)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
@@ -354,6 +394,8 @@ async function getPokemonData (pokemonURL) {
     }
     pokemons[i].weight = formWeight.weight
     pokemons[i].egg_groups = eggGroups
+    pokemons[i].gender_rate = genderRatio
+    // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
   }
 }
