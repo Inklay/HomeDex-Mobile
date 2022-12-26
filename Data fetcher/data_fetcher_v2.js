@@ -347,6 +347,28 @@ function processGenderRatio ($) {
   }
 }
 
+function processGrowthRate ($) {
+  let rate
+  $('td.roundy > b > a[title=\'Experience\'] > span')
+    .each((__, element) => {
+      if ($(element).text() !== 'Leveling rate') {
+        return
+      }
+      rate = $(element)
+        .parent()
+        .parent()
+        .next('table')
+        .children('tbody')
+        .children('tr')
+        .children('td')
+        .text()
+        .replace(' ', '-')
+        .toLowerCase()
+        .slice(0, -1)
+    })
+  return rate
+}
+
 function fixRandomStuff (pokemon) {
   if (pokemon.dex_numbers.nat === 25) {
     if (pokemon.form_name === 'other') {
@@ -371,6 +393,7 @@ async function getPokemonData (pokemonURL) {
   const weight = processWeight($)
   const eggGroups = processEggGroups($)
   const genderRatio = processGenderRatio($)
+  const growthRate = processGrowthRate($)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
@@ -397,6 +420,8 @@ async function getPokemonData (pokemonURL) {
     pokemons[i].gender_rate = genderRatio
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
+    pokemons[i].growth_rate = growthRate
+    console.log(growthRate)
   }
 }
 
