@@ -418,7 +418,6 @@ async function getPokemonData (pokemonURL) {
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
     pokemons[i].growth_rate = growthRate
-    console.log(pokemons[i].sprites)
   }
 }
 
