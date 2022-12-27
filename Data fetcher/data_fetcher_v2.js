@@ -179,24 +179,11 @@ function processForms ($) {
       if (!isVisible($, element)) {
         return
       }
-      // Index 0 is always the base form
-      if (index === 0) {
-        forms.push({
-          names: [
-            {
-              name: $('table.roundy > tbody > tr > td > table > tbody > tr > td > big> big > b').text(),
-              language: 'en'
-            }
-          ],
-          form_name: 'default'
-        })
-        return
-      }
-      // Oher forms
       $(element).children('td').each((__, formElement) => {
         if (!isVisible($, formElement)) {
           return
         }
+        const spriteURL = $(formElement).children('a').children('img').attr('src')
         // Get form name for filtering
         const fullName = $(formElement).children('small').text()
         const lowerCaseName = fullName.toLowerCase()
@@ -213,6 +200,8 @@ function processForms ($) {
           formName = 'hisui'
         } else if (lowerCaseName.includes('paldea')) {
           formName = 'paldea'
+        } else if (index === 0) {
+          formName = 'default'
         }
         forms.push({
           names: [
@@ -221,7 +210,14 @@ function processForms ($) {
               language: 'en'
             }
           ],
-          form_name: formName
+          form_name: formName,
+          sprites: [
+            {
+              name: 'artwork',
+              url: spriteURL,
+              shiny_url: undefined
+            }
+          ]
         })
       })
     })
@@ -370,6 +366,7 @@ function processGrowthRate ($) {
 }
 
 function fixRandomStuff (pokemon) {
+  // Some Pikachu forms have a different egg group
   if (pokemon.dex_numbers.nat === 25) {
     if (pokemon.form_name === 'other') {
       pokemon.egg_groups = [14]
@@ -421,6 +418,7 @@ async function getPokemonData (pokemonURL) {
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
     pokemons[i].growth_rate = growthRate
+    console.log(pokemons[i].sprites)
   }
 }
 
