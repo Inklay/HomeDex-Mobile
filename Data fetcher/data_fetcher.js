@@ -185,18 +185,26 @@ function pushForm (forms, fullName, spriteURL, formName) {
   forms.push(form)
 }
 
-function addManualForms ($, fullName, spriteURL, formName) {
-  const forms = []
+function getManualFormsInfo (fullName) {
   let tableId = ''
   let hasArrow = false
-
   if (fullName === 'Cosplay Pikachu') {
     tableId = 'Cosplay_Pikachu_3'
     hasArrow = true
+  } else if (fullName === 'Pikachu in a cap') {
+    tableId = 'Pikachu_in_a_cap_2'
   }
+  return {
+    tableId,
+    hasArrow
+  }
+}
 
-  if (tableId !== '' && hasArrow) {
-    $(`span#${tableId}`)
+function addManualForms ($, fullName, spriteURL, formName) {
+  const forms = []
+  const formInfo = getManualFormsInfo(fullName)
+  if (formInfo.tableId !== '' && formInfo.hasArrow) {
+    $(`span#${formInfo.tableId}`)
       .parent()
       .next('div')
       .children('table')
@@ -220,6 +228,25 @@ function addManualForms ($, fullName, spriteURL, formName) {
             } else if (rowIndex === 2) {
               fullName = $(row).children('td').children('small').text()
               pushForm(forms, fullName, spriteURL, formName)
+            }
+          })
+      })
+  } else if (formInfo.tableId !== '' && !formInfo.hasArrow) {
+    const names = []
+    $(`span#${formInfo.tableId}`)
+      .parent()
+      .next('div')
+      .children('table')
+      .children('tbody')
+      .children('tr')
+      .each((index, element) => {
+        $(element)
+          .children('td')
+          .each((rowIndex, row) => {
+            if (index === 0) {
+              names.push($(row).children('a').children('span').text())
+            } else if (index === 1) {
+              pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formName)
             }
           })
       })
@@ -496,7 +523,6 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].category = category
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
-    console.log(pokemons[i].names[0].name)
   }
   return pokemons
 }
