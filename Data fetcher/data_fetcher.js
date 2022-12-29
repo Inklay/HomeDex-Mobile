@@ -165,8 +165,72 @@ function processDexNumbers ($) {
   return dexNumbers
 }
 
-function processForms ($) {
+function pushForm (forms, fullName, spriteURL, formName) {
+  const form = {
+    names: [
+      {
+        name: fullName,
+        language: 'en'
+      }
+    ],
+    form_name: formName,
+    sprites: [
+      {
+        name: 'artwork',
+        url: spriteURL,
+        shiny_url: undefined
+      }
+    ]
+  }
+  forms.push(form)
+}
+
+function addManualForms ($, fullName, spriteURL, formName) {
   const forms = []
+  let tableId = ''
+  let hasArrow = false
+
+  if (fullName === 'Cosplay Pikachu') {
+    tableId = 'Cosplay_Pikachu_3'
+    hasArrow = true
+  }
+
+  if (tableId !== '' && hasArrow) {
+    $(`span#${tableId}`)
+      .parent()
+      .next('div')
+      .children('table')
+      .children('tbody')
+      .children('tr')
+      .children('td')
+      .each((index, element) => {
+        if (index % 2 !== 0) {
+          return
+        }
+        if (index === 0) {
+          return
+        }
+        $(element)
+          .children('table')
+          .children('tbody')
+          .children('tr')
+          .each((rowIndex, row) => {
+            if (rowIndex === 1) {
+              spriteURL = $(row).children('td').children('a').children('img').attr('src')
+            } else if (rowIndex === 2) {
+              fullName = $(row).children('td').children('small').text()
+              pushForm(forms, fullName, spriteURL, formName)
+            }
+          })
+      })
+  } else {
+    pushForm(forms, fullName, spriteURL, formName)
+  }
+  return forms
+}
+
+function processForms ($) {
+  let forms = []
   const baseName = $('td > a[href=\'/wiki/Pok%C3%A9mon_category\']')
     .parent()
     .children('big')
@@ -221,22 +285,7 @@ function processForms ($) {
         } else if (index === 0) {
           formName = 'default'
         }
-        forms.push({
-          names: [
-            {
-              name: fullName,
-              language: 'en'
-            }
-          ],
-          form_name: formName,
-          sprites: [
-            {
-              name: 'artwork',
-              url: spriteURL,
-              shiny_url: undefined
-            }
-          ]
-        })
+        forms = [...forms, ...addManualForms($, fullName, spriteURL, formName)]
       })
     })
   return forms
@@ -447,6 +496,7 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].category = category
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
+    console.log(pokemons[i].names[0].name)
   }
   return pokemons
 }
@@ -455,7 +505,7 @@ const pokemonURLList = await getPokemonURLList()
 /*
 await getPokemonData(pokemonURLList[0])
 */
-await getPokemonData(pokemonURLList[0])
+await getPokemonData(pokemonURLList[24])
 /*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
