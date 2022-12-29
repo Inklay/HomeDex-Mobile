@@ -2,7 +2,7 @@ import { load } from 'cheerio'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
 
-async function getPokemonURLList () {
+export async function getPokemonURLList () {
   const list = []
   const URL = `${baseURL}/wiki/List_of_Pokémon_by_National_Pokédex_number`
   const pageHTML = await (await fetch(URL)).text()
@@ -33,6 +33,13 @@ function isVisible ($, element) {
     return false
   }
   return true
+}
+
+function NaNToMinusOne (value) {
+  if (isNaN(value)) {
+    return -1
+  }
+  return value
 }
 
 function getTypeNumber (type) {
@@ -153,13 +160,19 @@ function processType ($, pokemonName) {
 
 function processDexNumbers ($) {
   const dexNumbers = {
-    nat: parseInt($('table.roundy > tbody > tr > td > table > tbody > tr > th > big > big > a > span').text().replace('#', ''))
+    nat: NaNToMinusOne(parseInt($('table.roundy > tbody > tr > td > table > tbody > tr > th > big > big > a > span').text().replace('#', '')))
   }
   return dexNumbers
 }
 
 function processForms ($) {
   const forms = []
+  const baseName = $('td > a[href=\'/wiki/Pok%C3%A9mon_category\']')
+    .parent()
+    .children('big')
+    .children('big')
+    .children('b')
+    .text()
   $('table.roundy > tbody > tr > td > table > tbody > tr > td > big')
     .parent()
     .parent()
@@ -185,7 +198,12 @@ function processForms ($) {
         }
         const spriteURL = $(formElement).children('a').children('img').attr('src')
         // Get form name for filtering
-        const fullName = $(formElement).children('small').text()
+        let fullName = $(formElement).children('small').text()
+        if (fullName === '') {
+          fullName = baseName
+        } else if (!fullName.includes(baseName)) {
+          fullName = `${baseName} ${fullName}`
+        }
         const lowerCaseName = fullName.toLowerCase()
         let formName = 'other'
         if (lowerCaseName.includes('mega')) {
@@ -225,14 +243,13 @@ function processForms ($) {
 }
 
 function processBaseFriendship ($) {
-  const baseFrienship = $('table.roundy > tbody > tr > td.roundy > b > a[title=\'List of Pokémon by base friendship\']')
+  return NaNToMinusOne(parseInt($('table.roundy > tbody > tr > td.roundy > b > a[title=\'List of Pokémon by base friendship\']')
     .parent()
     .next('table')
     .children('tbody')
     .children('tr')
     .children('td')
-    .text()
-  return parseInt(baseFrienship)
+    .text()))
 }
 
 function processCatchRate ($) {
@@ -244,7 +261,7 @@ function processCatchRate ($) {
     .children('td')
     .text()
   const fixedCatchRate = catchRate.slice(0, catchRate.search(' '))
-  return parseInt(fixedCatchRate)
+  return NaNToMinusOne(parseInt(fixedCatchRate))
 }
 
 function processHeight ($) {
@@ -279,10 +296,10 @@ function processWeight ($) {
     if (!isVisible($, weightElementArray[i])) {
       continue
     }
-    const weight = $(weightElementArray[i]).children('td').next().text()
+    const weight = NaNToMinusOne(parseFloat($(weightElementArray[i]).children('td').next().text()))
     const name = $(weightElementArray[i + 1]).children('td').children('small').text()
     weightList.push({
-      weight: parseFloat(weight),
+      weight,
       name
     })
   }
@@ -323,7 +340,7 @@ function processGenderRatio ($) {
   if (femaleRatio === '100% female') {
     return 8
   }
-  if (femaleRatio === '12.5% male,87.5 female') {
+  if (femaleRatio === '12.5% male,87.5% female') {
     return 7
   }
   if (femaleRatio === '25% male,75% female') {
@@ -387,7 +404,7 @@ function fixRandomStuff (pokemon) {
   return pokemon
 }
 
-async function getPokemonData (pokemonURL) {
+export async function getPokemonData (pokemonURL) {
   const URL = `${baseURL}${pokemonURL}`
   const pageHTML = await (await fetch(URL)).text()
   const $ = load(pageHTML)
@@ -426,18 +443,20 @@ async function getPokemonData (pokemonURL) {
     pokemons[i].weight = formWeight.weight
     pokemons[i].egg_groups = eggGroups
     pokemons[i].gender_rate = genderRatio
-    // Some issues that are easier to fix here than in the data
-    pokemons[i] = fixRandomStuff(pokemons[i])
     pokemons[i].growth_rate = growthRate
     pokemons[i].category = category
-    console.log(pokemons[i].category)
+    // Some issues that are easier to fix here than in the data
+    pokemons[i] = fixRandomStuff(pokemons[i])
   }
+  return pokemons
 }
 
 const pokemonURLList = await getPokemonURLList()
-
+/*
 await getPokemonData(pokemonURLList[0])
-await getPokemonData(pokemonURLList[1])
+*/
+await getPokemonData(pokemonURLList[0])
+/*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
 await getPokemonData(pokemonURLList[24])
@@ -445,12 +464,4 @@ await getPokemonData(pokemonURLList[51])
 await getPokemonData(pokemonURLList[129])
 await getPokemonData(pokemonURLList[799])
 await getPokemonData(pokemonURLList[1005])
-
-/*
-const pokemonData = []
-
-for (let i = 0; i < pokemonURLList.length; i++) {
-  pokemonData.push(await getPokemonData(pokemonURLList[i]))
-}
-
 */
