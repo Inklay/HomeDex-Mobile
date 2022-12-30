@@ -205,6 +205,7 @@ function getManualFormsInfo (fullName) {
       nameHasLink = true
       break
     case 'Unown':
+    case 'Vivillon':
       tableId = 'Forms'
       break
     case 'Core':
@@ -571,7 +572,7 @@ const pokemonURLList = await getPokemonURLList()
 /*
 await getPokemonData(pokemonURLList[0])
 */
-await getPokemonData(pokemonURLList[773])
+await getPokemonData(pokemonURLList[665])
 /*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
