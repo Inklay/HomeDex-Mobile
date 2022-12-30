@@ -165,7 +165,10 @@ function processDexNumbers ($) {
   return dexNumbers
 }
 
-function pushForm (forms, fullName, spriteURL, formName) {
+function pushForm (forms, fullName, spriteURL, formName, baseName) {
+  if (!fullName.includes(baseName)) {
+    fullName = `${baseName} ${fullName}`
+  }
   const form = {
     names: [
       {
@@ -188,19 +191,31 @@ function pushForm (forms, fullName, spriteURL, formName) {
 function getManualFormsInfo (fullName) {
   let tableId = ''
   let hasArrow = false
-  if (fullName === 'Cosplay Pikachu') {
-    tableId = 'Cosplay_Pikachu_3'
-    hasArrow = true
-  } else if (fullName === 'Pikachu in a cap') {
-    tableId = 'Pikachu_in_a_cap_2'
+  let hasDiv = false
+  let nameHasLink = false
+  switch (fullName) {
+    case 'Cosplay Pikachu':
+      tableId = 'Cosplay_Pikachu_3'
+      hasArrow = true
+      break
+    case 'Pikachu in a cap':
+      tableId = 'Pikachu_in_a_cap_2'
+      hasDiv = true
+      nameHasLink = true
+      break
+    case 'Unown':
+      tableId = 'Forms'
+      break
   }
   return {
     tableId,
-    hasArrow
+    hasArrow,
+    hasDiv,
+    nameHasLink
   }
 }
 
-function addManualForms ($, fullName, spriteURL, formName) {
+function addManualForms ($, fullName, spriteURL, formName, baseName) {
   const forms = []
   const formInfo = getManualFormsInfo(fullName)
   if (formInfo.tableId !== '' && formInfo.hasArrow) {
@@ -227,31 +242,47 @@ function addManualForms ($, fullName, spriteURL, formName) {
               spriteURL = $(row).children('td').children('a').children('img').attr('src')
             } else if (rowIndex === 2) {
               fullName = $(row).children('td').children('small').text()
-              pushForm(forms, fullName, spriteURL, formName)
+              pushForm(forms, fullName, spriteURL, formName, baseName)
             }
           })
       })
   } else if (formInfo.tableId !== '' && !formInfo.hasArrow) {
+    let table = $(`span#${formInfo.tableId}`).parent()
     const names = []
-    $(`span#${formInfo.tableId}`)
-      .parent()
-      .next('div')
-      .children('table')
+    if (formInfo.hasDiv) {
+      table = table
+        .next('div')
+        .children('table')
+    } else {
+      table = table
+        .next('table')
+    }
+    $(table)
       .children('tbody')
       .children('tr')
       .each((index, element) => {
+        if ($(element).children('td').length === 1) {
+          return
+        }
         $(element)
           .children('td')
           .each((rowIndex, row) => {
-            if (index === 0) {
-              names.push($(row).children('a').children('span').text())
-            } else if (index === 1) {
-              pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formName)
+            if (index % 2 === 0) {
+              if (formInfo.nameHasLink) {
+                names.push($(row).children('a').children('span').text())
+              } else {
+                names.push($(row).text().replace('\n', ''))
+              }
+            } else if (index % 2 === 1) {
+              pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formName, baseName)
             }
           })
+        if (index % 2 === 1) {
+          names.length = 0
+        }
       })
   } else {
-    pushForm(forms, fullName, spriteURL, formName)
+    pushForm(forms, fullName, spriteURL, formName, baseName)
   }
   return forms
 }
@@ -292,8 +323,6 @@ function processForms ($) {
         let fullName = $(formElement).children('small').text()
         if (fullName === '') {
           fullName = baseName
-        } else if (!fullName.includes(baseName)) {
-          fullName = `${baseName} ${fullName}`
         }
         const lowerCaseName = fullName.toLowerCase()
         let formName = 'other'
@@ -312,7 +341,7 @@ function processForms ($) {
         } else if (index === 0) {
           formName = 'default'
         }
-        forms = [...forms, ...addManualForms($, fullName, spriteURL, formName)]
+        forms = [...forms, ...addManualForms($, fullName, spriteURL, formName, baseName)]
       })
     })
   return forms
@@ -523,6 +552,7 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].category = category
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
+    console.log(pokemons[i].names[0].name)
   }
   return pokemons
 }
@@ -531,7 +561,7 @@ const pokemonURLList = await getPokemonURLList()
 /*
 await getPokemonData(pokemonURLList[0])
 */
-await getPokemonData(pokemonURLList[24])
+await getPokemonData(pokemonURLList[200])
 /*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
