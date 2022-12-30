@@ -158,7 +158,7 @@ function processType ($, pokemonName) {
   return types
 }
 
-function processDexNumbers ($) {
+function processNatDexNumbers ($) {
   const dexNumbers = {
     nat: NaNToMinusOne(parseInt($('table.roundy > tbody > tr > td > table > tbody > tr > th > big > big > a > span').text().replace('#', '')))
   }
@@ -531,6 +531,109 @@ function processCategory ($) {
   ]
 }
 
+function getDexName (generationNumber, name) {
+  switch (generationNumber) {
+    case 1:
+      return 'RBY'
+    case 2:
+      return 'GSC'
+    case 3:
+      if (name === 'Kanto') {
+        return 'FRLF'
+      } else {
+        return 'RSE'
+      }
+    case 4:
+      if (name === 'Sinnoh') {
+        return 'DPPt'
+      } else {
+        return 'HGSS'
+      }
+    case 5:
+      if (name === 'UnovaBW:') {
+        return 'BW'
+      } else {
+        return 'B2W2'
+      }
+    case 6:
+      if (name === 'KalosCentral') {
+        return 'XYCentral'
+      } else if (name === 'KalosCoastal') {
+        return 'XYCoastal'
+      } else if (name === 'KalosMountain') {
+        return 'XYMountain'
+      } else {
+        return 'ORAS'
+      }
+    case 7:
+      if (name === 'AlolaSM:') {
+        return 'SM'
+      } else if (name === 'AlolaUSUM:') {
+        return 'USUM'
+      } else {
+        return 'LGPE'
+      }
+    case 8:
+      if (name === 'Galar') {
+        return 'SWSH'
+      } else if (name === 'GalarIsle of Armor') {
+        return 'IOA'
+      } else if (name === 'GalarCrown Tundra') {
+        return 'CT'
+      } else if (name === 'Sinnoh') {
+        return 'BDSP'
+      } else {
+        return 'LPA'
+      }
+    case 9:
+      if (name === 'Paldea') {
+        return 'SV'
+      }
+  }
+}
+
+function processFLavorText ($, dexNumbers) {
+  let flavorTextId
+  $('a[href=\'#Game_data\']')
+    .next('ul')
+    .children('li')
+    .each((__, element) => {
+      $(element)
+        .children('a')
+        .children('span')
+        .each((__, link) => {
+          if ($(link).attr('class') === 'toctext' && $(link).text() === 'Pokédex entries') {
+            flavorTextId = $(link).parent().attr('href').replace('.C3.A9', 'é')
+          }
+        })
+    })
+  $(`span${flavorTextId}`)
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+    .each((generationIndex, generation) => {
+      $(generation)
+        .children('td')
+        .children('table')
+        .children('tbody')
+        .children('tr')
+        .children('th')
+        .each((dexIndex, dex) => {
+          if (dexIndex === 0) {
+            return
+          }
+          const dexContent = $(dex).children('small').text()
+          const numberStart = dexContent.search(' #')
+          const dexName = getDexName(generationIndex + 1, dexContent.slice(0, numberStart))
+          const dexNumber = dexContent.slice(numberStart + 2)
+          if (dexNumber !== '—') {
+            dexNumbers[dexName] = parseInt(dexNumber)
+          }
+        })
+    })
+}
+
 function fixRandomStuff (pokemon) {
   // Some Pikachu forms have a different egg group
   if (pokemon.dex_numbers.nat === 25) {
@@ -548,7 +651,7 @@ export async function getPokemonData (pokemonURL) {
   const pageHTML = await (await fetch(URL)).text()
   const $ = load(pageHTML)
   const pokemons = processForms($)
-  const dexNumbers = processDexNumbers($)
+  const dexNumbers = processNatDexNumbers($)
   const types = processType($, pokemons[0].names[0].name)
   const baseFriendship = processBaseFriendship($)
   const catchRate = processCatchRate($)
@@ -558,6 +661,7 @@ export async function getPokemonData (pokemonURL) {
   const genderRatio = processGenderRatio($)
   const growthRate = processGrowthRate($)
   const category = processCategory($)
+  const flavorText = processFLavorText($, dexNumbers)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
@@ -586,7 +690,6 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].category = category
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
-    console.log(pokemons[i].form_name)
   }
   return pokemons
 }
@@ -595,7 +698,7 @@ const pokemonURLList = await getPokemonURLList()
 /*
 await getPokemonData(pokemonURLList[0])
 */
-await getPokemonData(pokemonURLList[200])
+await getPokemonData(pokemonURLList[24])
 /*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
