@@ -649,6 +649,17 @@ function processCapPikachuFlavorText (game, text, flavorText) {
   }
 }
 
+function processMiniorFlavorText (game, text, flavorText) {
+  const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet']
+  for (const color of colors) {
+    const formIndex = flavorText.push({
+      form: `Minior ${color} Core`,
+      entries: {}
+    }) - 1
+    flavorText[formIndex].entries[game] = text
+  }
+}
+
 function processFlavorText ($, flavorTextId) {
   const flavorText = []
   let form = 'default'
@@ -703,6 +714,8 @@ function processFlavorText ($, flavorTextId) {
             }
             if (form === 'Hoenn, Sinnoh, Unova, Kalos, and Alola Cap Pikachu') {
               processCapPikachuFlavorText(gameName, oldText, flavorText)
+            } else if (form === 'All Cores') {
+              processMiniorFlavorText(gameName, oldText, flavorText)
             } else {
               flavorText[formIndex].entries[gameName] = oldText
             }
@@ -797,16 +810,18 @@ export async function getPokemonData (pokemonURL) {
       }
       if (formFlavorText !== undefined) {
         pokemons[i].flavor_text = formFlavorText.entries
+        console.log(formFlavorText.form)
       }
     }
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
+    console.log(pokemons[i].names[0].name)
   }
   return pokemons
 }
 
 const pokemonURLList = await getPokemonURLList()
-await getPokemonData(pokemonURLList[24])
+await getPokemonData(pokemonURLList[773])
 
 /*
 await getPokemonData(pokemonURLList[0])
