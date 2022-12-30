@@ -165,7 +165,13 @@ function processDexNumbers ($) {
   return dexNumbers
 }
 
-function pushForm (forms, fullName, spriteURL, formName, baseName) {
+function pushForm (forms, fullName, spriteURL, formName, baseName, isDefault) {
+  if (isDefault) {
+    formName = 'default'
+    fullName = baseName
+  } else if (formName === 'default' && isDefault !== undefined) {
+    formName = 'other'
+  }
   if (!fullName.includes(baseName)) {
     fullName = `${baseName} ${fullName}`
   }
@@ -195,6 +201,7 @@ function getManualFormsInfo (fullName) {
   let nameHasLink = false
   let hasDivBefore = false
   let isFurfrou = false
+  let replaceDefault = false
   switch (fullName) {
     case 'Cosplay Pikachu':
       tableId = 'Cosplay_Pikachu_3'
@@ -208,10 +215,12 @@ function getManualFormsInfo (fullName) {
     case 'Unown':
     case 'Vivillon':
       tableId = 'Forms'
+      replaceDefault = true
       break
     case 'Furfrou':
       isFurfrou = true
       tableId = 'Forms'
+      replaceDefault = true
       break
     case 'Core':
       tableId = 'Forms'
@@ -224,7 +233,8 @@ function getManualFormsInfo (fullName) {
     hasDiv,
     nameHasLink,
     hasDivBefore,
-    isFurfrou
+    isFurfrou,
+    replaceDefault
   }
 }
 
@@ -297,7 +307,8 @@ function addManualForms ($, fullName, spriteURL, formName, baseName) {
                 names.push($(row).text().replace('\n', ''))
               }
             } else if (index % 2 === 1) {
-              pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formName, baseName)
+              pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formName, baseName,
+                (index === 1 && rowIndex === 0 && formInfo.replaceDefault))
             }
           })
         if (index % 2 === 1) {
@@ -575,7 +586,7 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].category = category
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
-    console.log(pokemons[i].names[0].name)
+    console.log(pokemons[i].form_name)
   }
   return pokemons
 }
@@ -584,7 +595,7 @@ const pokemonURLList = await getPokemonURLList()
 /*
 await getPokemonData(pokemonURLList[0])
 */
-await getPokemonData(pokemonURLList[675])
+await getPokemonData(pokemonURLList[200])
 /*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
