@@ -193,6 +193,7 @@ function getManualFormsInfo (fullName) {
   let hasArrow = false
   let hasDiv = false
   let nameHasLink = false
+  let hasDivBefore = false
   switch (fullName) {
     case 'Cosplay Pikachu':
       tableId = 'Cosplay_Pikachu_3'
@@ -206,12 +207,17 @@ function getManualFormsInfo (fullName) {
     case 'Unown':
       tableId = 'Forms'
       break
+    case 'Core':
+      tableId = 'Forms'
+      hasDivBefore = true
+      break
   }
   return {
     tableId,
     hasArrow,
     hasDiv,
-    nameHasLink
+    nameHasLink,
+    hasDivBefore
   }
 }
 
@@ -253,6 +259,10 @@ function addManualForms ($, fullName, spriteURL, formName, baseName) {
       table = table
         .next('div')
         .children('table')
+    } else if (formInfo.hasDivBefore) {
+      table = table
+        .next('div')
+        .next('table')
     } else {
       table = table
         .next('table')
@@ -561,7 +571,7 @@ const pokemonURLList = await getPokemonURLList()
 /*
 await getPokemonData(pokemonURLList[0])
 */
-await getPokemonData(pokemonURLList[200])
+await getPokemonData(pokemonURLList[773])
 /*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
