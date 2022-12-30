@@ -49,6 +49,9 @@ async function testAllPokemon () {
       console.assert(data[j].category.length !== 0, `${data[j].names[0].name}: Category empty`)
       console.assert(data[j].category[0].name !== undefined, `${data[j].names[0].name}: English category undefined`)
       console.assert(data[j].category[0].name !== '', `${data[j].names[0].name}: English category empty`)
+      // Flavor text
+      console.assert(data[j].flavor_text !== undefined, `${data[j].names[0].name}: Flavor text undefined`)
+      console.assert(data[j].flavor_text.length !== 0, `${data[j].names[0].name}: Flavor text empty`)
     }
   }
 }

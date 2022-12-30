@@ -166,6 +166,7 @@ function processNatDexNumbers ($) {
 }
 
 function pushForm (forms, fullName, spriteURL, formType, baseName, isDefault, formName) {
+  fullName = fullName.replaceAll(String.fromCharCode(160), ' ')
   if (formName === undefined) {
     formName = fullName
   }
@@ -173,10 +174,13 @@ function pushForm (forms, fullName, spriteURL, formType, baseName, isDefault, fo
     formType = 'default'
     fullName = baseName
   } else if (formType === 'default' && isDefault !== undefined) {
-    formType = 'other'
+    formType = fullName
   }
   if (!fullName.includes(baseName)) {
     fullName = `${baseName} ${fullName}`
+  }
+  if (fullName.slice(fullName.length - 1) === ' ') {
+    fullName = fullName.slice(0, fullName.length - 1)
   }
   const form = {
     names: [
@@ -268,7 +272,7 @@ function addManualForms ($, fullName, spriteURL, formType, baseName) {
             if (rowIndex === 1) {
               spriteURL = $(row).children('td').children('a').children('img').attr('src')
             } else if (rowIndex === 2) {
-              pushForm(forms, $(row).children('td').children('small').text(), spriteURL, formType, baseName, fullName)
+              pushForm(forms, $(row).children('td').children('small').text(), spriteURL, formType, baseName, undefined, fullName)
             }
           })
       })
@@ -623,10 +627,34 @@ function processRegionalDex ($, flavorTextId, dexNumbers) {
     })
 }
 
+function getFlavorTextFormName (form) {
+  if (form === 'Original Cap Pikachu') {
+    return 'Pikachu Original Cap'
+  } else if (form === 'Partner Cap Pikachu') {
+    return 'Pikachu Partner Cap'
+  } else if (form === 'World Cap Pikachu') {
+    return 'Pikachu World Cap'
+  }
+  return form
+}
+
+function processCapPikachuFlavorText (game, text, flavorText) {
+  const regions = ['Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola']
+  for (const region of regions) {
+    const formIndex = flavorText.push({
+      form: `Pikachu ${region} Cap`,
+      entries: {}
+    }) - 1
+    flavorText[formIndex].entries[game] = text.replace('Hoenn/Sinnoh/Unova/Kalos/Alola', region)
+  }
+}
+
 function processFlavorText ($, flavorTextId) {
-  const flavorText = [{}]
+  const flavorText = []
+  let form = 'default'
   let oldText
   let skip = false
+  let formIndex
   $(`span${flavorTextId}`)
     .parent()
     .next('table')
@@ -634,6 +662,8 @@ function processFlavorText ($, flavorTextId) {
     .children('tr')
     .each((__, generation) => {
       skip = false
+      form = 'default'
+      formIndex = 0
       $(generation)
         .children('td')
         .children('table')
@@ -645,17 +675,37 @@ function processFlavorText ($, flavorTextId) {
         .children('tr')
         .each((__, game) => {
           if ($(game).children('th').children('a').length === 0) {
-            skip = true
+            if ($(game).children('th').text() === 'Female') {
+              skip = true
+            } else if ($(game).children('th').text() === 'Male') {
+              form = 'default'
+            } else {
+              form = getFlavorTextFormName($(game).children('th').text().replace('\n', ''))
+            }
+            return
           }
           if (skip) {
             return
           }
+          if (flavorText.find(f => f.form === form) === undefined) {
+            formIndex = flavorText.push({
+              form,
+              entries: {}
+            }) - 1
+          }
           if ($(game).children('td').length !== 0) {
             oldText = $(game).children('td').text()
           }
-          if (!$(game).children('th').text().includes('Stadium')) {
-            const gameName = $(game).children('th').text().replace('\n', '')
-            flavorText[0][gameName] = oldText
+          if (!$(game).children('th').text().includes('Stadium') && !$(game).children('th').text().includes('This')) {
+            let gameName = $(game).children('th').text().replace('\n', '')
+            if (gameName.slice(gameName.length - 1) === ' ') {
+              gameName = gameName.slice(0, -1)
+            }
+            if (form === 'Hoenn, Sinnoh, Unova, Kalos, and Alola Cap Pikachu') {
+              processCapPikachuFlavorText(gameName, oldText, flavorText)
+            } else {
+              flavorText[formIndex].entries[gameName] = oldText
+            }
           }
         })
     })
@@ -735,6 +785,20 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].gender_rate = genderRatio
     pokemons[i].growth_rate = growthRate
     pokemons[i].category = category
+    if (pokemons[i].form_type === 'default') {
+      pokemons[i].flavor_text = flavorText.find(flavorText => flavorText.form === 'default').entries
+    } else {
+      let formFlavorText = flavorText.find(flavorText => flavorText.form.replace(' ', '') === pokemons[i].names[0].name.replace(' ', ''))
+      if (formFlavorText === undefined) {
+        formFlavorText = flavorText.find(flavorText => flavorText.form === pokemons[i].form_name)
+        if (formFlavorText === undefined) {
+          formFlavorText = flavorText.find(flavorText => flavorText.form === 'default')
+        }
+      }
+      if (formFlavorText !== undefined) {
+        pokemons[i].flavor_text = formFlavorText.entries
+      }
+    }
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i])
   }
@@ -742,14 +806,12 @@ export async function getPokemonData (pokemonURL) {
 }
 
 const pokemonURLList = await getPokemonURLList()
+await getPokemonData(pokemonURLList[24])
+
 /*
 await getPokemonData(pokemonURLList[0])
-*/
-//await getPokemonData(pokemonURLList[24])
-/*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
-await getPokemonData(pokemonURLList[24])
 await getPokemonData(pokemonURLList[51])
 await getPokemonData(pokemonURLList[129])
 await getPokemonData(pokemonURLList[799])
