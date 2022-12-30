@@ -315,7 +315,7 @@ function addManualForms ($, fullName, spriteURL, formType, baseName) {
               }
             } else if (index % 2 === 1) {
               pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formType, baseName,
-                (index === 1 && rowIndex === 0 && formInfo.replaceDefault), fullName)
+                (index === 1 && rowIndex === 0 && formInfo.replaceDefault), names[rowIndex])
             }
           })
         if (index % 2 === 1) {
