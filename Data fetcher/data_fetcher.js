@@ -664,15 +664,17 @@ function processFlavorText ($, flavorTextId) {
   const flavorText = []
   let form = 'default'
   let oldText
-  let skip = false
   let formIndex
-  $(`span${flavorTextId}`)
+  let element = $(`span${flavorTextId}`)
     .parent()
-    .next('table')
+    .next('')
+  if ($(element)[0].name !== 'table') {
+    element = $(element).next('table')
+  }
+  $(element)
     .children('tbody')
     .children('tr')
     .each((__, generation) => {
-      skip = false
       form = 'default'
       formIndex = 0
       $(generation)
@@ -686,16 +688,11 @@ function processFlavorText ($, flavorTextId) {
         .children('tr')
         .each((__, game) => {
           if ($(game).children('th').children('a').length === 0) {
-            if ($(game).children('th').text() === 'Female') {
-              skip = true
-            } else if ($(game).children('th').text() === 'Male') {
+            if (flavorText.find(f => f.form === 'default') === undefined) {
               form = 'default'
             } else {
               form = getFlavorTextFormName($(game).children('th').text().replace('\n', ''))
             }
-            return
-          }
-          if (skip) {
             return
           }
           if (flavorText.find(f => f.form === form) === undefined) {
@@ -744,13 +741,91 @@ function processPokedexEntries ($, dexNumbers) {
   return processFlavorText($, flavorTextId)
 }
 
-function fixRandomStuff (pokemon) {
+function processStatsTable ($, table, name) {
+  const stats = { name, stats: [] }
+  $(table)
+    .children('tbody')
+    .children('tr')
+    .each((index, stat) => {
+      if (index < 2 || index > 7) {
+        return
+      }
+      const rowText = $(stat).children('th').text()
+      stats.stats.push(
+        {
+          base: NaNToMinusOne(parseInt(rowText.slice(rowText.search(':') + 1))),
+          effort: -1
+        }
+      )
+    })
+  return stats
+}
+
+function processStats ($) {
+  let statsId
+  let element
+  const stats = []
+  $('a[href=\'#Game_data\']')
+    .next('ul')
+    .children('li')
+    .each((__, element) => {
+      $(element)
+        .children('a')
+        .children('span')
+        .each((__, link) => {
+          if ($(link).attr('class') === 'toctext' && ($(link).text() === 'Stats' || $(link).text() === 'Base stats')) {
+            statsId = $(link).parent().attr('href')
+          }
+        })
+    })
+  const header = $(`span${statsId}`)
+    .parent()
+    .next()
+  let skip = false
+  let index = 0
+  let name
+  if ($(header)[0].name !== 'table') {
+    element = $(header).next()
+  } else {
+    element = header
+  }
+  while ($(element)[0].name !== 'h4') {
+    if ($(element)[0].name === 'h3' && $(element).text() !== 'Base stats') {
+      break
+    }
+    // Older gen
+    if ($(element)[0].name === 'h5' && $(element).text().includes('Generation') && !$(element).text().includes('onward') && !$(element).text().includes('IX')) {
+      skip = true
+    // Current gen
+    } else if ($(element)[0].name === 'h5' && ($(element).text().includes('onward') || $(element).text().includes('IX'))) {
+      skip = false
+    } else if ($(element)[0].name === 'h5') {
+      name = $(element).text()
+    } else if ($(element)[0].name === 'table' && !skip) {
+      name = index === 0 ? 'default' : name
+      index++
+      stats.push(processStatsTable($, element, name))
+    }
+    element = $(element).next()
+  }
+  return stats
+}
+
+function fixRandomStuff (pokemon, stats) {
   // Some Pikachu forms have a different egg group
   if (pokemon.dex_numbers.nat === 25) {
     if (pokemon.form_type === 'other') {
       pokemon.egg_groups = [14]
     } else {
       pokemon.egg_groups = [15, 7]
+    }
+  } else if (pokemon.dex_numbers.nat === 128) {
+    if (pokemon.form_type === 'paldea') {
+      pokemon.stats = stats[1].stats
+    }
+  } else if (pokemon.dex_numbers.nat === 774) {
+    if (pokemon.form_type === 'other') {
+      pokemon.stats = stats[1].stats
     }
   }
   return pokemon
@@ -772,6 +847,13 @@ export async function getPokemonData (pokemonURL) {
   const growthRate = processGrowthRate($)
   const category = processCategory($)
   const flavorText = processPokedexEntries($, dexNumbers)
+  const stats = processStats($)
+  if (flavorText === undefined) {
+    console.log(`No flavor text found for ${pokemons[0].names[0].name}`)
+  }
+  if (stats === undefined) {
+    console.log(`No stats found for ${pokemons[0].names[0].name}`)
+  }
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].form_name)
@@ -799,9 +881,12 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].growth_rate = growthRate
     pokemons[i].category = category
     if (pokemons[i].form_type === 'default') {
+      if (flavorText.find(flavorText => flavorText.form === 'default') === undefined) {
+        console.log(flavorText)
+      }
       pokemons[i].flavor_text = flavorText.find(flavorText => flavorText.form === 'default').entries
     } else {
-      let formFlavorText = flavorText.find(flavorText => flavorText.form.replace(' ', '') === pokemons[i].names[0].name.replace(' ', ''))
+      let formFlavorText = flavorText.find(flavorText => flavorText.form === pokemons[i].names[0].name)
       if (formFlavorText === undefined) {
         formFlavorText = flavorText.find(flavorText => flavorText.form === pokemons[i].form_name)
         if (formFlavorText === undefined) {
@@ -810,20 +895,35 @@ export async function getPokemonData (pokemonURL) {
       }
       if (formFlavorText !== undefined) {
         pokemons[i].flavor_text = formFlavorText.entries
-        console.log(formFlavorText.form)
+      }
+    }
+    if (pokemons[i].form_type === 'default') {
+      if (stats.find(stat => stat.name === 'default') === undefined) {
+        console.log(pokemons[i].names[0].name, stats)
+      }
+      pokemons[i].stats = stats.find(stat => stat.name === 'default').stats
+    } else {
+      let formStats = stats.find(stat => stat.name === pokemons[i].names[0].name)
+      if (formStats === undefined) {
+        formStats = stats.find(stat => stat.name === pokemons[i].form_name)
+        if (formStats === undefined) {
+          formStats = stats.find(stat => stat.name === 'default')
+        }
+      }
+      if (formStats !== undefined) {
+        pokemons[i].stats = formStats.stats
       }
     }
     // Some issues that are easier to fix here than in the data
-    pokemons[i] = fixRandomStuff(pokemons[i])
-    console.log(pokemons[i].names[0].name)
+    pokemons[i] = fixRandomStuff(pokemons[i], stats)
   }
   return pokemons
 }
 
 const pokemonURLList = await getPokemonURLList()
-await getPokemonData(pokemonURLList[773])
-
+await getPokemonData(pokemonURLList[800])
 /*
+await getPokemonData(pokemonURLList[24])
 await getPokemonData(pokemonURLList[0])
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
