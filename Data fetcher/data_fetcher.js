@@ -165,12 +165,15 @@ function processNatDexNumbers ($) {
   return dexNumbers
 }
 
-function pushForm (forms, fullName, spriteURL, formName, baseName, isDefault) {
+function pushForm (forms, fullName, spriteURL, formType, baseName, isDefault, formName) {
+  if (formName === undefined) {
+    formName = fullName
+  }
   if (isDefault) {
-    formName = 'default'
+    formType = 'default'
     fullName = baseName
-  } else if (formName === 'default' && isDefault !== undefined) {
-    formName = 'other'
+  } else if (formType === 'default' && isDefault !== undefined) {
+    formType = 'other'
   }
   if (!fullName.includes(baseName)) {
     fullName = `${baseName} ${fullName}`
@@ -182,6 +185,7 @@ function pushForm (forms, fullName, spriteURL, formName, baseName, isDefault) {
         language: 'en'
       }
     ],
+    form_type: formType,
     form_name: formName,
     sprites: [
       {
@@ -238,7 +242,7 @@ function getManualFormsInfo (fullName) {
   }
 }
 
-function addManualForms ($, fullName, spriteURL, formName, baseName) {
+function addManualForms ($, fullName, spriteURL, formType, baseName) {
   const forms = []
   const formInfo = getManualFormsInfo(fullName)
   if (formInfo.tableId !== '' && formInfo.hasArrow) {
@@ -264,8 +268,7 @@ function addManualForms ($, fullName, spriteURL, formName, baseName) {
             if (rowIndex === 1) {
               spriteURL = $(row).children('td').children('a').children('img').attr('src')
             } else if (rowIndex === 2) {
-              fullName = $(row).children('td').children('small').text()
-              pushForm(forms, fullName, spriteURL, formName, baseName)
+              pushForm(forms, $(row).children('td').children('small').text(), spriteURL, formType, baseName, fullName)
             }
           })
       })
@@ -307,8 +310,8 @@ function addManualForms ($, fullName, spriteURL, formName, baseName) {
                 names.push($(row).text().replace('\n', ''))
               }
             } else if (index % 2 === 1) {
-              pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formName, baseName,
-                (index === 1 && rowIndex === 0 && formInfo.replaceDefault))
+              pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formType, baseName,
+                (index === 1 && rowIndex === 0 && formInfo.replaceDefault), fullName)
             }
           })
         if (index % 2 === 1) {
@@ -316,7 +319,7 @@ function addManualForms ($, fullName, spriteURL, formName, baseName) {
         }
       })
   } else {
-    pushForm(forms, fullName, spriteURL, formName, baseName)
+    pushForm(forms, fullName, spriteURL, formType, baseName)
   }
   return forms
 }
@@ -359,23 +362,23 @@ function processForms ($) {
           fullName = baseName
         }
         const lowerCaseName = fullName.toLowerCase()
-        let formName = 'other'
+        let formType = 'other'
         if (lowerCaseName.includes('mega')) {
-          formName = 'mega'
+          formType = 'mega'
         } else if (lowerCaseName.includes('gigantamax')) {
-          formName = 'gmax'
+          formType = 'gmax'
         } else if (lowerCaseName.includes('alola')) {
-          formName = 'alola'
+          formType = 'alola'
         } else if (lowerCaseName.includes('galar')) {
-          formName = 'galar'
+          formType = 'galar'
         } else if (lowerCaseName.includes('hisui')) {
-          formName = 'hisui'
+          formType = 'hisui'
         } else if (lowerCaseName.includes('paldea')) {
-          formName = 'paldea'
+          formType = 'paldea'
         } else if (index === 0) {
-          formName = 'default'
+          formType = 'default'
         }
-        forms = [...forms, ...addManualForms($, fullName, spriteURL, formName, baseName)]
+        forms = [...forms, ...addManualForms($, fullName, spriteURL, formType, baseName)]
       })
     })
   return forms
@@ -592,21 +595,7 @@ function getDexName (generationNumber, name) {
   }
 }
 
-function processFLavorText ($, dexNumbers) {
-  let flavorTextId
-  $('a[href=\'#Game_data\']')
-    .next('ul')
-    .children('li')
-    .each((__, element) => {
-      $(element)
-        .children('a')
-        .children('span')
-        .each((__, link) => {
-          if ($(link).attr('class') === 'toctext' && $(link).text() === 'Pokédex entries') {
-            flavorTextId = $(link).parent().attr('href').replace('.C3.A9', 'é')
-          }
-        })
-    })
+function processRegionalDex ($, flavorTextId, dexNumbers) {
   $(`span${flavorTextId}`)
     .parent()
     .next('table')
@@ -634,10 +623,68 @@ function processFLavorText ($, dexNumbers) {
     })
 }
 
+function processFlavorText ($, flavorTextId) {
+  const flavorText = [{}]
+  let oldText
+  let skip = false
+  $(`span${flavorTextId}`)
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+    .each((__, generation) => {
+      skip = false
+      $(generation)
+        .children('td')
+        .children('table')
+        .children('tbody')
+        .children('tr:nth-child(2)')
+        .children('td')
+        .children('table')
+        .children('tbody')
+        .children('tr')
+        .each((__, game) => {
+          if ($(game).children('th').children('a').length === 0) {
+            skip = true
+          }
+          if (skip) {
+            return
+          }
+          if ($(game).children('td').length !== 0) {
+            oldText = $(game).children('td').text()
+          }
+          if (!$(game).children('th').text().includes('Stadium')) {
+            const gameName = $(game).children('th').text().replace('\n', '')
+            flavorText[0][gameName] = oldText
+          }
+        })
+    })
+  return flavorText
+}
+
+function processPokedexEntries ($, dexNumbers) {
+  let flavorTextId
+  $('a[href=\'#Game_data\']')
+    .next('ul')
+    .children('li')
+    .each((__, element) => {
+      $(element)
+        .children('a')
+        .children('span')
+        .each((__, link) => {
+          if ($(link).attr('class') === 'toctext' && $(link).text() === 'Pokédex entries') {
+            flavorTextId = $(link).parent().attr('href').replace('.C3.A9', 'é')
+          }
+        })
+    })
+  processRegionalDex($, flavorTextId, dexNumbers)
+  return processFlavorText($, flavorTextId)
+}
+
 function fixRandomStuff (pokemon) {
   // Some Pikachu forms have a different egg group
   if (pokemon.dex_numbers.nat === 25) {
-    if (pokemon.form_name === 'other') {
+    if (pokemon.form_type === 'other') {
       pokemon.egg_groups = [14]
     } else {
       pokemon.egg_groups = [15, 7]
@@ -661,10 +708,10 @@ export async function getPokemonData (pokemonURL) {
   const genderRatio = processGenderRatio($)
   const growthRate = processGrowthRate($)
   const category = processCategory($)
-  const flavorText = processFLavorText($, dexNumbers)
+  const flavorText = processPokedexEntries($, dexNumbers)
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
-    let formTypes = types.find(type => type.name === pokemons[i].names[0].name)
+    let formTypes = types.find(type => type.name === pokemons[i].form_name)
     // If the form has the same type as the base form
     if (formTypes === undefined) {
       formTypes = types[0]
@@ -672,13 +719,13 @@ export async function getPokemonData (pokemonURL) {
     pokemons[i].types = formTypes.types
     pokemons[i].base_friendship = baseFriendship
     pokemons[i].catch_rate = catchRate
-    let formHeight = height.find(height => height.name === pokemons[i].names[0].name)
+    let formHeight = height.find(height => height.name === pokemons[i].form_name)
     // If the form has the same height as the base form
     if (formHeight === undefined) {
       formHeight = height[0]
     }
     pokemons[i].height = formHeight.height
-    let formWeight = weight.find(weight => weight.name === pokemons[i].names[0].name)
+    let formWeight = weight.find(weight => weight.name === pokemons[i].form_name)
     // If the form has the same weight as the base form
     if (formWeight === undefined) {
       formWeight = weight[0]
@@ -698,7 +745,7 @@ const pokemonURLList = await getPokemonURLList()
 /*
 await getPokemonData(pokemonURLList[0])
 */
-await getPokemonData(pokemonURLList[24])
+//await getPokemonData(pokemonURLList[24])
 /*
 await getPokemonData(pokemonURLList[3])
 await getPokemonData(pokemonURLList[5])
