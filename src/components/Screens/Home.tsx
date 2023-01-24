@@ -172,6 +172,7 @@ const Home: React.FC<Props> = ({navigation}) => {
                   </View>
                   <View style={Style.filterContainer}>
                     <FilterButton name={Locale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon}/>
+                    <FilterButton name={Locale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon}/>
                     <FilterButton name={Locale.home.filters.forms.other} filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon}/>
                   </View>
                 </View>
