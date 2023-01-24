@@ -7,7 +7,7 @@ import Stats from './Stats'
 
 export default interface Pokemon {
   base_friendship: number | null
-  capture_rate: number | null
+  catch_rate: number | null
   egg_groups: number[]
   gender_rate: number
   category: Name[]

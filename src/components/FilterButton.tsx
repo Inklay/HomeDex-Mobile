@@ -1,8 +1,8 @@
 import React from 'react'
 import { TouchableWithoutFeedback, View, Text } from 'react-native'
+import { SvgProps } from 'react-native-svg'
 import Filters from '../classes/Filters'
 import { Style, BackgroundColors, TextColors } from '../style'
-import Toggle from './svgs/Toggle'
 
 interface Props {
   name: string
@@ -10,9 +10,10 @@ interface Props {
   setFilters: (value: Filters) => void
   property: string
   filterPokemon: (filters: Filters) => void
+  SVG: ({ ...props }: SvgProps & SvgProps) => JSX.Element
 }
 
-const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, filterPokemon}) => {
+const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, filterPokemon, SVG}) => {
   const [isActive, setActive] = React.useState(filters[property])
   const [backgroundColor, setBackgroundColor] = React.useState(getBackgroundColor(filters[property]))
   const [SVGColor, setSVGColor] = React.useState(getSVGColor(filters[property]))
@@ -57,7 +58,7 @@ const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, fil
         }
       ]}>
         <TouchableWithoutFeedback onPress={pressed}>
-          <Toggle height={40} width={40} color={SVGColor}/>
+          <SVG height={40} width={40} color={SVGColor}/>
         </TouchableWithoutFeedback>
       </View>
     </View>

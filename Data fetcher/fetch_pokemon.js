@@ -366,7 +366,7 @@ function processForms ($) {
         const spriteURL = $(formElement).children('a').children('img').attr('src')
         // Get form name for filtering
         let fullName = $(formElement).children('small').text()
-        if (fullName === '') {
+        if (fullName === '' || fullName === 'Ultimate Mode' || fullName === 'Apex Build') {
           fullName = baseName
         }
         const lowerCaseName = fullName.toLowerCase()
