@@ -2,7 +2,7 @@ import { load } from 'cheerio'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
 
-export async function getAllAbilityURLList () {
+export async function getAbilityURLList () {
   const list = []
   const URL = `${baseURL}/wiki/Ability`
   const pageHTML = await (await fetch(URL)).text()
@@ -29,7 +29,27 @@ export async function getAllAbilityURLList () {
   return list
 }
 
-export function getAllAbilityData () {
+export async function getAbilityData (abilityURL, id) {
+  const URL = `${baseURL}${abilityURL}`
+  const pageHTML = await (await fetch(URL)).text()
+  const $ = load(pageHTML)
+  return {
+    names: [
+      {
+        name: $('table.roundy > tbody > tr > td > big > b').length,
+        language: 'en'
+      }
+    ],
+    id
+  }
 }
 
-const abilityURLList = await getAllAbilityURLList()
+export async function getAllAbilityData () {
+  const data = []
+  for (let i = 0; i < abilityURLList.length; i++) {
+    data.push(await getAbilityData(abilityURLList[i], i))
+  }
+  return data
+}
+
+const abilityURLList = await getAbilityURLList()
