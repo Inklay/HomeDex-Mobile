@@ -34,6 +34,8 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
   
   function getLatestFlavor() : string | undefined {
     const gameOrder = [
+      'Scarlet',
+      'Violet',
       'Legends: Arceus',
       'Sword',
       'Shield',
