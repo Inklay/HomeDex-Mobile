@@ -194,7 +194,7 @@ function pushForm (forms, fullName, spriteURL, formType, baseName, isDefault, fo
     sprites: [
       {
         name: 'artwork',
-        url: spriteURL,
+        url: `https:${spriteURL}`,
         shiny_url: undefined
       }
     ]
