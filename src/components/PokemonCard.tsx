@@ -30,11 +30,11 @@ const PokemonCard: React.FC<Props> = ({pokemon, index, navigation}) => {
           <Text style={Style.pokemonName}>{getName(pokemon.names, Locale.locale)}</Text>
           <View style={Style.pokemonTypesName}>
             {pokemon.types.map((t, idx) => 
-              <TypeName type={t} key={`${pokemon.id}-${pokemon.form_name}-${index}-type-${idx}`}/>
+              <TypeName type={t} key={`${pokemon.dex_numbers.nat}-${pokemon.form_name}-${index}-type-${idx}`}/>
             )}
           </View>
         </View>
-        <CachedImage resizeMode='contain' style={Style.pokemonCardImage} source={{uri: pokemon.sprite}}/>
+        <CachedImage resizeMode='contain' style={Style.pokemonCardImage} source={{uri: pokemon.sprites.find(sprite => sprite.name === 'artwork')!.url}}/>
       </View>
     </TouchableWithoutFeedback>
   )

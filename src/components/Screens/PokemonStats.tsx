@@ -45,7 +45,7 @@ function getTotalStats() : number {
 
 function getMaxStat(idx: number) : number {
   if (idx === 0) {
-    if (pokemon.id === 292)
+    if (pokemon.dex_numbers.nat === 292)
       return 1
     return Math.floor(0.01 * (2 * pokemon.stats[idx].base + 31 + Math.floor(0.25 * 252)) * 100) + 100 + 10
   } else
@@ -54,7 +54,7 @@ function getMaxStat(idx: number) : number {
 
 function getMinStat(idx: number) : number {
   if (idx === 0) {
-    if (pokemon.id === 292)
+    if (pokemon.dex_numbers.nat === 292)
       return 1
     return Math.floor(0.01 * (2 * pokemon.stats[idx].base) * 100) + 100 + 10
   } else

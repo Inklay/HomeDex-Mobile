@@ -1,6 +1,8 @@
+import DexNumber from './DexNumber'
 import FlavorText from './FlavorText'
 import Name from './Name'
 import PokemonAbility from './PokemonABility'
+import Sprite from './Sprite'
 import Stats from './Stats'
 
 export default interface Pokemon {
@@ -11,14 +13,14 @@ export default interface Pokemon {
   categories: Name[]
   growth_rate: string
   has_gender_difference: boolean
-  id: number
+  dex_numbers: DexNumber
   names: Name[]
-  is_default: boolean
   height: number
   weight: number
   types: number[]
   form_name: string
-  sprite: string
+  form_type: string
+  sprites: Sprite[]
   abilities: PokemonAbility[]
   flavor_texts: FlavorText[]
   stats: Stats[]

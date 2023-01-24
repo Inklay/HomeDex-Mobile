@@ -41,7 +41,7 @@ const PokemonScreen: React.FC<Props> = ({navigation, route}) => {
           <LeftArrow style={Style.backIcon} color={BackgroundColors.white} height={20} width={20}/>
         </TouchableWithoutFeedback>
         <View style={Style.pokemonPageHeader}>
-          <CachedImage resizeMode='contain' style={Style.pokemonPageImage} source={{uri: pokemon.sprite}}/>
+          <CachedImage resizeMode='contain' style={Style.pokemonPageImage} source={{uri: pokemon.sprites.find(sprite => sprite.name === 'artwork')!.url}}/>
           <View>
             <Text style={Style.pokemonPageNumber}>#{fixId(pokemon)}</Text>
             <Text style={Style.pokemonPageName}>{getName(pokemon.names, Locale.locale)}</Text>

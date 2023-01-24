@@ -230,14 +230,14 @@ export function getEggGroupName(eggGroup: number) : string {
 }
 
 export function fixId(pokemon: Pokemon) : string {
-  if (pokemon.id < 10)
-    return `000${pokemon.id}`
-  if (pokemon.id < 100)
-    return `00${pokemon.id}`
-  if (pokemon.id < 1000)
-    return `0${pokemon.id}`
+  if (pokemon.dex_numbers.nat < 10)
+    return `000${pokemon.dex_numbers.nat}`
+  if (pokemon.dex_numbers.nat < 100)
+    return `00${pokemon.dex_numbers.nat}`
+  if (pokemon.dex_numbers.nat < 1000)
+    return `0${pokemon.dex_numbers.nat}`
   else
-    return pokemon.id.toString()
+    return pokemon.dex_numbers.nat.toString()
 }
 
 export function getLocale() : void {

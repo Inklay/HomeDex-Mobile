@@ -62,30 +62,30 @@ const Home: React.FC<Props> = ({navigation}) => {
     const search = accent.remove(filters.search.toLocaleLowerCase())
     let list: Pokemon[] = []
     pokemon.forEach(p => {
-      if (!p.is_default) {
-        if (p.form_name === 'mega') {
+      if (p.form_type !== 'default') {
+        if (p.form_type === 'mega') {
           if (!filters.mega)
             return
-        } else if (p.form_name === 'gmax') {
+        } else if (p.form_type === 'gmax') {
           if (!filters.gigantamax)
             return
-        } else if (p.form_name === 'alola') {
+        } else if (p.form_type === 'alola') {
           if (!filters.alolan)
             return
-        } else if (p.form_name === 'galar') {
+        } else if (p.form_type === 'galar') {
           if (!filters.galarian)
             return
-        } else if (p.form_name === 'hisui') {
+        } else if (p.form_type === 'hisui') {
           if (!filters.hisuian)
             return
-        } else if (p.form_name === 'paldea') {
+        } else if (p.form_type === 'paldea') {
           if (!filters.paldean)
             return
         } else if (!filters.other)
           return
       }
       if (parseInt(search) > 0) {
-        if (!p.id.toString().includes(search))
+        if (!p.dex_numbers.nat.toString().includes(search))
           return
       } else if (!accent.remove(getName(p.names, Locale.locale).toLocaleLowerCase()).includes(search))
         return
@@ -115,7 +115,7 @@ const Home: React.FC<Props> = ({navigation}) => {
     <View style={Style.container}>
       <HomeHeader showFilter={showFilter} updateSearch={updateSearch} scrollY={scrollY}/>
       <Animated.FlatList scrollEventThrottle={10}
-        onScroll={scrollHandler} initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.id}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index}/>}/>
+        onScroll={scrollHandler} initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.dex_numbers.nat}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index}/>}/>
       <StatusBar translucent/>
       <Modal
         isVisible={filterVisible}
