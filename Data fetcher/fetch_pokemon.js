@@ -949,7 +949,6 @@ export async function getPokemonData (pokemonURL, abilities) {
       }
     }
     const defaultFormAbilities = abilityList.filter(ability => ability.form === 'default' || ability.form === pokemons[0].names[0].name)
-    console.log(pokemons[i].names[0].name)
     const otherFormAbilities = abilityList.filter(ability => ability.form !== 'default' && ability.form !== pokemons[0].names[0].name)
     let formAbility = otherFormAbilities.find(ability => ability.form === pokemons[i].form_name)
     // If the form has the same ability as the base form
@@ -958,7 +957,6 @@ export async function getPokemonData (pokemonURL, abilities) {
     }
     pokemons[i].abilities = formAbility
     pokemons[i].types = formTypes.types
-    console.log(pokemons[i].abilities)
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
   }

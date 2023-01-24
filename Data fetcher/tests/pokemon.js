@@ -54,7 +54,10 @@ export async function testAllPokemon (abilities) {
       console.assert(data[j].flavor_text.length !== 0, `${data[j].names[0].name}: Flavor text empty`)
       // Stats
       console.assert(data[j].stats !== undefined, `${data[j].names[0].name}: Stats undefined`)
-      console.assert(data[j].stats.length >= 5, `${data[j].names[0].name}: Stats invalide -> ${data[j].stats}`)
+      console.assert(data[j].stats.length >= 5, `${data[j].names[0].name}: Stats invalid -> ${data[j].stats}`)
+      // Abilities
+      console.assert(data[j].abilities !== undefined, `${data[j].names[0].name}: Abilities undefined`)
+      console.assert(data[j].abilities.length >= 0, `${data[j].names[0].name}: Abilities empty`)
     }
   }
   console.log('Successfully gathered the data for all Pokémon !')
