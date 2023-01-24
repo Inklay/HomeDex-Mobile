@@ -4,7 +4,6 @@ import fs from 'fs'
 
 const abilitiesRaw = await getAllAbilityData()
 const abilities = abilitiesRaw.map(ability => ability.names)
-console.log(abilities)
 
 const data = {
   pokemon: await getAllPokemonData(abilitiesRaw),
