@@ -52,6 +52,9 @@ async function testAllPokemon () {
       // Flavor text
       console.assert(data[j].flavor_text !== undefined, `${data[j].names[0].name}: Flavor text undefined`)
       console.assert(data[j].flavor_text.length !== 0, `${data[j].names[0].name}: Flavor text empty`)
+      // Stats
+      console.assert(data[j].stats !== undefined, `${data[j].names[0].name}: Stats undefined`)
+      console.assert(data[j].stats.length >= 5, `${data[j].names[0].name}: Stats invalide -> ${data[j].stats}`)
     }
   }
 }
