@@ -10,7 +10,7 @@ export default interface Pokemon {
   capture_rate: number | null
   egg_groups: number[]
   gender_rate: number
-  categories: Name[]
+  category: Name[]
   growth_rate: string
   has_gender_difference: boolean
   dex_numbers: DexNumber

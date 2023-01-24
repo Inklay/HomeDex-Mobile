@@ -24,45 +24,45 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
   function getAbilities() : void {
     for (let i = 0; i < pokemon.abilities.length; i++) {
       if (pokemon.abilities[i].is_hidden)
-        setAbilityH(getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale))
+        setAbilityH(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
       else if (ability1 === '')
-        setAbility1(getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale))
+        setAbility1(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
       else
-        setAbility2(getName(abilities[pokemon.abilities[i].ability - 1], Locale.locale))
+        setAbility2(getName(abilities[pokemon.abilities[i].ability], Locale.locale))
     }
   }
   
   function getLatestFlavor() : string | undefined {
     const gameOrder = [
-      'legends-arceus',
-      'sword',
-      'shield',
-      'lets-go-eevee',
-      'lets-go-pikachu',
-      'omega-ruby',
-      'alpha-sapphire',
-      'y',
-      'x',
-      'black-2',
-      'white-2',
-      'black',
-      'white',
-      'heartgold',
-      'soulvilver',
-      'plaitnum',
-      'diamond',
-      'pearl',
-      'emerald',
-      'firered',
-      'leafgreen',
-      'ruby',
-      'sapphire',
-      'crystal',
-      'silver',
-      'gold',
-      'yellow',
-      'blue',
-      'red'
+      'Legends: Arceus',
+      'Sword',
+      'Shield',
+      'let\'s Go Eevee',
+      'Let\'s Go Pikachu',
+      'Omega Ruby',
+      'Alpha Sapphire',
+      'Y',
+      'X',
+      'Black 2',
+      'White 2',
+      'Black',
+      'White',
+      'HeartGold',
+      'SoulSilver',
+      'Platinum',
+      'Diamond',
+      'Pearl',
+      'Emerald',
+      'Firered',
+      'Leafgreen',
+      'Ruby',
+      'Sapphire',
+      'Crystal',
+      'Silver',
+      'Gold',
+      'Yellow',
+      'Blue',
+      'Red'
     ]
     for (let i = 0; i < gameOrder.length; i++) {
       const text = pokemon.flavor_texts.find(t => t.game === gameOrder[i])
@@ -80,6 +80,9 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
   }
 
   function formatWeight() : string {
+    if (pokemon.weight === -1) {
+      return '???'
+    }
     const lbs = Math.floor(pokemon.weight * 2.205)
     return `${pokemon.weight}kg / ${lbs}lbs`
   }
@@ -115,7 +118,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
       <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.about.data.data}</Text>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.data.category}</Text>
-        <Text style={Style.pokemonScreenFieldData}>{getName(pokemon.categories, Locale.locale)}</Text>
+        <Text style={Style.pokemonScreenFieldData}>{getName(pokemon.category, Locale.locale)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.data.height}</Text>
@@ -127,7 +130,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color}) => {
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.data.catch_rate}</Text>
-        <Text style={Style.pokemonScreenFieldData}>{pokemon.capture_rate}</Text>
+        <Text style={Style.pokemonScreenFieldData}>{pokemon.catch_rate}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{Locale.pokemonScreen.about.data.base_friendship}</Text>

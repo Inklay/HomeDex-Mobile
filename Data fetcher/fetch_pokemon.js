@@ -182,6 +182,10 @@ function pushForm (forms, fullName, spriteURL, formType, baseName, isDefault, fo
   if (fullName.slice(fullName.length - 1) === ' ') {
     fullName = fullName.slice(0, fullName.length - 1)
   }
+  if (spriteURL !== undefined) {
+    spriteURL = spriteURL.replace('/thumb', '')
+    spriteURL = spriteURL.slice(0, spriteURL.search('.png') + 4)
+  }
   const form = {
     names: [
       {
@@ -212,11 +216,11 @@ function getManualFormsInfo (fullName) {
   let replaceDefault = false
   switch (fullName) {
     case 'Cosplay Pikachu':
-      tableId = 'Cosplay_Pikachu_3'
+      tableId = 'Cosplay_Pikachu_2'
       hasArrow = true
       break
     case 'Pikachu in a cap':
-      tableId = 'Pikachu_in_a_cap_2'
+      tableId = 'Pikachu_in_a_cap'
       hasDiv = true
       nameHasLink = true
       break
@@ -643,9 +647,17 @@ function processCapPikachuFlavorText (game, text, flavorText) {
   for (const region of regions) {
     const formIndex = flavorText.push({
       form: `Pikachu ${region} Cap`,
-      entries: {}
+      entries: []
     }) - 1
-    flavorText[formIndex].entries[game] = text.replace('Hoenn/Sinnoh/Unova/Kalos/Alola', region)
+    flavorText[formIndex].entries.push({
+      game,
+      texts: [
+        {
+          name: text.replace('Hoenn/Sinnoh/Unova/Kalos/Alola', region),
+          language: 'en'
+        }
+      ]
+    })
   }
 }
 
@@ -654,9 +666,17 @@ function processMiniorFlavorText (game, text, flavorText) {
   for (const color of colors) {
     const formIndex = flavorText.push({
       form: `Minior ${color} Core`,
-      entries: {}
+      entries: []
     }) - 1
-    flavorText[formIndex].entries[game] = text
+    flavorText[formIndex].entries.push({
+      game,
+      texts: [
+        {
+          name: text,
+          language: 'en'
+        }
+      ]
+    })
   }
 }
 
@@ -698,7 +718,7 @@ function processFlavorText ($, flavorTextId) {
           if (flavorText.find(f => f.form === form) === undefined) {
             formIndex = flavorText.push({
               form,
-              entries: {}
+              entries: []
             }) - 1
           }
           if ($(game).children('td').length !== 0) {
@@ -714,7 +734,15 @@ function processFlavorText ($, flavorTextId) {
             } else if (form === 'All Cores') {
               processMiniorFlavorText(gameName, oldText, flavorText)
             } else {
-              flavorText[formIndex].entries[gameName] = oldText
+              flavorText[formIndex].entries.push({
+                game: gameName,
+                texts: [
+                  {
+                    name: oldText,
+                    language: 'en'
+                  }
+                ]
+              })
             }
           }
         })
@@ -918,7 +946,7 @@ export async function getPokemonData (pokemonURL, abilities) {
       if (flavorText.find(flavorText => flavorText.form === 'default') === undefined) {
         console.log(flavorText)
       }
-      pokemons[i].flavor_text = flavorText.find(flavorText => flavorText.form === 'default').entries
+      pokemons[i].flavor_texts = flavorText.find(flavorText => flavorText.form === 'default').entries
     } else {
       let formFlavorText = flavorText.find(flavorText => flavorText.form === pokemons[i].names[0].name)
       if (formFlavorText === undefined) {
@@ -928,7 +956,7 @@ export async function getPokemonData (pokemonURL, abilities) {
         }
       }
       if (formFlavorText !== undefined) {
-        pokemons[i].flavor_text = formFlavorText.entries
+        pokemons[i].flavor_texts = formFlavorText.entries
       }
     }
     if (pokemons[i].form_type === 'default') {
@@ -950,9 +978,9 @@ export async function getPokemonData (pokemonURL, abilities) {
     }
     const defaultFormAbilities = abilityList.filter(ability => ability.form === 'default' || ability.form === pokemons[0].names[0].name)
     const otherFormAbilities = abilityList.filter(ability => ability.form !== 'default' && ability.form !== pokemons[0].names[0].name)
-    let formAbility = otherFormAbilities.find(ability => ability.form === pokemons[i].form_name)
+    let formAbility = otherFormAbilities.filter(ability => ability.form === pokemons[i].form_name)
     // If the form has the same ability as the base form
-    if (formAbility === undefined) {
+    if (formAbility.length === 0) {
       formAbility = defaultFormAbilities
     }
     pokemons[i].abilities = formAbility
@@ -972,14 +1000,3 @@ export async function getAllPokemonData (abilities) {
 }
 
 const pokemonURLList = await getPokemonURLList()
-/*
-await getPokemonData(pokemonURLList[800])
-await getPokemonData(pokemonURLList[24])
-await getPokemonData(pokemonURLList[0])
-await getPokemonData(pokemonURLList[3])
-await getPokemonData(pokemonURLList[5])
-await getPokemonData(pokemonURLList[51])
-await getPokemonData(pokemonURLList[129])
-await getPokemonData(pokemonURLList[799])
-await getPokemonData(pokemonURLList[1005])
-*/

@@ -50,8 +50,8 @@ export async function testAllPokemon (abilities) {
       console.assert(data[j].category[0].name !== undefined, `${data[j].names[0].name}: English category undefined`)
       console.assert(data[j].category[0].name !== '', `${data[j].names[0].name}: English category empty`)
       // Flavor text
-      console.assert(data[j].flavor_text !== undefined, `${data[j].names[0].name}: Flavor text undefined`)
-      console.assert(data[j].flavor_text.length !== 0, `${data[j].names[0].name}: Flavor text empty`)
+      console.assert(data[j].flavor_texts !== undefined, `${data[j].names[0].name}: Flavor text undefined`)
+      console.assert(data[j].flavor_texts.length !== 0, `${data[j].names[0].name}: Flavor text empty`)
       // Stats
       console.assert(data[j].stats !== undefined, `${data[j].names[0].name}: Stats undefined`)
       console.assert(data[j].stats.length >= 5, `${data[j].names[0].name}: Stats invalid -> ${data[j].stats}`)
