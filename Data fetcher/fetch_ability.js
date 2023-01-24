@@ -36,7 +36,7 @@ export async function getAbilityData (abilityURL, id) {
   return {
     names: [
       {
-        name: $('table.roundy > tbody > tr > td > big > b').length,
+        name: $('table.roundy > tbody > tr > td > big > b').text(),
         language: 'en'
       }
     ],

@@ -811,6 +811,39 @@ function processStats ($) {
   return stats
 }
 
+function processAbilities ($, abilities) {
+  const data = []
+  $('td.roundy > b > a[href=\'/wiki/Ability\']')
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+    .children('td')
+    .each((__, element) => {
+      if (!isVisible($, element)) {
+        return
+      }
+      let isHidden = false
+      let form = 'default'
+      if ($(element).children('small').length > 0) {
+        const text = $(element).children('small').text()
+        if (text === ' Hidden Ability') {
+          isHidden = true
+        } else {
+          form = text
+        }
+      }
+      $(element).children('a').each((__, link) => {
+        data.push({
+          ability: abilities.find(ability => ability.names[0].name === $(link).text()).id,
+          is_hidden: isHidden,
+          form
+        })
+      })
+    })
+  return data
+}
+
 function fixRandomStuff (pokemon, stats) {
   // Some Pikachu forms have a different egg group
   if (pokemon.dex_numbers.nat === 25) {
@@ -848,6 +881,7 @@ export async function getPokemonData (pokemonURL, abilities) {
   const category = processCategory($)
   const flavorText = processPokedexEntries($, dexNumbers)
   const stats = processStats($)
+  const abilityList = processAbilities($, abilities)
   if (flavorText === undefined) {
     console.log(`No flavor text found for ${pokemons[0].names[0].name}`)
   }
@@ -914,6 +948,17 @@ export async function getPokemonData (pokemonURL, abilities) {
         pokemons[i].stats = formStats.stats
       }
     }
+    const defaultFormAbilities = abilityList.filter(ability => ability.form === 'default' || ability.form === pokemons[0].names[0].name)
+    console.log(pokemons[i].names[0].name)
+    const otherFormAbilities = abilityList.filter(ability => ability.form !== 'default' && ability.form !== pokemons[0].names[0].name)
+    let formAbility = otherFormAbilities.find(ability => ability.form === pokemons[i].form_name)
+    // If the form has the same ability as the base form
+    if (formAbility === undefined) {
+      formAbility = defaultFormAbilities
+    }
+    pokemons[i].abilities = formAbility
+    pokemons[i].types = formTypes.types
+    console.log(pokemons[i].abilities)
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
   }
