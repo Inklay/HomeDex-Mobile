@@ -1,17 +1,14 @@
 {
   "name": "data-fetcher",
-  "version": "1.0.0",
-  "description": "Get data from pokeapi",
+  "version": "2.0.0",
+  "description": "Get data from bulbapedia",
   "main": "data_fetcher.js",
   "scripts": {
     "start": "node data_fetcher.js",
-    "test": "node tests/pokemon.js"
+    "test": "node tests/test_all.js"
   },
   "type": "module",
   "author": "Inklay",
   "license": "GNU-3.0",
-  "dependencies": {
-    "pokedex-promise-v2": "^4.0.0",
-    "react-native-reanimated": "^2.9.1"
-  }
+  "dependencies": {}
 }

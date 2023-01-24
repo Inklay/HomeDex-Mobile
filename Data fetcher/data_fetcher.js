@@ -1,6 +1,6 @@
-import { getAllPokemonData } from './fetch_pokemon'
-import { getAllAbilityData } from './fetch_ability'
-import { fs } from 'fs'
+import { getAllPokemonData } from './fetch_pokemon.js'
+import { getAllAbilityData } from './fetch_ability.js'
+import fs from 'fs'
 
 const abilities = await getAllAbilityData()
 

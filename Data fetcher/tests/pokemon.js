@@ -1,11 +1,10 @@
 import { getPokemonData, getPokemonURLList } from '../fetch_pokemon'
 
-
-async function testAllPokemon () {
+export async function testAllPokemon (abilities) {
   console.log('Trying to gather data for all Pokémon')
   const pokemonURLList = await getPokemonURLList()
   for (let i = 0; i < pokemonURLList.length; i++) {
-    const data = await getPokemonData(pokemonURLList[i])
+    const data = await getPokemonData(pokemonURLList[i], abilities)
     console.assert(data !== undefined)
     console.assert(data.length > 0)
     for (let j = 0; j < data.length; j++) {
@@ -58,6 +57,7 @@ async function testAllPokemon () {
       console.assert(data[j].stats.length >= 5, `${data[j].names[0].name}: Stats invalide -> ${data[j].stats}`)
     }
   }
+  console.log('Successfully gathered the data for all Pokémon !')
 }
 
 await testAllPokemon()
