@@ -1,4 +1,5 @@
-import { getPokemonData, getPokemonURLList } from '../data_fetcher.js'
+import { getPokemonData, getPokemonURLList } from '../fetch_pokemon'
+
 
 async function testAllPokemon () {
   console.log('Trying to gather data for all Pokémon')
