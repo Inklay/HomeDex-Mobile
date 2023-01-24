@@ -7,5 +7,6 @@ export default class Filters {
   alolan: boolean = true
   galarian: boolean = true
   hisuian: boolean = true
+  paldean: boolean = true
   other: boolean = false
 }

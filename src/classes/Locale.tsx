@@ -14,6 +14,7 @@ export default interface Locale {
         alolan: string
         galarian: string
         hisuian: string
+        paldean: string
         other: string
       }
     }
