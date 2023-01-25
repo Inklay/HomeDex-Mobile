@@ -5,6 +5,8 @@ import { Style, TextColors } from '../style'
 import Pokeball from '../../assets/images/Pokeball.png'
 import IconButton from './IconButton'
 import Filter from './svgs/Filter'
+import Sort from './svgs/Sort'
+import Settings from './svgs/Settings'
 import Input from './Input'
 import { Locale } from '../utils'
 import Animated, { Extrapolate, interpolate, SharedValue, useAnimatedStyle } from 'react-native-reanimated'
@@ -28,7 +30,7 @@ const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY}) => {
   const inputStyle = useAnimatedStyle(() => {
     const scale = interpolate(scrollY.value, [0, 400], [0, 1], Extrapolate.CLAMP)
     const top = -150 * scale
-    const inputWidth = width - 40 - scale * 40
+    const inputWidth = width - 40 - scale * 80
     return {
       top: top,
       width: inputWidth
@@ -47,8 +49,7 @@ const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY}) => {
       <ImageBackground source={Pokeball} resizeMode='cover' style={Style.homeHeader}>
         <LinearGradient colors={['#FFFFFFD0', 'white']} style={Style.headerGradient}>
           <View style={Style.homeActionRow}>
-            {/*<IconButton Icon={Games} trigger={() => {}} color={TextColors.black} size={20}/>
-            <IconButton Icon={Sort} trigger={() => {}} color={TextColors.black} size={20}/>*/}
+            <IconButton Icon={Settings} trigger={() => {}} color={TextColors.black} size={20}/>
             <IconButton Icon={Filter} trigger={showFilter}  color={TextColors.black} size={20}/>
           </View>
           <Animated.View style={textStyle}>
