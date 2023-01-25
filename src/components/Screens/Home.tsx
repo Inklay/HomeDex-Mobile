@@ -16,6 +16,7 @@ import HomeHeader from '../HomeHeader'
 import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated'
 import Toggle from '../svgs/Toggle'
 import Dynamax from '../svgs/Dynamax'
+import Mega from '../svgs/Mega'
 
 interface Props {
   navigation: any
@@ -167,7 +168,7 @@ const Home: React.FC<Props> = ({navigation}) => {
                   </View>
                   <Text style={Style.modalSectionName}>{Locale.home.filters.forms.forms}</Text>
                   <View style={Style.filterContainer}>
-                    <FilterButton name={Locale.home.filters.forms.mega} filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={Locale.home.filters.forms.mega} filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon} SVG={Mega}/>
                     <FilterButton name={Locale.home.filters.forms.gigantamax} filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon} SVG={Dynamax}/>
                     <FilterButton name={Locale.home.filters.forms.alolan} filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon} SVG={Toggle}/>
                     <FilterButton name={Locale.home.filters.forms.galarian} filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon} SVG={Toggle}/>
