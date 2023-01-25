@@ -112,5 +112,8 @@ export default interface Locale {
     grass: string
     ditto: string
     no_egg: string
+  },
+  settings: {
+    settings: string
   }
 }

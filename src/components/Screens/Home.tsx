@@ -116,7 +116,7 @@ const Home: React.FC<Props> = ({navigation}) => {
 
   return (
     <View style={Style.container}>
-      <HomeHeader showFilter={showFilter} updateSearch={updateSearch} scrollY={scrollY}/>
+      <HomeHeader showFilter={showFilter} updateSearch={updateSearch} scrollY={scrollY} navigation={navigation}/>
       <Animated.FlatList scrollEventThrottle={10}
         onScroll={scrollHandler} initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.dex_numbers.nat}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index}/>}/>
       <StatusBar translucent/>

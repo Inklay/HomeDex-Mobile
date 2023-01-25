@@ -112,5 +112,8 @@
     "grass": "Grass",
     "ditto": "Ditto",
     "no_egg": "No egg discovered"
+  },
+  "settings": {
+    "settings": "Settings"
   }
 }

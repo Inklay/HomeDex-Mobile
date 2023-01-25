@@ -5,7 +5,6 @@ import { Style, TextColors } from '../style'
 import Pokeball from '../../assets/images/Pokeball.png'
 import IconButton from './IconButton'
 import Filter from './svgs/Filter'
-import Sort from './svgs/Sort'
 import Settings from './svgs/Settings'
 import Input from './Input'
 import { Locale } from '../utils'
@@ -15,9 +14,10 @@ interface Props {
   showFilter: () => void
   updateSearch: (value: string) => void
   scrollY: SharedValue<number>
+  navigation: any
 }
 
-const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY}) => {
+const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY, navigation}) => {
   const width = Dimensions.get('screen').width
 
   const textStyle = useAnimatedStyle(() => {
@@ -49,7 +49,7 @@ const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY}) => {
       <ImageBackground source={Pokeball} resizeMode='cover' style={Style.homeHeader}>
         <LinearGradient colors={['#FFFFFFD0', 'white']} style={Style.headerGradient}>
           <View style={Style.homeActionRow}>
-            <IconButton Icon={Settings} trigger={() => {}} color={TextColors.black} size={20}/>
+            <IconButton Icon={Settings} trigger={() => {navigation.navigate('Settings')}} color={TextColors.black} size={20}/>
             <IconButton Icon={Filter} trigger={showFilter}  color={TextColors.black} size={20}/>
           </View>
           <Animated.View style={textStyle}>

@@ -112,5 +112,8 @@
     "grass": "Végétal",
     "ditto": "Métamorph",
     "no_egg": "Inconnu"
+  },
+  "settings": {
+    "settings": "Paramètres"
   }
 }

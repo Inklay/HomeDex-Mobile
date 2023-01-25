@@ -15,7 +15,8 @@ export enum BackgroundColors {
   inputPressed = '#e2e2e2',
   modal = '#17171B80',
   enabled = '#EA5D60',
-  enabledTrail = '#EA5D60B0'
+  enabledTrail = '#EA5D60B0',
+  black = 'black'
 }
 
 export enum TypeBackgroundColors {
@@ -395,5 +396,27 @@ export const Style = StyleSheet.create({
     fontSize: 16,
     color: TextColors.grey,
     marginTop: 5
+  },
+
+  settingsHeader: {
+    height: 90,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    elevation: 20,
+    shadowColor: 'black'
+  },
+
+  settingsHeaderText: {
+    marginHorizontal: 20,
+    fontSize: 32,
+    fontWeight: '500',
+    marginTop: 40
+  },
+
+  settingsContent: {
+    paddingTop: 20,
+    height: height - 90,
+    paddingHorizontal: 20,
+    backgroundColor: 'yellow'
   }
 })
