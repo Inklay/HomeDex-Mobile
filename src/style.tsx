@@ -413,15 +413,18 @@ export const Style = StyleSheet.create({
     marginTop: 40
   },
 
+  settingsContainer: {
+    height: height - 90
+  },
+
   settingsContent: {
     paddingTop: 20,
-    height: height - 90,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
 
   settingsSectionHeader: {
     fontSize: 24,
-    fontWeight: '500',
+    fontWeight: '500'
   },
   
   settingsSectionItem: {

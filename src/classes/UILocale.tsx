@@ -76,6 +76,13 @@ export default interface UILocale {
       interfaceDescription: string
       data: string
       dataDescription: string
+    },
+    credits: {
+      credits: string
+      nintendo: string
+      bulbapedia: string
+      pokepedia: string
+      flavioFarias: string
     }
   }
 }

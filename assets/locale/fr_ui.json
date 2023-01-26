@@ -76,6 +76,13 @@
       "interfaceDescription": "Français (FR)\n\nL'interface de l'application (les boutons et menus) seront affichés dans cette langue.",
       "data": "Langue des données :",
       "dataDescription": "Le nom des Pokémon, talents, capacités etc. seront affichés dans cette langue."
+    },
+    "credits": {
+      "credits": "Crédits",
+      "nintendo": "Le nom des personnages, leur artwork, le thème \"Pokémon ®\" et ses marques dérivées sont propriétés de © Nintendo, The Pokémon Company, Game Freak et de Creatures Inc.",
+      "bulbapedia": "La majorités des données du Pokédex sont fournies par Bulbapedia.",
+      "pokepedia": "Quelques traductions française des données du Pokédex sont fournies par Poképedia.",
+      "flavioFarias": "Le design de l'application est inspiré par celui créé par Flavio Farias"
     }
   }
 }

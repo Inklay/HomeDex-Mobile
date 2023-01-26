@@ -60,19 +60,37 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
         </TouchableWithoutFeedback>
         <Text style={Style.settingsHeaderText}>{UILocale.settings.settings}</Text>
       </View>
-      <View style={Style.settingsContent}>
-        <Text style={Style.settingsSectionHeader}>{UILocale.settings.language.languages}</Text>
-        <View style={{
-          marginHorizontal: 20
-        }}>
-          <Text style={Style.settingsSectionItem}>{UILocale.settings.language.interface}</Text>
-          <TouchableWithoutFeedback onPress={showUILanguagePicker}>
-            <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.language.interfaceDescription}</Text>
-          </TouchableWithoutFeedback>
-          <Text style={Style.settingsSectionItem}>{UILocale.settings.language.data}</Text>
-          <TouchableWithoutFeedback onPress={showDataLanguagePicker}>
-            <Text style={Style.settingsSectionItemDescription}>{DataLocale.name}{"\n\n"}{UILocale.settings.language.dataDescription}</Text>
-          </TouchableWithoutFeedback>
+      <View style={Style.settingsContainer}>
+        <View style={Style.settingsContent}>
+          <Text style={Style.settingsSectionHeader}>{UILocale.settings.language.languages}</Text>
+          <View style={{
+            marginHorizontal: 20
+          }}>
+            <Text style={Style.settingsSectionItem}>{UILocale.settings.language.interface}</Text>
+            <TouchableWithoutFeedback onPress={showUILanguagePicker}>
+              <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.language.interfaceDescription}</Text>
+            </TouchableWithoutFeedback>
+            <Text style={Style.settingsSectionItem}>{UILocale.settings.language.data}</Text>
+            <TouchableWithoutFeedback onPress={showDataLanguagePicker}>
+              <Text style={Style.settingsSectionItemDescription}>{DataLocale.name}{"\n\n"}{UILocale.settings.language.dataDescription}</Text>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+        <View style={Style.settingsContent}>
+          <Text style={Style.settingsSectionHeader}>{UILocale.settings.credits.credits}</Text>
+          <View style={{
+            marginHorizontal: 20
+          }}>
+            <Text style={Style.settingsSectionItem}>
+              {UILocale.settings.credits.nintendo}
+              {"\n\n"}
+              {UILocale.settings.credits.bulbapedia}
+              {"\n\n"}
+              {UILocale.settings.credits.pokepedia}
+              {"\n\n"}
+              {UILocale.settings.credits.flavioFarias}
+            </Text>
+          </View>
         </View>
       </View>
       <Picker
