@@ -1,15 +1,15 @@
 import React from 'react'
 import { Image } from 'react-native'
-import PaldeanFormsPNG from '../../../assets/images/PaldeanForms.png'
+import AlolanFormsPNG from '../../../assets/images/AlolanForms.png'
 
-const PaldeanForms = (props: any) => (
+const AlolanForms = (props: any) => (
   <Image style={{
       width: props.width,
       height: props.height,
       tintColor: props.color
     }}
-    source={PaldeanFormsPNG}
+    source={AlolanFormsPNG}
   />
 )
 
-export default PaldeanForms
+export default AlolanForms

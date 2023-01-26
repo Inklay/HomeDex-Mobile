@@ -17,7 +17,10 @@ import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native
 import Toggle from '../svgs/Toggle'
 import Dynamax from '../svgs/Dynamax'
 import Mega from '../svgs/Mega'
-import PaldeanForm from '../svgs/PaldeanForms'
+import PaldeanForms from '../svgs/PaldeanForms'
+import AlolanForms from '../svgs/AlolanForms'
+import GalarianForms from '../svgs/GalarianForms'
+import HisuianForms from '../svgs/HisuianForms'
 
 interface Props {
   navigation: any
@@ -178,12 +181,12 @@ const Home: React.FC<Props> = ({navigation}) => {
                   <View style={Style.filterContainer}>
                     <FilterButton name={UILocale.home.filters.forms.mega} filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon} SVG={Mega}/>
                     <FilterButton name={UILocale.home.filters.forms.gigantamax} filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon} SVG={Dynamax}/>
-                    <FilterButton name={UILocale.home.filters.forms.alolan} filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon} SVG={Toggle}/>
-                    <FilterButton name={UILocale.home.filters.forms.galarian} filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.alolan} filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon} SVG={AlolanForms}/>
+                    <FilterButton name={UILocale.home.filters.forms.galarian} filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon} SVG={GalarianForms}/>
                   </View>
                   <View style={Style.filterContainer}>
-                    <FilterButton name={UILocale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon} SVG={Toggle}/>
-                    <FilterButton name={UILocale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon} SVG={PaldeanForm}/>
+                    <FilterButton name={UILocale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon} SVG={HisuianForms}/>
+                    <FilterButton name={UILocale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon} SVG={PaldeanForms}/>
                     <FilterButton name={UILocale.home.filters.forms.other} filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon} SVG={Toggle}/>
                   </View>
                 </View>

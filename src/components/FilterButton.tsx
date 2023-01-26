@@ -1,8 +1,8 @@
 import React from 'react'
 import { TouchableWithoutFeedback, View, Text } from 'react-native'
-import { SvgProps } from 'react-native-svg'
 import Filters from '../classes/Filters'
 import { Style, BackgroundColors, TextColors } from '../style'
+import { FilterProps } from './svgs/FilterProps'
 
 interface Props {
   name: string
@@ -10,7 +10,7 @@ interface Props {
   setFilters: (value: Filters) => void
   property: string
   filterPokemon: (filters: Filters) => void
-  SVG: ({ ...props }: SvgProps & SvgProps) => JSX.Element
+  SVG: ({ ...props }: FilterProps) => JSX.Element
 }
 
 const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, filterPokemon, SVG}) => {
