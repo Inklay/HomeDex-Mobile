@@ -58,7 +58,9 @@ const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, fil
         }
       ]}>
         <TouchableWithoutFeedback onPress={pressed}>
-          <SVG height={40} width={40} color={SVGColor}/>
+          <View>
+            <SVG height={40} width={40} color={SVGColor}/>
+          </View>
         </TouchableWithoutFeedback>
       </View>
     </View>

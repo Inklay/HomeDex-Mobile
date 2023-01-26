@@ -17,6 +17,7 @@ import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native
 import Toggle from '../svgs/Toggle'
 import Dynamax from '../svgs/Dynamax'
 import Mega from '../svgs/Mega'
+import PaldeanForm from '../svgs/PaldeanForms'
 
 interface Props {
   navigation: any
@@ -182,7 +183,7 @@ const Home: React.FC<Props> = ({navigation}) => {
                   </View>
                   <View style={Style.filterContainer}>
                     <FilterButton name={UILocale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon} SVG={Toggle}/>
-                    <FilterButton name={UILocale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon} SVG={PaldeanForm}/>
                     <FilterButton name={UILocale.home.filters.forms.other} filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon} SVG={Toggle}/>
                   </View>
                 </View>

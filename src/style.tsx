@@ -221,6 +221,8 @@ export const Style = StyleSheet.create({
     borderRadius: 35,
     padding: 15,
     marginBottom: 20,
+    width: 70,
+    height: 70
   },
 
   filterContainer: {

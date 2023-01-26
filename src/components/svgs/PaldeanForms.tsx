@@ -1,15 +1,15 @@
 import React from 'react'
 import { Image } from 'react-native'
-import DynamaxPNG from '../../../assets/images/Dynamax.png'
+import PaldeanFormPNG from '../../../assets/images/PaldeanForm.png'
 
-const Dynamax = (props: any) => (
+const PaldeanForm = (props: any) => (
   <Image style={{
       width: props.width,
       height: props.height,
       tintColor: props.color
     }}
-    source={DynamaxPNG}
+    source={PaldeanFormPNG}
   />
 )
 
-export default Dynamax
+export default PaldeanForm
