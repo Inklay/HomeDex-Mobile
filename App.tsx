@@ -4,11 +4,9 @@ import Home from './src/components/Screens/Home'
 import PokemonScreen from './src/components/Screens/PokemonScreen'
 import Settings from './src/components/Screens/Settings'
 import React from 'react'
-import { getLocale } from './src/utils'
 
 export default function App() {
   const Stack = createNativeStackNavigator()
-  getLocale()
 
   return (
     <NavigationContainer>

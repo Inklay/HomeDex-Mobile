@@ -3,7 +3,7 @@ import { Text, View, ScrollView } from 'react-native'
 import { Style } from '../../style'
 import PokemonCard from '../PokemonCard'
 import { pokemon } from '../../data'
-import { getName, Locale } from '../../utils'
+import { getName, getLocale, getDeviceDataLocale, getDeviceUILocale } from '../../utils'
 import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from '../TypeFilter'
@@ -27,11 +27,18 @@ const Home: React.FC<Props> = ({navigation}) => {
   const [filterVisible, setFilterVisible] = React.useState(false)
   const [lockTypeFilter, setLockTypeFilter] = React.useState(false)
   const [filters, setFilters] = React.useState(new Filters())
+  const [UILocale, setUILocale] = React.useState(getDeviceUILocale())
+  const [dataLocale, setDataLocale] = React.useState(getDeviceDataLocale())
 
   const scrollY = useSharedValue(0)
 
   React.useEffect(() => {
     filterPokemon(filters)
+    async function refreshLocale () {
+      await getLocale('UILocale', setUILocale)
+      await getLocale('DataLocale', setDataLocale)
+    }
+    refreshLocale()
   }, [])
 
   function updateSearch(value: string) {
@@ -90,7 +97,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       if (parseInt(search) > 0) {
         if (!p.dex_numbers.nat.toString().includes(search))
           return
-      } else if (!accent.remove(getName(p.names, Locale.locale).toLocaleLowerCase()).includes(search))
+      } else if (!accent.remove(getName(p.names, UILocale.locale).toLocaleLowerCase()).includes(search))
         return
       for (let i = 0; i < filters.types.length; i++) {
         if (p.types.length ===2) {
@@ -116,9 +123,9 @@ const Home: React.FC<Props> = ({navigation}) => {
 
   return (
     <View style={Style.container}>
-      <HomeHeader showFilter={showFilter} updateSearch={updateSearch} scrollY={scrollY} navigation={navigation}/>
+      <HomeHeader showFilter={showFilter} updateSearch={updateSearch} scrollY={scrollY} navigation={navigation} UILocale={UILocale} setUILocale={setUILocale} setDataLocale={setDataLocale} dataLocale={dataLocale}/>
       <Animated.FlatList scrollEventThrottle={10}
-        onScroll={scrollHandler} initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.dex_numbers.nat}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index}/>}/>
+        onScroll={scrollHandler} initialNumToRender={50} style={Style.pokemonList} data={pokemonList} keyExtractor={(item, index) => `${item.dex_numbers.nat}-${item.form_name}-${index}`} renderItem={({item, index}) => <PokemonCard navigation={navigation} pokemon={item} index={index} dataLocale={dataLocale} UILocale={UILocale}/>}/>
       <StatusBar translucent/>
       <Modal
         isVisible={filterVisible}
@@ -131,13 +138,13 @@ const Home: React.FC<Props> = ({navigation}) => {
         propagateSwipe
       >
         <View style={Style.modalContainer}>
-          <Text style={Style.modalName}>{Locale.home.filters.filters}</Text>
-          <Text style={Style.description}>{Locale.home.filters.description}</Text>
+          <Text style={Style.modalName}>{UILocale.home.filters.filters}</Text>
+          <Text style={Style.description}>{UILocale.home.filters.description}</Text>
           <View style={Style.modalSection}>
             <ScrollView>
               <TouchableWithoutFeedback>
                 <View>
-                  <Text style={Style.modalSectionName}>{Locale.home.filters.types}</Text>
+                  <Text style={Style.modalSectionName}>{UILocale.home.filters.types}</Text>
                   <View style={Style.filterContainer}>
                     <TypeFilter active={filters.types.find(t => t === 1) !== undefined} add={addType} remove={removeType} type={1} locked={lockTypeFilter}/>
                     <TypeFilter active={filters.types.find(t => t === 2) !== undefined} add={addType} remove={removeType} type={2} locked={lockTypeFilter}/>
@@ -166,17 +173,17 @@ const Home: React.FC<Props> = ({navigation}) => {
                     <TypeFilter active={filters.types.find(t => t === 17) !== undefined} add={addType} remove={removeType} type={17} locked={lockTypeFilter}/>
                     <TypeFilter active={filters.types.find(t => t === 18) !== undefined} add={addType} remove={removeType} type={18} locked={lockTypeFilter}/>
                   </View>
-                  <Text style={Style.modalSectionName}>{Locale.home.filters.forms.forms}</Text>
+                  <Text style={Style.modalSectionName}>{UILocale.home.filters.forms.forms}</Text>
                   <View style={Style.filterContainer}>
-                    <FilterButton name={Locale.home.filters.forms.mega} filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon} SVG={Mega}/>
-                    <FilterButton name={Locale.home.filters.forms.gigantamax} filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon} SVG={Dynamax}/>
-                    <FilterButton name={Locale.home.filters.forms.alolan} filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon} SVG={Toggle}/>
-                    <FilterButton name={Locale.home.filters.forms.galarian} filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.mega} filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon} SVG={Mega}/>
+                    <FilterButton name={UILocale.home.filters.forms.gigantamax} filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon} SVG={Dynamax}/>
+                    <FilterButton name={UILocale.home.filters.forms.alolan} filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.galarian} filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon} SVG={Toggle}/>
                   </View>
                   <View style={Style.filterContainer}>
-                    <FilterButton name={Locale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon} SVG={Toggle}/>
-                    <FilterButton name={Locale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon} SVG={Toggle}/>
-                    <FilterButton name={Locale.home.filters.forms.other} filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.other} filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon} SVG={Toggle}/>
                   </View>
                 </View>
               </TouchableWithoutFeedback>

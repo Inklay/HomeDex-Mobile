@@ -1,21 +1,20 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import Pokemon from '../../classes/Pokemon'
-import { BackgroundColors, Style } from '../../style'
-import { getName, Locale } from '../../utils'
+import UILocale from '../../classes/UILocale'
+import { Style } from '../../style'
 import Spacer from '../Spacer'
-import StatBar from '../StatBar'
-import TypeEffectiveness from '../TypeEffectiveness'
 
 interface Props {
   pokemon: Pokemon
   color: string
+  UILocale: UILocale
 }
 
-const PokemonEvolution: React.FC<Props> = ({pokemon, color}) => {
+const PokemonEvolution: React.FC<Props> = ({pokemon, color, UILocale}) => {
   return (
     <View>
-      <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.evo.chain}</Text>
+      <Text style={[Style.pokemonScreenTitle, {color: color}]}>{UILocale.pokemonScreen.evo.chain}</Text>
       <Spacer/>
     </View>
   )

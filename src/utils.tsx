@@ -20,12 +20,14 @@ import Steel from './components/svgs/Types/Steel'
 import Water from './components/svgs/Types/Water'
 import Name from './classes/Name'
 import Pokemon from './classes/Pokemon'
-import * as LocaleType from './classes/Locale'
-import fr from '../assets/locale/fr.json'
-import en from '../assets/locale/en.json'
+import UILocale from './classes/UILocale'
+import frUI from '../assets/locale/fr_ui.json'
+import enUI from '../assets/locale/en_ui.json'
+import frData from '../assets/locale/fr_data.json'
+import enData from '../assets/locale/en_data.json'
 import { NativeModules, Platform } from 'react-native'
-
-export let Locale = en as LocaleType.default
+import AsyncStorage  from '@react-native-async-storage/async-storage'
+import DataLocale from './classes/DataLocale'
 
 export function getTypeBackgroundColor(type: number) : string {
   switch (type) {
@@ -147,44 +149,44 @@ export function getTypeSVG(type: number) : ({ ...props }: SvgProps & SvgProps) =
   return Normal
 }
 
-export function getTypeName(type: number) : string {
+export function getTypeName(type: number, dataLocale: DataLocale) : string {
   switch (type) {
     case 2:
-      return Locale.types.fighting
+      return dataLocale.types.fighting
     case 3:
-      return Locale.types.flying
+      return dataLocale.types.flying
     case 4:
-      return Locale.types.poison
+      return dataLocale.types.poison
     case 5:
-      return Locale.types.ground
+      return dataLocale.types.ground
     case 6:
-      return Locale.types.rock
+      return dataLocale.types.rock
     case 7:
-      return Locale.types.bug
+      return dataLocale.types.bug
     case 8:
-      return Locale.types.ghost
+      return dataLocale.types.ghost
     case 9:
-      return Locale.types.steel
+      return dataLocale.types.steel
     case 10:
-      return Locale.types.fire
+      return dataLocale.types.fire
     case 11:
-      return Locale.types.water
+      return dataLocale.types.water
     case 12:
-      return Locale.types.grass
+      return dataLocale.types.grass
     case 13:
-      return Locale.types.electric
+      return dataLocale.types.electric
     case 14:
-      return Locale.types.psychic
+      return dataLocale.types.psychic
     case 15:
-      return Locale.types.ice
+      return dataLocale.types.ice
     case 16:
-      return Locale.types.dragon
+      return dataLocale.types.dragon
     case 17:
-      return Locale.types.dark
+      return dataLocale.types.dark
     case 18:
-      return Locale.types.fairy
+      return dataLocale.types.fairy
   }
-  return Locale.types.normal
+  return dataLocale.types.normal
 }
 
 export function getName(names: Name[], language: string) : string {
@@ -194,42 +196,42 @@ export function getName(names: Name[], language: string) : string {
   return asked.name
 }
 
-export function getEggGroupName(eggGroup: number) : string {
+export function getEggGroupName(eggGroup: number, dataLocale: DataLocale) : string {
   switch (eggGroup) {
     case 2:
-      return Locale.egg_groups.water_1
+      return dataLocale.egg_groups.water_1
     case 3:
-      return Locale.egg_groups.water_2
+      return dataLocale.egg_groups.water_2
     case 4:
-      return Locale.egg_groups.water_3
+      return dataLocale.egg_groups.water_3
     case 5:
-      return Locale.egg_groups.bug
+      return dataLocale.egg_groups.bug
     case 6:
-      return Locale.egg_groups.flying
+      return dataLocale.egg_groups.flying
     case 7:
-      return Locale.egg_groups.fairy
+      return dataLocale.egg_groups.fairy
     case 8:
-      return Locale.egg_groups.grass
+      return dataLocale.egg_groups.grass
     case 9:
-      return Locale.egg_groups.human_like
+      return dataLocale.egg_groups.human_like
     case 10:
-      return Locale.egg_groups.mineral
+      return dataLocale.egg_groups.mineral
     case 11:
-      return Locale.egg_groups.amorphous
+      return dataLocale.egg_groups.amorphous
     case 12:
-      return Locale.egg_groups.dragon
+      return dataLocale.egg_groups.dragon
     case 13:
-      return Locale.egg_groups.ditto
+      return dataLocale.egg_groups.ditto
     case 14:
-      return Locale.egg_groups.no_egg
+      return dataLocale.egg_groups.no_egg
     case 15:
-      return Locale.egg_groups.field
+      return dataLocale.egg_groups.field
     default:
-      return Locale.egg_groups.monster
+      return dataLocale.egg_groups.monster
   }
 }
 
-export function fixId(pokemon: Pokemon) : string {
+export function fixId (pokemon: Pokemon) : string {
   if (pokemon.dex_numbers.nat < 10)
     return `000${pokemon.dex_numbers.nat}`
   if (pokemon.dex_numbers.nat < 100)
@@ -240,14 +242,69 @@ export function fixId(pokemon: Pokemon) : string {
     return pokemon.dex_numbers.nat.toString()
 }
 
-export function getLocale() : void {
+export function getDeviceUILocale () : UILocale {
   const deviceLanguage = Platform.OS === 'ios' ?
     NativeModules.SettingsManager.settings.AppleLocale ||
-    NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13+
+    NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13+
     : NativeModules.I18nManager.localeIdentifier
-  
-  if (deviceLanguage.startsWith('fr_'))
-    Locale = fr as LocaleType.default
-  else
-    Locale = en as LocaleType.default
+  if (deviceLanguage.startsWith('fr_')) {
+    return frUI
+  } else {
+    return enUI
+  }
+}
+
+export function getDeviceDataLocale () : DataLocale {
+  const deviceLanguage = Platform.OS === 'ios' ?
+    NativeModules.SettingsManager.settings.AppleLocale ||
+    NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13+
+    : NativeModules.I18nManager.localeIdentifier
+  if (deviceLanguage.startsWith('fr_')) {
+    return frData
+  } else {
+    return enData
+  }
+}
+
+export async function getLocale (localeType: string, setLanguage: (value: React.SetStateAction<any>) => void) : Promise<void> {
+  const locale = await AsyncStorage.getItem(localeType)
+  if (locale === null) {
+    let deviceLocale
+    if (localeType === 'UILocale') {
+      deviceLocale = getDeviceUILocale()
+    } else {
+      deviceLocale = getDeviceDataLocale()
+    }
+    await AsyncStorage.setItem(localeType, deviceLocale.locale)
+  } else {
+    if (localeType === 'UILocale') {
+      await setUILocale(locale as unknown as string, setLanguage)
+    } else {
+      await setDataLocale(locale as unknown as string, setLanguage)
+    }
+  }
+}
+
+export async function setUILocale (localeName: string, setLanguage: (value: React.SetStateAction<any>) => void): Promise<UILocale> {
+  await AsyncStorage.setItem('UILocale', localeName)
+  switch (localeName) {
+    case 'fr':
+      setLanguage(frUI)
+      return frUI
+    default:
+      setLanguage(enUI)
+      return enUI
+  }
+}
+
+export async function setDataLocale (localeName: string, setLanguage: (value: React.SetStateAction<any>) => void): Promise<DataLocale> {
+  await AsyncStorage.setItem('DataLocale', localeName)
+  switch (localeName) {
+    case 'fr':
+      setLanguage(frData)
+      return frData
+    default:
+      setLanguage(enData)
+      return enData
+  }
 }

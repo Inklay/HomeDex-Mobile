@@ -1,8 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import DataLocale from '../../classes/DataLocale'
 import Pokemon from '../../classes/Pokemon'
+import UILocale from '../../classes/UILocale'
 import { BackgroundColors, Style } from '../../style'
-import { getName, Locale } from '../../utils'
+import { getName } from '../../utils'
 import Spacer from '../Spacer'
 import StatBar from '../StatBar'
 import TypeEffectiveness from '../TypeEffectiveness'
@@ -10,6 +12,8 @@ import TypeEffectiveness from '../TypeEffectiveness'
 interface Props {
   pokemon: Pokemon
   color: string
+  UILocale: UILocale
+  dataLocale: DataLocale
 }
 
 export enum Types {
@@ -33,7 +37,7 @@ export enum Types {
   FAIRY = 18
 }
 
-const PokemonStats: React.FC<Props> = ({pokemon, color}) => {
+const PokemonStats: React.FC<Props> = ({pokemon, color, UILocale, dataLocale}) => {
 
 function getTotalStats() : number {
   let total = 0
@@ -209,59 +213,59 @@ function getTypeEffectiveness(type: number) {
 
   return (
     <View>
-      <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.stats.baseStats.baseStats}</Text>
+      <Text style={[Style.pokemonScreenTitle, {color: color}]}>{UILocale.pokemonScreen.stats.baseStats.baseStats}</Text>
       <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenStatsField}>{Locale.pokemonScreen.stats.baseStats.hp}</Text>
+        <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.hp}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[0].base}</Text>
         <StatBar color={color} stat={pokemon.stats[0].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(0)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(0)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenStatsField}>{Locale.pokemonScreen.stats.baseStats.attack}</Text>
+        <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.attack}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[1].base}</Text>
         <StatBar color={color} stat={pokemon.stats[1].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(1)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(1)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenStatsField}>{Locale.pokemonScreen.stats.baseStats.defense}</Text>
+        <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.defense}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[2].base}</Text>
         <StatBar color={color} stat={pokemon.stats[2].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(2)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(2)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenStatsField}>{Locale.pokemonScreen.stats.baseStats.spa}</Text>
+        <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.spa}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[3].base}</Text>
         <StatBar color={color} stat={pokemon.stats[3].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(3)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(3)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenStatsField}>{Locale.pokemonScreen.stats.baseStats.spd}</Text>
+        <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.spd}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[4].base}</Text>
         <StatBar color={color} stat={pokemon.stats[4].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(4)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(4)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenStatsField}>{Locale.pokemonScreen.stats.baseStats.speed}</Text>
+        <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.speed}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[5].base}</Text>
         <StatBar color={color} stat={pokemon.stats[5].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(5)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(5)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
-        <Text style={Style.pokemonScreenStatsField}>{Locale.pokemonScreen.stats.baseStats.total}</Text>
+        <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.total}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getTotalStats()}</Text>
         <StatBar color={BackgroundColors.white} stat={255}/>
-        <Text style={Style.pokemonScreenStatsFieldData}>{Locale.pokemonScreen.stats.min}</Text>
-        <Text style={Style.pokemonScreenStatsFieldData}>{Locale.pokemonScreen.stats.max}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{UILocale.pokemonScreen.stats.min}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{UILocale.pokemonScreen.stats.max}</Text>
       </View>
-      <Text style={Style.statInfoText}>{Locale.pokemonScreen.stats.infos}</Text>
-      <Text style={[Style.pokemonScreenTitle, {color: color}]}>{Locale.pokemonScreen.stats.types.effectiveness}</Text>
-      <Text style={Style.pokemonFlavourtext}>{Locale.pokemonScreen.stats.types.infos}{getName(pokemon.names, Locale.locale)}.</Text>
+      <Text style={Style.statInfoText}>{UILocale.pokemonScreen.stats.infos}</Text>
+      <Text style={[Style.pokemonScreenTitle, {color: color}]}>{UILocale.pokemonScreen.stats.types.effectiveness}</Text>
+      <Text style={Style.pokemonFlavourtext}>{UILocale.pokemonScreen.stats.types.infos}{getName(pokemon.names, dataLocale.locale)}.</Text>
       <View style={Style.typeEffectiveness}>
         <TypeEffectiveness type={1} effectiveness={getTypeEffectiveness(1)}/>
         <TypeEffectiveness type={2} effectiveness={getTypeEffectiveness(2)}/>

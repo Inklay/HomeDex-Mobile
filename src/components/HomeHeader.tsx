@@ -7,17 +7,22 @@ import IconButton from './IconButton'
 import Filter from './svgs/Filter'
 import Settings from './svgs/Settings'
 import Input from './Input'
-import { Locale } from '../utils'
 import Animated, { Extrapolate, interpolate, SharedValue, useAnimatedStyle } from 'react-native-reanimated'
+import UILocale from '../classes/UILocale'
+import DataLocale from '../classes/DataLocale'
 
 interface Props {
   showFilter: () => void
   updateSearch: (value: string) => void
   scrollY: SharedValue<number>
   navigation: any
+  UILocale: UILocale
+  dataLocale: DataLocale
+  setUILocale: (value: React.SetStateAction<any>) => void
+  setDataLocale: (value: React.SetStateAction<any>) => void
 }
 
-const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY, navigation}) => {
+const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY, navigation, UILocale, dataLocale, setUILocale, setDataLocale}) => {
   const width = Dimensions.get('screen').width
 
   const textStyle = useAnimatedStyle(() => {
@@ -49,15 +54,15 @@ const HomeHeader: React.FC<Props> = ({showFilter, updateSearch, scrollY, navigat
       <ImageBackground source={Pokeball} resizeMode='cover' style={Style.homeHeader}>
         <LinearGradient colors={['#FFFFFFD0', 'white']} style={Style.headerGradient}>
           <View style={Style.homeActionRow}>
-            <IconButton Icon={Settings} trigger={() => {navigation.navigate('Settings')}} color={TextColors.black} size={20}/>
+            <IconButton Icon={Settings} trigger={() => {navigation.navigate('Settings', {setUILocale: setUILocale, setDataLocale: setDataLocale, UILocale: UILocale, dataLocale: dataLocale})}} color={TextColors.black} size={20}/>
             <IconButton Icon={Filter} trigger={showFilter}  color={TextColors.black} size={20}/>
           </View>
           <Animated.View style={textStyle}>
             <Text style={Style.appName}>Homedex</Text>
-            <Text style={Style.description}>{Locale.home.description}</Text>
+            <Text style={Style.description}>{UILocale.home.description}</Text>
           </Animated.View>
           <Animated.View style={inputStyle}>
-            <Input onValueChange={updateSearch} placeholder={Locale.home.searchPlaceholder}/>
+            <Input onValueChange={updateSearch} placeholder={UILocale.home.searchPlaceholder}/>
           </Animated.View>
         </LinearGradient>
       </ImageBackground>

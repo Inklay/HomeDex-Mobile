@@ -29,15 +29,7 @@
         "weight": "Poids",
         "catch_rate": "Taux de capture",
         "base_friendship": "Bonheur de base",
-        "growth_rate": {
-          "growth_rate": "Courbe d'exp",
-          "slow": "Lente",
-          "medium": "Moyenne",
-          "fast": "Rapide",
-          "medium_slow": "Plutôt lente",
-          "slow_then_very_fast": "Lente puis très rapide",
-          "fast_then_very_slow": "rapide puis très lente"
-        }
+        "growth_rate": "Courbe d'exp"
       },
       "abilities": {
         "abilities": "Talents",
@@ -76,44 +68,14 @@
       "chain": "Chaine d'Évolution"
     }
   },
-  "types": {
-    "normal": "Normal",
-    "fire": "Feu",
-    "water": "Eau",
-    "electric": "Électrik",
-    "grass": "Plante",
-    "ice": "Glace",
-    "fighting": "Combat",
-    "poison": "Poison",
-    "ground": "Sol",
-    "flying": "Vol",
-    "psychic": "Psy",
-    "bug": "Insecte",
-    "rock": "Roche",
-    "ghost": "Spectre",
-    "dragon": "Dragon",
-    "dark": "Ténèbres",
-    "steel": "Acier",
-    "fairy": "Fée"
-  },
-  "egg_groups": {
-    "monster": "Monstrueux",
-    "water_1": "Aquatique 1",
-    "water_2": "Aquatique 2",
-    "water_3": "Aquatique 3",
-    "bug": "Insectoïde",
-    "flying": "Aérien",
-    "field": "Terrestre",
-    "fairy": "Féérique",
-    "human_like": "Humanoïde",
-    "mineral": "Minéral",
-    "amorphous": "Amorphe",
-    "dragon": "Draconique",
-    "grass": "Végétal",
-    "ditto": "Métamorph",
-    "no_egg": "Inconnu"
-  },
   "settings": {
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "language": {
+      "languages": "Langues",
+      "interface": "Langue de l'interface :",
+      "interfaceDescription": "Français (FR)\n\nL'interface de l'application (les boutons et menus) seront affichés dans cette langue.",
+      "data": "Langue des données :",
+      "dataDescription": "Le nom des Pokémon, talents, capacités etc. seront affichés dans cette langue."
+    }
   }
 }

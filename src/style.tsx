@@ -15,8 +15,8 @@ export enum BackgroundColors {
   inputPressed = '#e2e2e2',
   modal = '#17171B80',
   enabled = '#EA5D60',
-  enabledTrail = '#EA5D60B0',
-  black = 'black'
+  black = 'black',
+  separator = '#E4E4E6'
 }
 
 export enum TypeBackgroundColors {
@@ -402,14 +402,14 @@ export const Style = StyleSheet.create({
     height: 90,
     paddingHorizontal: 20,
     flexDirection: 'row',
-    elevation: 20,
-    shadowColor: 'black'
+    borderBottomWidth: 1,
+    borderBottomColor: BackgroundColors.separator,
   },
 
   settingsHeaderText: {
     marginHorizontal: 20,
-    fontSize: 32,
-    fontWeight: '500',
+    fontSize: 28,
+    fontWeight: '700',
     marginTop: 40
   },
 
@@ -417,6 +417,22 @@ export const Style = StyleSheet.create({
     paddingTop: 20,
     height: height - 90,
     paddingHorizontal: 20,
-    backgroundColor: 'yellow'
+  },
+
+  settingsSectionHeader: {
+    fontSize: 24,
+    fontWeight: '500',
+  },
+  
+  settingsSectionItem: {
+    marginTop: 10,
+    fontSize: 14,
+    color: TextColors.black,
+    marginBottom: 4
+  },
+
+  settingsSectionItemDescription: {
+    fontSize: 12,
+    color: TextColors.grey
   }
 })

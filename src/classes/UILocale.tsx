@@ -1,4 +1,4 @@
-export default interface Locale {
+export default interface UILocale {
   locale: string
   home: {
     description: string
@@ -29,15 +29,7 @@ export default interface Locale {
         weight: string
         catch_rate: string
         base_friendship: string
-        growth_rate: {
-          growth_rate: string
-          slow: string
-          medium: string
-          fast: string
-          medium_slow: string
-          slow_then_very_fast: string
-          fast_then_very_slow: string
-        }
+        growth_rate: string
       }
       abilities: {
         abilities: string
@@ -75,45 +67,15 @@ export default interface Locale {
       evo: string
       chain: string
     }
-  }
-  types: {
-    normal: string
-    fire: string
-    water: string
-    electric: string
-    grass: string
-    ice: string
-    fighting: string
-    poison: string
-    ground: string
-    flying: string
-    psychic: string
-    bug: string
-    rock: string
-    ghost: string
-    dragon: string
-    dark: string
-    steel: string
-    fairy: string
-  },
-  egg_groups: {
-    monster: string
-    water_1: string
-    water_2: string
-    water_3: string
-    bug: string
-    flying: string
-    field: string
-    fairy: string
-    human_like: string
-    mineral: string
-    amorphous: string
-    dragon: string
-    grass: string
-    ditto: string
-    no_egg: string
   },
   settings: {
     settings: string
+    language: {
+      languages: string
+      interface: string
+      interfaceDescription: string
+      data: string
+      dataDescription: string
+    }
   }
 }

@@ -29,15 +29,7 @@
         "weight": "Weight",
         "catch_rate": "Catch rate",
         "base_friendship": "Base friendship",
-        "growth_rate": {
-          "growth_rate": "Exp curve",
-          "slow": "Slow",
-          "medium": "Medium",
-          "fast": "Fast",
-          "medium_slow": "Medium slow",
-          "slow_then_very_fast": "Slow then very fast",
-          "fast_then_very_slow": "Fast then very slow"
-        }
+        "growth_rate": "Exp curve"
       },
       "abilities": {
         "abilities": "Abilities",
@@ -76,44 +68,14 @@
       "chain": "Evolution Chart"
     }
   },
-  "types": {
-    "normal": "Normal",
-    "fire": "Fire",
-    "water": "Water",
-    "electric": "Electric",
-    "grass": "Grass",
-    "ice": "Ice",
-    "fighting": "Fighting",
-    "poison": "Poison",
-    "ground": "Ground",
-    "flying": "Flying",
-    "psychic": "Psychic",
-    "bug": "Bug",
-    "rock": "Rock",
-    "ghost": "Ghost",
-    "dragon": "Dragon",
-    "dark": "Dark",
-    "steel": "Steel",
-    "fairy": "Fairy"
-  },
-  "egg_groups": {
-    "monster": "Monster",
-    "water_1": "Water 1",
-    "water_2": "Water 2",
-    "water_3": "Water 3",
-    "bug": "Bug",
-    "flying": "Flying",
-    "field": "Field",
-    "fairy": "Fairy",
-    "human_like": "Human-like",
-    "mineral": "Mineral",
-    "amorphous": "Amorphous",
-    "dragon": "Dragon",
-    "grass": "Grass",
-    "ditto": "Ditto",
-    "no_egg": "No egg discovered"
-  },
   "settings": {
-    "settings": "Settings"
+    "settings": "Settings",
+    "language": {
+      "languages": "Languages",
+      "interface": "Interface language:",
+      "interfaceDescription": "English (EN)\n\nThe interface of the application (buttons and menus) will be displayed in this language.",
+      "data": "Data language:",
+      "dataDescription": "Pokémon names, abilities, moves, etc. will be displayed in this language."
+    }
   }
 }
