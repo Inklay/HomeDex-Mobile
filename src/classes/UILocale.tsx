@@ -37,7 +37,7 @@ export default interface UILocale {
         hidden: string
       }
       breeding: {
-        breeding: string,
+        breeding: string
         gender_ratio: string
         egg_group: string
         genderless: string
@@ -62,12 +62,12 @@ export default interface UILocale {
         effectiveness: string,
         infos: string
       }
-    },
+    }
     evo: {
       evo: string
       chain: string
     }
-  },
+  }
   settings: {
     settings: string
     language: {
@@ -76,13 +76,18 @@ export default interface UILocale {
       interfaceDescription: string
       data: string
       dataDescription: string
-    },
+    }
     credits: {
       credits: string
       nintendo: string
       bulbapedia: string
       pokepedia: string
       flavioFarias: string
+    }
+    links: {
+      links: string
+      githubDescription: string
+      patreonDescription: string
     }
   }
 }

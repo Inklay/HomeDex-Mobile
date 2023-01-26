@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableWithoutFeedback } from 'react-native'
+import { Text, View, TouchableWithoutFeedback, Linking } from 'react-native'
 import { setUILocale, setDataLocale } from '../../utils'
 import { BackgroundColors, Style } from '../../style'
 import LeftArrow from '../svgs/LeftArrow'
@@ -52,6 +52,14 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
     setDataLocaleState(locale)
   }
 
+  function openGithub () {
+    Linking.openURL('https://github.com/Inklay/HomeDex-Mobile')
+  }
+
+  function openPatreon () {
+    Linking.openURL('https://www.patreon.com/inklay')
+  }
+
   return (
     <View style={Style.container}>
       <View style={Style.settingsHeader}>
@@ -77,11 +85,29 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
           </View>
         </View>
         <View style={Style.settingsContent}>
-          <Text style={Style.settingsSectionHeader}>{UILocale.settings.credits.credits}</Text>
+          <Text style={Style.settingsSectionHeader}>{UILocale.settings.links.links}</Text>
           <View style={{
             marginHorizontal: 20
           }}>
-            <Text style={Style.settingsSectionItem}>
+            <Text style={Style.settingsSectionItem}>Github</Text>
+            <TouchableWithoutFeedback onPress={openGithub}>
+              <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.links.githubDescription}</Text>
+            </TouchableWithoutFeedback>
+            <Text style={Style.settingsSectionItem}>Patreon</Text>
+            <TouchableWithoutFeedback onPress={openPatreon}>
+              <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.links.patreonDescription}</Text>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+        <View style={Style.settingsContent}>
+          <Text style={[
+            Style.settingsSectionHeader,
+            { marginBottom: 10 }
+          ]}>{UILocale.settings.credits.credits}</Text>
+          <View style={{
+            marginHorizontal: 20
+          }}>
+            <Text style={Style.settingsSectionItemDescription}>
               {UILocale.settings.credits.nintendo}
               {"\n\n"}
               {UILocale.settings.credits.bulbapedia}

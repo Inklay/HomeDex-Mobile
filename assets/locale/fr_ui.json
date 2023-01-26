@@ -83,6 +83,11 @@
       "bulbapedia": "La majorités des données du Pokédex sont fournies par Bulbapedia.",
       "pokepedia": "Quelques traductions française des données du Pokédex sont fournies par Poképedia.",
       "flavioFarias": "Le design de l'application est inspiré par celui créé par Flavio Farias"
+    },
+    "links": {
+      "links": "Liens",
+      "githubDescription": "Accéder au code source de l'application et y contribuer en créant des issues ou des pull requests.",
+      "patreonDescription": "Pour soutenir financièrement l'application et avoir accès aux versions bêta ainsi que d'autres avantages."
     }
   }
 }
