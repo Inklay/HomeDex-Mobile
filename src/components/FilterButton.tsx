@@ -7,13 +7,12 @@ import { FilterProps } from './svgs/FilterProps'
 interface Props {
   name: string
   filters: Filters
-  setFilters: (value: Filters) => void
+  updateFilter: (value: Filters) => void
   property: string
-  filterPokemon: (filters: Filters) => void
   SVG: ({ ...props }: FilterProps) => JSX.Element
 }
 
-const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, filterPokemon, SVG}) => {
+const FilterButton: React.FC<Props> = ({name, filters, updateFilter, property, SVG}) => {
   const [isActive, setActive] = React.useState(filters[property])
   const [backgroundColor, setBackgroundColor] = React.useState(getBackgroundColor(filters[property]))
   const [SVGColor, setSVGColor] = React.useState(getSVGColor(filters[property]))
@@ -23,8 +22,7 @@ const FilterButton: React.FC<Props> = ({name, filters, setFilters, property, fil
     setSVGColor(getSVGColor(!isActive))
     const newValue = {...filters}
     newValue[property] = !filters[property]
-    setFilters(newValue)
-    filterPokemon(newValue)
+    updateFilter(newValue)
     setActive(!isActive)
   }
 

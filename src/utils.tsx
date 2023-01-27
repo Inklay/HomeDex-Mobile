@@ -28,6 +28,7 @@ import enData from '../assets/locale/en_data.json'
 import { NativeModules, Platform } from 'react-native'
 import AsyncStorage  from '@react-native-async-storage/async-storage'
 import DataLocale from './classes/DataLocale'
+import Filters from './classes/Filters'
 
 export function getTypeBackgroundColor(type: number) : string {
   switch (type) {
@@ -307,4 +308,20 @@ export async function setDataLocale (localeName: string, setLanguage: (value: Re
       setLanguage(enData)
       return enData
   }
+}
+
+export async function getFilters (setFilters: (value: React.SetStateAction<any>) => void) : Promise<void> {
+  const filters = await AsyncStorage.getItem('filters')
+  if (filters !== null) {
+    setFilters(JSON.parse(filters) as Filters)
+  } else {
+    await setFiltersInStorage(new Filters(), setFilters, true)
+  }
+}
+
+export async function setFiltersInStorage (filters: Filters, setFilters: (value: React.SetStateAction<any>) => void, update: boolean = false) : Promise<void> {
+  if (update) {
+    setFilters(filters)
+  }
+  await AsyncStorage.setItem('filters', JSON.stringify(filters))
 }

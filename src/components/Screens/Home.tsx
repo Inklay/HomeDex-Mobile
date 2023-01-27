@@ -3,7 +3,7 @@ import { Text, View, ScrollView } from 'react-native'
 import { Style } from '../../style'
 import PokemonCard from '../PokemonCard'
 import { pokemon } from '../../data'
-import { getName, getLocale, getDeviceDataLocale, getDeviceUILocale } from '../../utils'
+import { getName, getLocale, getDeviceDataLocale, getDeviceUILocale, getFilters, setFiltersInStorage } from '../../utils'
 import { StatusBar } from 'expo-status-bar'
 import Modal from 'react-native-modal'
 import TypeFilter from '../TypeFilter'
@@ -41,15 +41,26 @@ const Home: React.FC<Props> = ({navigation}) => {
     async function refreshLocale () {
       await getLocale('UILocale', setUILocale)
       await getLocale('DataLocale', setDataLocale)
+      await getFilters(setFilters)
     }
     refreshLocale()
   }, [])
+
+  React.useEffect(() => {
+    filterPokemon(filters)
+  }, [filters])
+
+  function updateFilter (filters: Filters) {
+    setFilters(filters)
+    setFiltersInStorage(filters, setFilters)
+  }
 
   function updateSearch(value: string) {
     const newValue = {...filters}
     newValue.search = value
     setFilters(newValue)
     filterPokemon(newValue)
+    setFiltersInStorage(filters, setFilters)
   }
 
   function addType(value: number) {
@@ -59,6 +70,7 @@ const Home: React.FC<Props> = ({navigation}) => {
     filterPokemon(newValue)
     if (newValue.types.length === 2)
       setLockTypeFilter(true)
+    setFiltersInStorage(filters, setFilters)
   }
 
   function removeType(value: number) {
@@ -70,6 +82,7 @@ const Home: React.FC<Props> = ({navigation}) => {
     filterPokemon(newValue)
     if (newValue.types.length === 1)
       setLockTypeFilter(false)
+    setFiltersInStorage(filters, setFilters)
   }
 
   function filterPokemon(filters: Filters) {
@@ -179,15 +192,15 @@ const Home: React.FC<Props> = ({navigation}) => {
                   </View>
                   <Text style={Style.modalSectionName}>{UILocale.home.filters.forms.forms}</Text>
                   <View style={Style.filterContainer}>
-                    <FilterButton name={UILocale.home.filters.forms.mega} filters={filters} setFilters={setFilters} property='mega' filterPokemon={filterPokemon} SVG={Mega}/>
-                    <FilterButton name={UILocale.home.filters.forms.gigantamax} filters={filters} setFilters={setFilters} property='gigantamax' filterPokemon={filterPokemon} SVG={Dynamax}/>
-                    <FilterButton name={UILocale.home.filters.forms.alolan} filters={filters} setFilters={setFilters} property='alolan' filterPokemon={filterPokemon} SVG={AlolanForms}/>
-                    <FilterButton name={UILocale.home.filters.forms.galarian} filters={filters} setFilters={setFilters} property='galarian' filterPokemon={filterPokemon} SVG={GalarianForms}/>
+                    <FilterButton name={UILocale.home.filters.forms.mega} filters={filters} property='mega' updateFilter={updateFilter} SVG={Mega}/>
+                    <FilterButton name={UILocale.home.filters.forms.gigantamax} filters={filters} property='gigantamax' updateFilter={updateFilter} SVG={Dynamax}/>
+                    <FilterButton name={UILocale.home.filters.forms.alolan} filters={filters} property='alolan' updateFilter={updateFilter} SVG={AlolanForms}/>
+                    <FilterButton name={UILocale.home.filters.forms.galarian} filters={filters} property='galarian' updateFilter={updateFilter} SVG={GalarianForms}/>
                   </View>
                   <View style={Style.filterContainer}>
-                    <FilterButton name={UILocale.home.filters.forms.hisuian} filters={filters} setFilters={setFilters} property='hisuian' filterPokemon={filterPokemon} SVG={HisuianForms}/>
-                    <FilterButton name={UILocale.home.filters.forms.paldean} filters={filters} setFilters={setFilters} property='paldean' filterPokemon={filterPokemon} SVG={PaldeanForms}/>
-                    <FilterButton name={UILocale.home.filters.forms.other} filters={filters} setFilters={setFilters} property='other' filterPokemon={filterPokemon} SVG={Toggle}/>
+                    <FilterButton name={UILocale.home.filters.forms.hisuian} filters={filters} property='hisuian' updateFilter={updateFilter} SVG={HisuianForms}/>
+                    <FilterButton name={UILocale.home.filters.forms.paldean} filters={filters} property='paldean' updateFilter={updateFilter} SVG={PaldeanForms}/>
+                    <FilterButton name={UILocale.home.filters.forms.other} filters={filters} property='other' updateFilter={updateFilter} SVG={Toggle}/>
                   </View>
                 </View>
               </TouchableWithoutFeedback>
