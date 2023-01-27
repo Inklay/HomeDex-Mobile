@@ -14,7 +14,7 @@ export enum BackgroundColors {
   inputDefault = '#f2f2f2',
   inputPressed = '#e2e2e2',
   modal = '#17171B80',
-  enabled = '#EA5D60',
+  enabled = '#8BD674',
   black = 'black',
   separator = '#E4E4E6'
 }

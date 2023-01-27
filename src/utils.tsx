@@ -320,6 +320,7 @@ export async function getFilters (setFilters: (value: React.SetStateAction<any>)
 }
 
 export async function setFiltersInStorage (filters: Filters, setFilters: (value: React.SetStateAction<any>) => void, update: boolean = false) : Promise<void> {
+  filters.search = ''
   if (update) {
     setFilters(filters)
   }

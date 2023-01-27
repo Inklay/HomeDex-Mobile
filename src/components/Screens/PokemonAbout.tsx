@@ -117,7 +117,6 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
 
   const female = 0.125 * pokemon.gender_rate * 100
   const male = 100 - female
-  console.log(pokemon.category)
 
   return (
     <View>
