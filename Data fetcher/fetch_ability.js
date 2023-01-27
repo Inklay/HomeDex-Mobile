@@ -29,10 +29,41 @@ export async function getAbilityURLList () {
   return list
 }
 
+function getOtherNames ($) {
+  const data = []
+  $('span#In_other_languages')
+    .parent()
+    .next('table')
+    .children('tbody')
+    .children('tr')
+    .children('td')
+    .children('table')
+    .children('tbody')
+    .children('tr')
+    .each((rowIndex, row) => {
+      let language = ''
+      if (rowIndex === 0) {
+        return
+      }
+      $(row).children('td').each((colIndex, col) => {
+        if ($(col).attr('rowspan') === '2') {
+          return
+        }
+        if (colIndex === 0 && ($(col).attr('colspan') === '2')) {
+          console.log($('a:nth-child(2)', col).text())
+        }
+        if (colIndex === 0 && $(col).children('span').length !== 0) {
+          console.log($(col).text().replace('\n', ''))
+        }
+      })
+    })
+}
+
 export async function getAbilityData (abilityURL, id) {
   const URL = `${baseURL}${abilityURL}`
   const pageHTML = await (await fetch(URL)).text()
   const $ = load(pageHTML)
+  const otherNames = getOtherNames($)
   return {
     names: [
       {
@@ -53,3 +84,5 @@ export async function getAllAbilityData () {
 }
 
 const abilityURLList = await getAbilityURLList()
+
+getAbilityData(abilityURLList[0], 0)
