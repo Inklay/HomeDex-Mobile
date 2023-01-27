@@ -533,13 +533,24 @@ function processGrowthRate ($) {
 }
 
 function processCategory ($) {
-  const category = $('td > a[href=\'/wiki/Pok%C3%A9mon_category\']').text()
-  return [
-    {
-      name: category,
-      language: 'en'
-    }
-  ]
+  const data = []
+  const categoriesSpan = $('td > a[href=\'/wiki/Pok%C3%A9mon_category\'] > span')
+  if ($(categoriesSpan).children('span').length === 0) {
+    data.push({
+      name: $(categoriesSpan).text(),
+      language: 'en',
+      form: 'default'
+    })
+  } else {
+    $(categoriesSpan).children('span').each((__, element) => {
+      data.push({
+        name: `${$(element).text()} Pokémon`,
+        language: 'en',
+        form: $(element).attr('title')
+      })
+    })
+  }
+  return data
 }
 
 function getDexName (generationNumber, name) {
@@ -941,7 +952,23 @@ export async function getPokemonData (pokemonURL, abilities) {
     pokemons[i].egg_groups = eggGroups
     pokemons[i].gender_rate = genderRatio
     pokemons[i].growth_rate = growthRate
-    pokemons[i].category = category
+    let formCategory
+    if (category.length === 1) {
+      formCategory = category[0]
+    } else if (pokemons[i].form_type === 'default') {
+      formCategory = category.find(category => category.form === 'default')
+    }
+    if (formCategory === undefined) {
+      formCategory = category.find(category => category.form === pokemons[i].form_name)
+      if (formCategory === undefined) {
+        formCategory = category.find(category => category.form === 'default')
+        if (formCategory === undefined) {
+          formCategory = category[0]
+        }
+      }
+    }
+    delete formCategory.form
+    pokemons[i].category = [formCategory]
     if (pokemons[i].form_type === 'default') {
       if (flavorText.find(flavorText => flavorText.form === 'default') === undefined) {
         console.log(flavorText)
