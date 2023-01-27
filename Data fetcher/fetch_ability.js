@@ -1,4 +1,5 @@
 import { load } from 'cheerio'
+import { getLanguageCode } from './utils.js'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
 
@@ -41,7 +42,7 @@ function getOtherNames ($) {
     .children('tbody')
     .children('tr')
     .each((rowIndex, row) => {
-      let language = ''
+      let language
       if (rowIndex === 0) {
         return
       }
@@ -49,14 +50,28 @@ function getOtherNames ($) {
         if ($(col).attr('rowspan') === '2') {
           return
         }
+        // Other languages
         if (colIndex === 0 && ($(col).attr('colspan') === '2')) {
-          console.log($('a:nth-child(2)', col).text())
+          language = getLanguageCode($('a:nth-child(2)', col).text())
         }
+        // Madarin
         if (colIndex === 0 && $(col).children('span').length !== 0) {
-          console.log($(col).text().replace('\n', ''))
+          language = getLanguageCode($(col).text().replace('\n', ''))
+        }
+        if (colIndex === 1 && rowIndex !== 1 && language !== undefined) {
+          let text = $(col).contents().first().text().replace('\n', '')
+          const index = text.search(' / ')
+          if (index !== -1) {
+            text = text.slice(0, index)
+          }
+          data.push({
+            name: text,
+            language
+          })
         }
       })
     })
+  return data
 }
 
 export async function getAbilityData (abilityURL, id) {
@@ -69,7 +84,8 @@ export async function getAbilityData (abilityURL, id) {
       {
         name: $('table.roundy > tbody > tr > td > big > b').text(),
         language: 'en'
-      }
+      },
+      ...otherNames
     ],
     id
   }
@@ -84,5 +100,3 @@ export async function getAllAbilityData () {
 }
 
 const abilityURLList = await getAbilityURLList()
-
-getAbilityData(abilityURLList[0], 0)

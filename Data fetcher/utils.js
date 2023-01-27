@@ -12,13 +12,7 @@ export function getLanguageCode (languageName) {
       return 'ko'
     case 'Spanish':
       return 'es'
-    case 'Turkish':
-      return 'tr'
-    case 'Vietnamese':
-      return 'vi'
     case 'Japanese':
       return 'ja'
-    case 'Russian':
-      return 'ru'
   }
 }
