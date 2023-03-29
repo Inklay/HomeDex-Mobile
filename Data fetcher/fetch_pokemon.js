@@ -425,10 +425,10 @@ function processHeight ($) {
     if (!isVisible($, heightElementArray[i])) {
       continue
     }
-    const height = $(heightElementArray[i]).children('td').next().text()
+    const height = NaNToMinusOne(parseFloat($(heightElementArray[i]).children('td').next().text()))
     const name = $(heightElementArray[i + 1]).children('td').children('small').text()
     heightList.push({
-      height: parseFloat(height),
+      height,
       name
     })
   }
@@ -484,9 +484,6 @@ function processGenderRatio ($) {
         femaleRatio = ratioText
       }
     })
-  if (femaleRatio === 'Gender unknown') {
-    return -1
-  }
   if (femaleRatio === '100% female') {
     return 8
   }
@@ -508,6 +505,7 @@ function processGenderRatio ($) {
   if (femaleRatio === '100% male') {
     return 0
   }
+  return -1
 }
 
 function processGrowthRate ($) {
@@ -942,6 +940,10 @@ export async function getPokemonData (pokemonURL, abilities) {
   const pageHTML = await (await fetch(URL)).text()
   const $ = load(pageHTML)
   const pokemons = processForms($)
+  // For unreleased Pokémon
+  if (pokemons[0].names[0].name === '') {
+    pokemons[0].names[0].name = pokemonURL.replace('/wiki/', '').replace('_(Pok%C3%A9mon)', '')
+  }
   const dexNumbers = processNatDexNumbers($)
   const types = processType($, pokemons[0].names[0].name)
   const baseFriendship = processBaseFriendship($)
@@ -1049,7 +1051,7 @@ export async function getPokemonData (pokemonURL, abilities) {
     pokemons[i].types = formTypes.types
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
-    //console.log(pokemons[i].flavor_texts)
+    //console.log(pokemons[i])
   }
   return pokemons
 }
@@ -1064,4 +1066,4 @@ export async function getAllPokemonData (abilities) {
 
 const pokemonURLList = await getPokemonURLList()
 
-//getPokemonData(pokemonURLList[773], [])
+//getPokemonData(pokemonURLList[1010], [])
