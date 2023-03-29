@@ -1,7 +1,7 @@
 {
   "name": "data-fetcher",
   "version": "2.0.0",
-  "description": "Get data from bulbapedia",
+  "description": "Get data from bulbapedia and store it in a json file",
   "main": "data_fetcher.js",
   "scripts": {
     "start": "node data_fetcher.js",
