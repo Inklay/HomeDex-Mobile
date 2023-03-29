@@ -675,19 +675,32 @@ function processCapPikachuFlavorText (game, text, flavorText) {
 function processMiniorFlavorText (game, text, flavorText) {
   const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet']
   for (const color of colors) {
-    const formIndex = flavorText.push({
-      form: `Minior ${color} Core`,
-      entries: []
-    }) - 1
-    flavorText[formIndex].entries.push({
-      game,
-      texts: [
-        {
-          name: text,
-          language: 'en'
-        }
-      ]
-    })
+    if (flavorText.find(form => form.form === `Minior ${color} Core`) !== undefined) {
+      const formIndex = flavorText.findIndex(form => form.form === `Minior ${color} Core`)
+      flavorText[formIndex].entries.push({
+        game,
+        texts: [
+          {
+            name: text,
+            language: 'en'
+          }
+        ]
+      })
+    } else {
+      const formIndex = flavorText.push({
+        form: `Minior ${color} Core`,
+        entries: []
+      }) - 1
+      flavorText[formIndex].entries.push({
+        game,
+        texts: [
+          {
+            name: text,
+            language: 'en'
+          }
+        ]
+      })
+    }
   }
 }
 
@@ -699,6 +712,9 @@ function processFlavorText ($, flavorTextId) {
   let element = $(`span${flavorTextId}`)
     .parent()
     .next('')
+  if (element[0] === undefined) {
+    return [{ form: 'default', entries: [] }]
+  }
   if ($(element)[0].name !== 'table') {
     element = $(element).next('table')
   }
@@ -739,6 +755,9 @@ function processFlavorText ($, flavorTextId) {
             let gameName = $(game).children('th').text().replace('\n', '')
             if (gameName.slice(gameName.length - 1) === ' ') {
               gameName = gameName.slice(0, -1)
+            }
+            if (form === 'Meteor Form') {
+              formIndex = 0
             }
             if (form === 'Hoenn, Sinnoh, Unova, Kalos, and Alola Cap Pikachu') {
               processCapPikachuFlavorText(gameName, oldText, flavorText)
@@ -820,6 +839,13 @@ function processStats ($) {
   const header = $(`span${statsId}`)
     .parent()
     .next()
+  if ($(header)[0] === undefined) {
+    const noStats = [{ name: 'default', stats: [] }]
+    for (let i = 0; i < 6; i++) {
+      noStats[0].stats.push({ base: -1, effort: -1 })
+    }
+    return noStats
+  }
   let skip = false
   let index = 0
   let name
@@ -873,8 +899,16 @@ function processAbilities ($, abilities) {
         }
       }
       $(element).children('a').each((__, link) => {
+        const ability = abilities.find(ability => ability.names[0].name === $(link).text())
+        if (ability === undefined) {
+          return [{
+            ability: -1,
+            is_hidden: false,
+            form: 'default'
+          }]
+        }
         data.push({
-          ability: abilities.find(ability => ability.names[0].name === $(link).text()).id,
+          ability: ability.id,
           is_hidden: isHidden,
           form
         })
@@ -921,6 +955,7 @@ export async function getPokemonData (pokemonURL, abilities) {
   const flavorText = processPokedexEntries($, dexNumbers)
   const stats = processStats($)
   const abilityList = processAbilities($, abilities)
+  //const abilityList = []
   if (flavorText === undefined) {
     console.log(`No flavor text found for ${pokemons[0].names[0].name}`)
   }
@@ -1014,6 +1049,7 @@ export async function getPokemonData (pokemonURL, abilities) {
     pokemons[i].types = formTypes.types
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
+    //console.log(pokemons[i].flavor_texts)
   }
   return pokemons
 }
@@ -1027,3 +1063,5 @@ export async function getAllPokemonData (abilities) {
 }
 
 const pokemonURLList = await getPokemonURLList()
+
+//getPokemonData(pokemonURLList[773], [])
