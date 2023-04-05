@@ -6,8 +6,8 @@ import Sprite from './Sprite'
 import Stats from './Stats'
 
 export default interface Pokemon {
-  base_friendship: number | null
-  catch_rate: number | null
+  base_friendship: number
+  catch_rate: number
   egg_groups: number[]
   gender_rate: number
   category: Name[]

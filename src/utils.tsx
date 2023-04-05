@@ -199,6 +199,8 @@ export function getName(names: Name[], language: string) : string {
 
 export function getEggGroupName(eggGroup: number, dataLocale: DataLocale) : string {
   switch (eggGroup) {
+    case 1:
+      return dataLocale.egg_groups.monster
     case 2:
       return dataLocale.egg_groups.water_1
     case 3:
@@ -228,19 +230,24 @@ export function getEggGroupName(eggGroup: number, dataLocale: DataLocale) : stri
     case 15:
       return dataLocale.egg_groups.field
     default:
-      return dataLocale.egg_groups.monster
+      return '???'
   }
 }
 
 export function fixId (pokemon: Pokemon) : string {
-  if (pokemon.dex_numbers.nat < 10)
+  if (pokemon.dex_numbers.nat === -1) {
+    return '???'
+  }
+  if (pokemon.dex_numbers.nat < 10) {
     return `000${pokemon.dex_numbers.nat}`
-  if (pokemon.dex_numbers.nat < 100)
+  }
+  if (pokemon.dex_numbers.nat < 100) {
     return `00${pokemon.dex_numbers.nat}`
-  if (pokemon.dex_numbers.nat < 1000)
+  }
+  if (pokemon.dex_numbers.nat < 1000) {
     return `0${pokemon.dex_numbers.nat}`
-  else
-    return pokemon.dex_numbers.nat.toString()
+  }
+  return pokemon.dex_numbers.nat.toString()
 }
 
 export function getDeviceUILocale () : UILocale {

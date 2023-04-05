@@ -85,6 +85,8 @@ function getTypeNumber (type) {
 
 function getEggGroupsNumber (eggGroup) {
   switch (eggGroup) {
+    case 'Monster':
+      return 1
     case 'Water 1':
       return 2
     case 'Water 2':
@@ -114,7 +116,7 @@ function getEggGroupsNumber (eggGroup) {
     case 'Field':
       return 15
     default:
-      return 1
+      return -1
   }
 }
 
@@ -504,6 +506,9 @@ function processGenderRatio ($) {
   }
   if (femaleRatio === '100% male') {
     return 0
+  }
+  if (femaleRatio === 'Gender unknown') {
+    return 10
   }
   return -1
 }

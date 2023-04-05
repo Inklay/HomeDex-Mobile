@@ -21,7 +21,8 @@ export default interface UILocale {
   }
   pokemonScreen: {
     about: {
-      about: string
+      about: string,
+      noFlavor: string
       data: {
         data: string
         category: string

@@ -25,18 +25,23 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
     getAbilities()
   }, [])
 
-  function getAbilities() : void {
+  function getAbilities () : void {
+    if (pokemon.abilities.length === 0) {
+      setAbility1('???')
+      return
+    }
     for (let i = 0; i < pokemon.abilities.length; i++) {
-      if (pokemon.abilities[i].is_hidden)
+      if (pokemon.abilities[i].is_hidden) {
         setAbilityH(getName(abilities[pokemon.abilities[i].ability], dataLocale.locale))
-      else if (ability1 === '')
+      } else if (ability1 === '') {
         setAbility1(getName(abilities[pokemon.abilities[i].ability], dataLocale.locale))
-      else
+      } else {
         setAbility2(getName(abilities[pokemon.abilities[i].ability], dataLocale.locale))
+      }
     }
   }
   
-  function getLatestFlavor() : string | undefined {
+  function getLatestFlavor () : string {
     const gameOrder = [
       'Scarlet',
       'Violet',
@@ -75,17 +80,20 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
       if (text !== undefined)
         return getName(text.texts, dataLocale.locale).replace(/\n/g, ' ')
     }
-    return undefined
+    return UILocale.pokemonScreen.about.noFlavor
   }
 
-  function formatHeight() : string {
+  function formatHeight () : string {
+    if (pokemon.height === -1) {
+      return '???'
+    }
     const totalInches = Math.round(pokemon.height * 39.36)
     const foot = Math.floor(totalInches / 12)
     const inches = totalInches % 12
     return `${pokemon.height}m / ${foot}'${inches}"`
   }
 
-  function formatWeight() : string {
+  function formatWeight () : string {
     if (pokemon.weight === -1) {
       return '???'
     }
@@ -93,7 +101,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
     return `${pokemon.weight}kg / ${lbs}lbs`
   }
 
-  function formatGrowthRate() : string {
+  function formatGrowthRate () : string {
     switch (pokemon.growth_rate) {
       case 'slow':
         return dataLocale.growth_rate.slow
@@ -106,13 +114,28 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
       case 'fast-then-very-slow':
         return dataLocale.growth_rate.fast_then_very_slow
       case 'slow-then-very-fast':
-      default:
         return dataLocale.growth_rate.slow_then_very_fast
+      default:
+        return '???'
     }
   }
 
-  function getEggGroup(idx: number) : string {
+  function getEggGroup (idx: number) : string {
     return getEggGroupName(pokemon.egg_groups[idx], dataLocale)
+  }
+
+  function getCatchRate () : string {
+    if (pokemon.catch_rate === -1) {
+      return '???'
+    }
+    return pokemon.catch_rate.toString()
+  }
+
+  function getBaseFriendship () : string {
+    if (pokemon.base_friendship === -1) {
+      return '???'
+    }
+    return pokemon.base_friendship.toString()
   }
 
   const female = 0.125 * pokemon.gender_rate * 100
@@ -136,11 +159,11 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{UILocale.pokemonScreen.about.data.catch_rate}</Text>
-        <Text style={Style.pokemonScreenFieldData}>{pokemon.catch_rate}</Text>
+        <Text style={Style.pokemonScreenFieldData}>{getCatchRate()}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{UILocale.pokemonScreen.about.data.base_friendship}</Text>
-        <Text style={Style.pokemonScreenFieldData}>{pokemon.base_friendship}</Text>
+        <Text style={Style.pokemonScreenFieldData}>{getBaseFriendship()}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{UILocale.pokemonScreen.about.data.growth_rate}</Text>
@@ -166,13 +189,15 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
       <Text style={[Style.pokemonScreenTitle, {color: color}]}>{UILocale.pokemonScreen.about.breeding.breeding}</Text>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{UILocale.pokemonScreen.about.breeding.gender_ratio}</Text>
-        { pokemon.gender_rate !== -1 ?
-          <View style={{flexDirection: 'row'}}>
-            <Text style={[Style.pokemonScreenFieldData, {color: TypeColors.flying}]}>♂${male}%</Text>
-            <Text style={Style.pokemonScreenFieldData}> / </Text>
-            <Text style={[Style.pokemonScreenFieldData, {color: TypeColors.fairy}]}>♀${female}%</Text> 
-          </View> :
-          <Text style={Style.pokemonScreenFieldData}>{UILocale.pokemonScreen.about.breeding.genderless}</Text>
+        { pokemon.gender_rate === -1 ?
+            <Text style={Style.pokemonScreenFieldData}>???</Text> :
+          pokemon.gender_rate === 10 ?
+            <Text style={Style.pokemonScreenFieldData}>{UILocale.pokemonScreen.about.breeding.genderless}</Text>:
+            <View style={{flexDirection: 'row'}}>
+              <Text style={[Style.pokemonScreenFieldData, {color: TypeColors.flying}]}>♂${male}%</Text>
+              <Text style={Style.pokemonScreenFieldData}> / </Text>
+              <Text style={[Style.pokemonScreenFieldData, {color: TypeColors.fairy}]}>♀${female}%</Text> 
+            </View>
         }
       </View>
       <View style={Style.pokemonScreenFieldContainer}>

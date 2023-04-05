@@ -22,6 +22,7 @@
   "pokemonScreen": {
     "about": {
       "about": "À propos",
+      "noFlavor": "Ce Pokémon n'a aucune description Pokédex.",
       "data": {
         "data": "Données du Pokédex",
         "category": "Catégorie",
