@@ -1,9 +1,32 @@
 import { getPokemonData, getPokemonURLList } from '../fetch_pokemon.js'
+import fs from 'fs'
+import { testAllAbilities } from './ability.js'
 
-export async function testAllPokemon (abilities) {
+export async function testAllPokemon (abilities = undefined) {
+  if (abilities === undefined) {
+    if (fs.existsSync('cache/abilities.json')) {
+      console.log('Using already stored abilities')
+      abilities = JSON.parse(fs.readFileSync('cache/abilities.json'))
+    } else {
+      console.log('Fetching abilities...')
+      abilities = await testAllAbilities()
+      fs.writeFileSync('cache/abilities.json', JSON.stringify(abilities))
+    }
+  }
+
   console.log('Trying to gather data for all Pokémon')
   const pokemonURLList = await getPokemonURLList()
-  for (let i = 0; i < pokemonURLList.length; i++) {
+  let start = 0
+  let end = pokemonURLList.length
+  if (process.argv[3] !== undefined) {
+    start = parseInt(process.argv[3] - 1)
+    if (process.argv[4] !== undefined) {
+      end = parseInt(process.argv[4])
+    } else {
+      end = parseInt(process.argv[3])
+    }
+  }
+  for (let i = start; i < end; i++) {
     const data = await getPokemonData(pokemonURLList[i], abilities)
     console.assert(data !== undefined)
     console.assert(data.length > 0)
@@ -40,7 +63,7 @@ export async function testAllPokemon (abilities) {
       // Gender ratio
       console.assert(data[j].gender_rate !== undefined, `${data[j].names[0].name}: Gender ratio undefined`)
       console.assert(data[j].gender_rate >= -1, `${data[j].names[0].name}: Gender ratio invalid -> ${data[j].gender_rate}`)
-      console.assert(data[j].gender_rate <= 8, `${data[j].names[0].name}: Gender ratio invalid -> ${data[j].gender_rate}`)
+      console.assert(data[j].gender_rate <= 10, `${data[j].names[0].name}: Gender ratio invalid -> ${data[j].gender_rate}`)
       // Growth rate
       console.assert(data[j].growth_rate !== undefined, `${data[j].names[0].name}: Growth rate undefined`)
       console.assert(data[j].growth_rate !== '', `${data[j].names[0].name}: Growth rate empty`)

@@ -1,11 +1,15 @@
 import { load } from 'cheerio'
+import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
+let debug = true
 
 export async function getPokemonURLList () {
+  const weekTimeMS = 7 * 24 * 60 * 60 * 1000
+  const fetchCache = fetchBuilder.withCache(new FileSystemCache({ cacheDirectory: './cache', ttl: weekTimeMS }))
   const list = []
   const URL = `${baseURL}/wiki/List_of_Pokémon_by_National_Pokédex_number`
-  const pageHTML = await (await fetch(URL)).text()
+  const pageHTML = await (await fetchCache(URL)).text()
   const $ = load(pageHTML)
   // Get all tables with class roundy (one for each generation)
   $('table.roundy').each((__, tbody) => {
@@ -20,6 +24,29 @@ export async function getPokemonURLList () {
     })
   })
   return list
+}
+
+function romanToInt (romanNumber) {
+  switch (romanNumber) {
+    case 'I':
+      return 1
+    case 'II':
+      return 2
+    case 'III':
+      return 3
+    case 'IV':
+      return 4
+    case 'V':
+      return 5
+    case 'VI':
+      return 6
+    case 'VII':
+      return 7
+    case 'VIII':
+      return 8
+    case 'IX':
+      return 9
+  }
 }
 
 function isVisible ($, element) {
@@ -368,7 +395,7 @@ function processForms ($) {
         const spriteURL = $(formElement).children('a').children('img').attr('src')
         // Get form name for filtering
         let fullName = $(formElement).children('small').text()
-        if (fullName === '' || fullName === 'Ultimate Mode' || fullName === 'Apex Build') {
+        if (fullName === '' || fullName === 'Ultimate Mode' || fullName === 'Apex Build' || fullName === 'Full Belly Mode') {
           fullName = baseName
         }
         const lowerCaseName = fullName.toLowerCase()
@@ -618,12 +645,18 @@ function getDexName (generationNumber, name) {
 }
 
 function processRegionalDex ($, flavorTextId, dexNumbers) {
-  $(`span${flavorTextId}`)
-    .parent()
-    .next('table')
+  let element = $(`span${flavorTextId}`).parent()
+  if (element[0] === undefined) {
+    return
+  }
+  while ($(element)[0].name !== 'table') {
+    element = $(element).next()
+  }
+  let generationNumber
+  $(element)
     .children('tbody')
     .children('tr')
-    .each((generationIndex, generation) => {
+    .each((__, generation) => {
       $(generation)
         .children('td')
         .children('table')
@@ -632,11 +665,12 @@ function processRegionalDex ($, flavorTextId, dexNumbers) {
         .children('th')
         .each((dexIndex, dex) => {
           if (dexIndex === 0) {
+            generationNumber = romanToInt($(dex).children('small').text().split(' ')[1])
             return
           }
           const dexContent = $(dex).children('small').text()
           const numberStart = dexContent.search(' #')
-          const dexName = getDexName(generationIndex + 1, dexContent.slice(0, numberStart))
+          const dexName = getDexName(generationNumber, dexContent.slice(0, numberStart))
           const dexNumber = dexContent.slice(numberStart + 2)
           if (dexNumber !== '—') {
             dexNumbers[dexName] = parseInt(dexNumber)
@@ -718,8 +752,8 @@ function processFlavorText ($, flavorTextId) {
   if (element[0] === undefined) {
     return [{ form: 'default', entries: [] }]
   }
-  if ($(element)[0].name !== 'table') {
-    element = $(element).next('table')
+  while ($(element)[0].name !== 'table') {
+    element = $(element).next()
   }
   $(element)
     .children('tbody')
@@ -759,9 +793,6 @@ function processFlavorText ($, flavorTextId) {
             if (gameName.slice(gameName.length - 1) === ' ') {
               gameName = gameName.slice(0, -1)
             }
-            if (form === 'Meteor Form') {
-              formIndex = 0
-            }
             if (form === 'Hoenn, Sinnoh, Unova, Kalos, and Alola Cap Pikachu') {
               processCapPikachuFlavorText(gameName, oldText, flavorText)
             } else if (form === 'All Cores') {
@@ -780,6 +811,10 @@ function processFlavorText ($, flavorTextId) {
           }
         })
     })
+  // Alcremie does not have a 'default' form :(
+  if (flavorText[0].entries.length === 0 && flavorText.length > 1) {
+    flavorText[0].entries = flavorText[1].entries
+  }
   return flavorText
 }
 
@@ -941,6 +976,10 @@ function fixRandomStuff (pokemon, stats) {
 }
 
 export async function getPokemonData (pokemonURL, abilities) {
+  // Can happen with automated tests
+  if (pokemonURL === undefined) {
+    return
+  }
   const URL = `${baseURL}${pokemonURL}`
   const pageHTML = await (await fetch(URL)).text()
   const $ = load(pageHTML)
@@ -961,8 +1000,12 @@ export async function getPokemonData (pokemonURL, abilities) {
   const category = processCategory($)
   const flavorText = processPokedexEntries($, dexNumbers)
   const stats = processStats($)
-  const abilityList = processAbilities($, abilities)
-  //const abilityList = []
+  let abilityList
+  if (debug) {
+    abilityList = []
+  } else {
+    abilityList = processAbilities($, abilities)
+  }
   if (flavorText === undefined) {
     console.log(`No flavor text found for ${pokemons[0].names[0].name}`)
   }
@@ -1013,7 +1056,7 @@ export async function getPokemonData (pokemonURL, abilities) {
     pokemons[i].category = [formCategory]
     if (pokemons[i].form_type === 'default') {
       if (flavorText.find(flavorText => flavorText.form === 'default') === undefined) {
-        console.log(flavorText)
+        console.log(pokemonURL)
       }
       pokemons[i].flavor_texts = flavorText.find(flavorText => flavorText.form === 'default').entries
     } else {
@@ -1056,7 +1099,6 @@ export async function getPokemonData (pokemonURL, abilities) {
     pokemons[i].types = formTypes.types
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
-    //console.log(pokemons[i])
   }
   return pokemons
 }
@@ -1070,5 +1112,8 @@ export async function getAllPokemonData (abilities) {
 }
 
 const pokemonURLList = await getPokemonURLList()
-
-//getPokemonData(pokemonURLList[1010], [])
+const argv = process.argv[2]
+if (process.argv[2] !== undefined) {
+  debug = true
+  getPokemonData(pokemonURLList[parseInt(argv) - 1], [])
+}

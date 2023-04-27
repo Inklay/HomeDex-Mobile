@@ -5,10 +5,12 @@
   "main": "data_fetcher.js",
   "scripts": {
     "start": "node data_fetcher.js",
-    "test": "node tests/test_all.js"
+    "test": "node tests/test.js"
   },
   "type": "module",
   "author": "Inklay",
   "license": "GNU-3.0",
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch-cache": "^3.1.2"
+  }
 }

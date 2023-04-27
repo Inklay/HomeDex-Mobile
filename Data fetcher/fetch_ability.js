@@ -1,12 +1,15 @@
 import { load } from 'cheerio'
 import { getLanguageCode } from './utils.js'
+import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
 
 export async function getAbilityURLList () {
+  const weekTimeMS = 7 * 24 * 60 * 60 * 1000
+  const fetchCache = fetchBuilder.withCache(new FileSystemCache({ cacheDirectory: './cache', ttl: weekTimeMS }))
   const list = []
   const URL = `${baseURL}/wiki/Ability`
-  const pageHTML = await (await fetch(URL)).text()
+  const pageHTML = await (await fetchCache(URL)).text()
   const $ = load(pageHTML)
   $('#List_of_Abilities')
     .parent()
