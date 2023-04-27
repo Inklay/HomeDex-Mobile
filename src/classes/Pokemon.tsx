@@ -1,7 +1,7 @@
 import DexNumber from './DexNumber'
 import FlavorText from './FlavorText'
 import Name from './Name'
-import PokemonAbility from './PokemonABility'
+import PokemonAbility from './PokemonAbility'
 import Sprite from './Sprite'
 import Stats from './Stats'
 
