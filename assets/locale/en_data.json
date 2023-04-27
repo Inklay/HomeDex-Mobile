@@ -19,7 +19,8 @@
     "dragon": "Dragon",
     "dark": "Dark",
     "steel": "Steel",
-    "fairy": "Fairy"
+    "fairy": "Fairy",
+    "unknown": "???"
   },
   "egg_groups": {
     "monster": "Monster",

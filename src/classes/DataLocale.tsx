@@ -20,6 +20,7 @@ export default interface DataLocale {
     dark: string
     steel: string
     fairy: string
+    unknown: string
   }
   egg_groups: {
     monster: string

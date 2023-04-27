@@ -19,7 +19,8 @@
     "dragon": "Dragon",
     "dark": "Ténèbres",
     "steel": "Acier",
-    "fairy": "Fée"
+    "fairy": "Fée",
+    "unknown": "???"
   },
   "egg_groups": {
     "monster": "Monstrueux",

@@ -38,6 +38,7 @@ export enum TypeBackgroundColors {
   rock = '#D4C294',
   steel = '#4C91B2',
   water = '#58ABF6',
+  unknown = '#9DC1B7'
 }
 
 export enum TypeColors {
@@ -58,7 +59,8 @@ export enum TypeColors {
   psychic = '#EA5D60',
   rock = '#BAAB82',
   steel = '#417D9A',
-  water = '#4A90DA'
+  water = '#4A90DA',
+  unknown = '#68A090'
 }
 
 export const Style = StyleSheet.create({

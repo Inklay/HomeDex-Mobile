@@ -138,6 +138,14 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
     return pokemon.base_friendship.toString()
   }
 
+  function getCategory () : string {
+    const value = getName(pokemon.category, dataLocale.locale)
+    if (value === '') {
+      return '???'
+    }
+    return value
+  }
+
   const female = 0.125 * pokemon.gender_rate * 100
   const male = 100 - female
 
@@ -147,7 +155,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
       <Text style={[Style.pokemonScreenTitle, {color: color}]}>{UILocale.pokemonScreen.about.data.data}</Text>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{UILocale.pokemonScreen.about.data.category}</Text>
-        <Text style={Style.pokemonScreenFieldData}>{getName(pokemon.category, dataLocale.locale)}</Text>
+        <Text style={Style.pokemonScreenFieldData}>{getCategory()}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenField}>{UILocale.pokemonScreen.about.data.height}</Text>

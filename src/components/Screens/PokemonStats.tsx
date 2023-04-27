@@ -39,30 +39,46 @@ export enum Types {
 
 const PokemonStats: React.FC<Props> = ({pokemon, color, UILocale, dataLocale}) => {
 
-function getTotalStats() : number {
+function getTotalStats() : string {
   let total = 0
 
   for (let i = 0; i < 6; i++)
     total += pokemon.stats[i].base
-  return total
+  if (total < 0) {
+    return '???'
+  }
+  return `${total}`
 }
 
-function getMaxStat(idx: number) : number {
+function getMaxStat(idx: number) : string {
+  if (pokemon.stats[idx].base === -1) {
+    return '???'
+  }
   if (idx === 0) {
     if (pokemon.dex_numbers.nat === 292)
-      return 1
-    return Math.floor(0.01 * (2 * pokemon.stats[idx].base + 31 + Math.floor(0.25 * 252)) * 100) + 100 + 10
+      return '1'
+    return `${Math.floor(0.01 * (2 * pokemon.stats[idx].base + 31 + Math.floor(0.25 * 252)) * 100) + 100 + 10}`
   } else
-    return Math.floor((Math.floor(0.01 * (2 * pokemon.stats[idx].base + 31 + Math.floor(0.25 * 252)) * 100) + 5) * 1.10)
+    return `${Math.floor((Math.floor(0.01 * (2 * pokemon.stats[idx].base + 31 + Math.floor(0.25 * 252)) * 100) + 5) * 1.10)}`
 }
 
-function getMinStat(idx: number) : number {
+function getMinStat(idx: number) : string {
+  if (pokemon.stats[idx].base === -1) {
+    return '???'
+  }
   if (idx === 0) {
     if (pokemon.dex_numbers.nat === 292)
-      return 1
-    return Math.floor(0.01 * (2 * pokemon.stats[idx].base) * 100) + 100 + 10
+      return '1'
+    return `${Math.floor(0.01 * (2 * pokemon.stats[idx].base) * 100) + 100 + 10}`
   } else
-    return Math.floor((Math.floor(0.01 * (2 * pokemon.stats[idx].base) * 100) + 5) * 0.90)
+    return `${Math.floor((Math.floor(0.01 * (2 * pokemon.stats[idx].base) * 100) + 5) * 0.90)}`
+}
+
+function formatStat(idx: number) : string {
+  if (pokemon.stats[idx].base === -1) {
+    return '???'
+  }
+  return `${pokemon.stats[idx].base}`
 }
 
 function getTypeEffectiveness(type: number) {
@@ -216,42 +232,42 @@ function getTypeEffectiveness(type: number) {
       <Text style={[Style.pokemonScreenTitle, {color: color}]}>{UILocale.pokemonScreen.stats.baseStats.baseStats}</Text>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.hp}</Text>
-        <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[0].base}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{formatStat(0)}</Text>
         <StatBar color={color} stat={pokemon.stats[0].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(0)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(0)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.attack}</Text>
-        <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[1].base}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{formatStat(1)}</Text>
         <StatBar color={color} stat={pokemon.stats[1].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(1)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(1)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.defense}</Text>
-        <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[2].base}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{formatStat(2)}</Text>
         <StatBar color={color} stat={pokemon.stats[2].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(2)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(2)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.spa}</Text>
-        <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[3].base}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{formatStat(3)}</Text>
         <StatBar color={color} stat={pokemon.stats[3].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(3)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(3)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.spd}</Text>
-        <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[4].base}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{formatStat(4)}</Text>
         <StatBar color={color} stat={pokemon.stats[4].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(4)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(4)}</Text>
       </View>
       <View style={Style.pokemonScreenFieldContainer}>
         <Text style={Style.pokemonScreenStatsField}>{UILocale.pokemonScreen.stats.baseStats.speed}</Text>
-        <Text style={Style.pokemonScreenStatsFieldData}>{pokemon.stats[5].base}</Text>
+        <Text style={Style.pokemonScreenStatsFieldData}>{formatStat(5)}</Text>
         <StatBar color={color} stat={pokemon.stats[5].base}/>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMinStat(5)}</Text>
         <Text style={Style.pokemonScreenStatsFieldData}>{getMaxStat(5)}</Text>

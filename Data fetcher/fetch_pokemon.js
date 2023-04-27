@@ -71,6 +71,8 @@ function NaNToMinusOne (value) {
 
 function getTypeNumber (type) {
   switch (type) {
+    case 'Normal':
+      return 1
     case 'Fighting':
       return 2
     case 'Flying':
@@ -106,7 +108,7 @@ function getTypeNumber (type) {
     case 'Fairy':
       return 18
     default:
-      return 1
+      return -1
   }
 }
 

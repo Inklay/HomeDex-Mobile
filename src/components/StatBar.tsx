@@ -8,6 +8,8 @@ interface Props {
 }
 
 const StatBar: React.FC<Props> = ({stat, color}) => {
+  if (stat === -1)
+    stat = 0
   return (
     <View style={Style.statBarContainer}>
       <View style={Style.statBarBackground}>

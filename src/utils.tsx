@@ -18,6 +18,7 @@ import Psychic from './components/svgs/Types/Psychic'
 import Rock from './components/svgs/Types/Rock'
 import Steel from './components/svgs/Types/Steel'
 import Water from './components/svgs/Types/Water'
+import Unknown from './components/svgs/Types/Unknown'
 import Name from './classes/Name'
 import Pokemon from './classes/Pokemon'
 import UILocale from './classes/UILocale'
@@ -32,6 +33,8 @@ import Filters from './classes/Filters'
 
 export function getTypeBackgroundColor(type: number) : string {
   switch (type) {
+    case 1:
+      return TypeBackgroundColors.normal
     case 2:
       return TypeBackgroundColors.fighting
     case 3:
@@ -66,12 +69,15 @@ export function getTypeBackgroundColor(type: number) : string {
       return TypeBackgroundColors.dark
     case 18:
       return TypeBackgroundColors.fairy
+    default:
+      return TypeBackgroundColors.unknown
   }
-  return TypeBackgroundColors.normal
 }
 
 export function getTypeColor(type: number) : string {
   switch (type) {
+    case 1:
+      return TypeColors.normal
     case 2:
       return TypeColors.fighting
     case 3:
@@ -106,12 +112,15 @@ export function getTypeColor(type: number) : string {
       return TypeColors.dark
     case 18:
       return TypeColors.fairy
+    default:
+      return TypeColors.unknown
   }
-  return TypeColors.normal
 }
 
 export function getTypeSVG(type: number) : ({ ...props }: SvgProps & SvgProps) => JSX.Element {
   switch (type) {
+    case 1:
+      return Normal
     case 2:
       return Fighting
     case 3:
@@ -146,12 +155,15 @@ export function getTypeSVG(type: number) : ({ ...props }: SvgProps & SvgProps) =
       return Dark
     case 18:
       return Fairy
+    default:
+      return Unknown
   }
-  return Normal
 }
 
 export function getTypeName(type: number, dataLocale: DataLocale) : string {
   switch (type) {
+    case 1:
+      return dataLocale.types.normal
     case 2:
       return dataLocale.types.fighting
     case 3:
@@ -186,8 +198,9 @@ export function getTypeName(type: number, dataLocale: DataLocale) : string {
       return dataLocale.types.dark
     case 18:
       return dataLocale.types.fairy
+    default:
+      return dataLocale.types.unknown
   }
-  return dataLocale.types.normal
 }
 
 export function getName(names: Name[], language: string) : string {
