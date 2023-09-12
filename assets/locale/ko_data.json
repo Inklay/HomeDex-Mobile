@@ -1,0 +1,50 @@
+{
+  "locale": "ko",
+  "name": "한국인 (KO)",
+  "types": {
+    "normal": "노말",
+    "fire": "불꽃",
+    "water": "물",
+    "electric": "전기",
+    "grass": "풀",
+    "ice": "얼음",
+    "fighting": "격투",
+    "poison": "독",
+    "ground": "땅",
+    "flying": "비행",
+    "psychic": "에스퍼",
+    "bug": "벌레",
+    "rock": "바위",
+    "ghost": "고스트",
+    "dragon": "드래곤",
+    "dark": "악",
+    "steel": "강철",
+    "fairy": "페어리",
+    "unknown": "???"
+  },
+  "egg_groups": {
+    "monster": "괴수",
+    "water_1": "수중①",
+    "water_2": "수중②",
+    "water_3": "수중③",
+    "bug": "벌레",
+    "flying": "비행",
+    "field": "육상",
+    "fairy": "요정",
+    "human_like": "인간형",
+    "mineral": "광물",
+    "amorphous": "부정형",
+    "dragon": "드래곤",
+    "grass": "식물",
+    "ditto": "메타몽",
+    "no_egg": "알미발견"
+  },
+  "growth_rate": {
+    "slow": "느린",
+    "medium": "중간",
+    "fast": "빠른",
+    "medium_slow": "중간 느림",
+    "slow_then_very_fast": "이상한 사람",
+    "fast_then_very_slow": "변동하다"
+  }
+}

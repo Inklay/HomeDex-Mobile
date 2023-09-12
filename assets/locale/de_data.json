@@ -1,0 +1,50 @@
+{
+  "locale": "de",
+  "name": "Deutsch (DE)",
+  "types": {
+    "normal": "Normal",
+    "fire": "Feuer",
+    "water": "Wasser",
+    "electric": "Elektro",
+    "grass": "Pflanze",
+    "ice": "Eis",
+    "fighting": "Kampf",
+    "poison": "Gift",
+    "ground": "Boden",
+    "flying": "Flug",
+    "psychic": "Psycho",
+    "bug": "Kâfer",
+    "rock": "Gestein",
+    "ghost": "Geist",
+    "dragon": "Drache",
+    "dark": "Unlicht",
+    "steel": "Stahl",
+    "fairy": "Fee",
+    "unknown": "???"
+  },
+  "egg_groups": {
+    "monster": "Monster",
+    "water_1": "Wasser 1",
+    "water_2": "Wasser 2",
+    "water_3": "Wasser 3",
+    "bug": "Käfer",
+    "flying": "Flug",
+    "field": "Feld",
+    "fairy": "Feen",
+    "human_like": "Humanotyp",
+    "mineral": "Mineral",
+    "amorphous": "Amorph",
+    "dragon": "Drachen",
+    "grass": "Pflanzen",
+    "ditto": "Ditto",
+    "no_egg": "Unbekannt"
+  },
+  "growth_rate": {
+    "slow": "Langsam",
+    "medium": "Mittel-Langsam",
+    "fast": "Schnell",
+    "medium_slow": "Mittel-Schnell",
+    "slow_then_very_fast": "Erratic",
+    "fast_then_very_slow": "Fluctuating"
+  }
+}

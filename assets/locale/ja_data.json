@@ -1,0 +1,50 @@
+{
+  "locale": "ja",
+  "name": "日本語 (JA)",
+  "types": {
+    "normal": "ノーマル",
+    "fire": "ほのお",
+    "water": "みず",
+    "electric": "でんき",
+    "grass": "くさ",
+    "ice": "こおり",
+    "fighting": "かくとう",
+    "poison": "どく",
+    "ground": "じめん",
+    "flying": "ひこう",
+    "psychic": "エスパー",
+    "bug": "むし",
+    "rock": "いわ",
+    "ghost": "ゴースト",
+    "dragon": "ドラゴン",
+    "dark": "あく",
+    "steel": "はがね",
+    "fairy": "フェアリー",
+    "unknown": "???"
+  },
+  "egg_groups": {
+    "monster": "かいじゅう",
+    "water_1": "すいちゅう1",
+    "water_2": "すいちゅう2",
+    "water_3": "すいちゅう3",
+    "bug": "むし",
+    "flying": "ひこう",
+    "field": "りくじょう",
+    "fairy": "ようせい",
+    "human_like": "ひとがた",
+    "mineral": "こうぶつ",
+    "amorphous": "ふていけい",
+    "dragon": "ドラゴン",
+    "grass": "しょくぶつ",
+    "ditto": "メタモン",
+    "no_egg": "タマゴみはっけん"
+  },
+  "growth_rate": {
+    "slow": "125万タイプ",
+    "medium": "100万タイプ",
+    "fast": "80万タイプ",
+    "medium_slow": "105万タイプ",
+    "slow_then_very_fast": "60万タイプ",
+    "fast_then_very_slow": "164万タイプ"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "locale": "es",
+  "name": "Español (ES)",
+  "types": {
+    "normal": "Normal",
+    "fire": "Fuego",
+    "water": "Agua",
+    "electric": "Eléctrico",
+    "grass": "Planta",
+    "ice": "Hielo",
+    "fighting": "Lucha",
+    "poison": "Veneno",
+    "ground": "Tierra",
+    "flying": "Volador",
+    "psychic": "Psíquico",
+    "bug": "Bicho",
+    "rock": "Roca",
+    "ghost": "Fantasma",
+    "dragon": "Dragón",
+    "dark": "Siniestro",
+    "steel": "Acero",
+    "fairy": "Hada",
+    "unknown": "???"
+  },
+  "egg_groups": {
+    "monster": "Monstruo",
+    "water_1": "Agua 1",
+    "water_2": "Agua 2",
+    "water_3": "Agua 3",
+    "bug": "Bicho",
+    "flying": "Volador",
+    "field": "Campo",
+    "fairy": "Hada",
+    "human_like": "Humanoide",
+    "mineral": "Mineral",
+    "amorphous": "Amofor",
+    "dragon": "Dragón",
+    "grass": "Planta",
+    "ditto": "Ditto",
+    "no_egg": "Desconocido"
+  },
+  "growth_rate": {
+    "slow": "Lento",
+    "medium": "Medio",
+    "fast": "Rápido",
+    "medium_slow": "Parabólico",
+    "slow_then_very_fast": "Errático",
+    "fast_then_very_slow": "Fluctuante"
+  }
+}

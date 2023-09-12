@@ -1,5 +1,6 @@
 import { load } from 'cheerio'
 import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
+import { getOtherNames } from './utils.js'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
 let debug = true
@@ -245,6 +246,7 @@ function getManualFormsInfo (fullName) {
   let hasDivBefore = false
   let isFurfrou = false
   let replaceDefault = false
+  let hasP = false
   switch (fullName) {
     case 'Cosplay Pikachu':
       tableId = 'Cosplay_Pikachu_2'
@@ -259,6 +261,7 @@ function getManualFormsInfo (fullName) {
     case 'Vivillon':
       tableId = 'Forms'
       replaceDefault = true
+      hasP = true
       break
     case 'Furfrou':
       isFurfrou = true
@@ -277,7 +280,8 @@ function getManualFormsInfo (fullName) {
     nameHasLink,
     hasDivBefore,
     isFurfrou,
-    replaceDefault
+    replaceDefault,
+    hasP
   }
 }
 
@@ -325,12 +329,14 @@ function addManualForms ($, fullName, spriteURL, formType, baseName) {
     } else if (formInfo.isFurfrou) {
       table = table
         .next('p')
-        .next('ul')
+        .next('p')
+        .next('table')
+    } else if (formInfo.hasP) {
+      table = table
         .next('p')
         .next('table')
     } else {
-      table = table
-        .next('table')
+      table = table.next()
     }
     $(table)
       .children('tbody')
@@ -894,7 +900,7 @@ function processStats ($) {
   } else {
     element = header
   }
-  while ($(element)[0].name !== 'h4') {
+  while ($(element)[0] !== undefined && $(element)[0].name !== 'h4') {
     if ($(element)[0].name === 'h3' && $(element).text() !== 'Base stats') {
       break
     }
@@ -987,6 +993,9 @@ export async function getPokemonData (pokemonURL, abilities) {
   const $ = load(pageHTML)
   const pokemons = processForms($)
   // For unreleased Pokémon
+  if (pokemons[0] === undefined) {
+    console.log(pokemonURL)
+  }
   if (pokemons[0].names[0].name === '') {
     pokemons[0].names[0].name = pokemonURL.replace('/wiki/', '').replace('_(Pok%C3%A9mon)', '')
   }
@@ -1002,7 +1011,9 @@ export async function getPokemonData (pokemonURL, abilities) {
   const category = processCategory($)
   const flavorText = processPokedexEntries($, dexNumbers)
   const stats = processStats($)
+  const otherNames = getOtherNames($, true)
   let abilityList
+
   if (debug) {
     abilityList = []
   } else {
@@ -1015,6 +1026,10 @@ export async function getPokemonData (pokemonURL, abilities) {
     console.log(`No stats found for ${pokemons[0].names[0].name}`)
   }
   for (let i = 0; i < pokemons.length; i++) {
+    pokemons[i].names = [
+      ...pokemons[i].names,
+      ...otherNames
+    ]
     pokemons[i].dex_numbers = dexNumbers
     let formTypes = types.find(type => type.name === pokemons[i].form_name)
     // If the form has the same type as the base form
@@ -1106,10 +1121,15 @@ export async function getPokemonData (pokemonURL, abilities) {
 }
 
 export async function getAllPokemonData (abilities) {
+  console.log(`Getting data for ${pokemonURLList.length} pokemon`)
   let data = []
   for (let i = 0; i < pokemonURLList.length; i++) {
     data = [...data, ...(await getPokemonData(pokemonURLList[i], abilities))]
+    if (i !== 0 && i % 100 === 0) {
+      console.log(`Got data for ${i}/${pokemonURLList.length} pokemon`)
+    }
   }
+  console.log('Got data for all pokemon')
   return data
 }
 

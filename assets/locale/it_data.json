@@ -1,0 +1,50 @@
+{
+  "locale": "it",
+  "name": "Italiano (IT)",
+  "types": {
+    "normal": "Normal",
+    "fire": "Fuoco",
+    "water": "Acqua",
+    "electric": "Elettro",
+    "grass": "Erba",
+    "ice": "Chiaccio",
+    "fighting": "Lotta",
+    "poison": "Veleno",
+    "ground": "Terra",
+    "flying": "Volante",
+    "psychic": "Psico",
+    "bug": "Coleottero",
+    "rock": "Roccia",
+    "ghost": "Spettro",
+    "dragon": "Drago",
+    "dark": "Buio",
+    "steel": "Acciaio",
+    "fairy": "Folletto",
+    "unknown": "???"
+  },
+  "egg_groups": {
+    "monster": "Mostro",
+    "water_1": "Acqua 1",
+    "water_2": "Acqua 2",
+    "water_3": "Acqua 3",
+    "bug": "Coleottero",
+    "flying": "Volante",
+    "field": "Campo",
+    "fairy": "Magico",
+    "human_like": "Umanoide",
+    "mineral": "Minerale",
+    "amorphous": "Amorfo",
+    "dragon": "Drago",
+    "grass": "Erba",
+    "ditto": "Ditto",
+    "no_egg": "Genere sconosciuto"
+  },
+  "growth_rate": {
+    "slow": "Lenta",
+    "medium": "Medio Lenta",
+    "fast": "Veloce",
+    "medium_slow": "Medio Veloce",
+    "slow_then_very_fast": "Irregolare",
+    "fast_then_very_slow": "Fluttuante"
+  }
+}

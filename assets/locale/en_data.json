@@ -44,7 +44,7 @@
     "medium": "Medium",
     "fast": "Fast",
     "medium_slow": "Medium slow",
-    "slow_then_very_fast": "Slow then very fast",
-    "fast_then_very_slow": "Fast then very slow"
+    "slow_then_very_fast": "Erratic",
+    "fast_then_very_slow": "Fluctuating"
   }
 }

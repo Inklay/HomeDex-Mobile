@@ -71,24 +71,24 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
       <View style={Style.settingsContainer}>
         <View style={Style.settingsContent}>
           <Text style={Style.settingsSectionHeader}>{UILocale.settings.language.languages}</Text>
-          <View style={{
-            marginHorizontal: 20
-          }}>
-            <Text style={Style.settingsSectionItem}>{UILocale.settings.language.interface}</Text>
+          <View style={{ marginHorizontal: 20 }}>
             <TouchableWithoutFeedback onPress={showUILanguagePicker}>
-              <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.language.interfaceDescription}</Text>
+              <View>
+                <Text style={Style.settingsSectionItem}>{UILocale.settings.language.interface}</Text>
+                <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.language.interfaceDescription}</Text>
+              </View>
             </TouchableWithoutFeedback>
-            <Text style={Style.settingsSectionItem}>{UILocale.settings.language.data}</Text>
             <TouchableWithoutFeedback onPress={showDataLanguagePicker}>
-              <Text style={Style.settingsSectionItemDescription}>{DataLocale.name}{"\n\n"}{UILocale.settings.language.dataDescription}</Text>
+              <View>
+                <Text style={Style.settingsSectionItem}>{UILocale.settings.language.data}</Text>
+                <Text style={Style.settingsSectionItemDescription}>{DataLocale.name}{"\n\n"}{UILocale.settings.language.dataDescription}</Text>
+              </View>
             </TouchableWithoutFeedback>
           </View>
         </View>
         <View style={Style.settingsContent}>
           <Text style={Style.settingsSectionHeader}>{UILocale.settings.links.links}</Text>
-          <View style={{
-            marginHorizontal: 20
-          }}>
+          <View style={{ marginHorizontal: 20 }}>
             <Text style={Style.settingsSectionItem}>Github</Text>
             <TouchableWithoutFeedback onPress={openGithub}>
               <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.links.githubDescription}</Text>
@@ -104,9 +104,7 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
             Style.settingsSectionHeader,
             { marginBottom: 10 }
           ]}>{UILocale.settings.credits.credits}</Text>
-          <View style={{
-            marginHorizontal: 20
-          }}>
+          <View style={{ marginHorizontal: 20 }}>
             <Text style={Style.settingsSectionItemDescription}>
               {UILocale.settings.credits.nintendo}
               {"\n\n"}
@@ -136,8 +134,14 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
           updateDataLanguage(itemValue as unknown as string)
         }
       >
+        <Picker.Item label="Deutsch" value="de"/>
         <Picker.Item label="English" value="en"/>
+        <Picker.Item label="Español" value="es"/>
         <Picker.Item label="Français" value="fr"/>
+        <Picker.Item label="Italiano" value="it"/>
+        <Picker.Item label="日本語" value="ja"/>
+        <Picker.Item label="한국인" value="ko"/>
+        <Picker.Item label="简体中文" value="zh"/>
       </Picker>
     </View>
   )

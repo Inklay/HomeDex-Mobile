@@ -25,7 +25,13 @@ import UILocale from './classes/UILocale'
 import frUI from '../assets/locale/fr_ui.json'
 import enUI from '../assets/locale/en_ui.json'
 import frData from '../assets/locale/fr_data.json'
+import deData from '../assets/locale/de_data.json'
 import enData from '../assets/locale/en_data.json'
+import esData from '../assets/locale/es_data.json'
+import itData from '../assets/locale/it_data.json'
+import jaData from '../assets/locale/ja_data.json'
+import koData from '../assets/locale/ko_data.json'
+import zhData from '../assets/locale/zh-Hant_data.json'
 import { NativeModules, Platform } from 'react-native'
 import AsyncStorage  from '@react-native-async-storage/async-storage'
 import DataLocale from './classes/DataLocale'
@@ -321,9 +327,27 @@ export async function setUILocale (localeName: string, setLanguage: (value: Reac
 export async function setDataLocale (localeName: string, setLanguage: (value: React.SetStateAction<any>) => void): Promise<DataLocale> {
   await AsyncStorage.setItem('DataLocale', localeName)
   switch (localeName) {
+    case 'de':
+      setLanguage(deData)
+      return deData
+    case 'es':
+      setLanguage(esData)
+      return esData
     case 'fr':
       setLanguage(frData)
       return frData
+    case 'it':
+      setLanguage(itData)
+      return itData
+     case 'ja':
+      setLanguage(jaData)
+      return jaData
+    case 'ko':
+      setLanguage(koData)
+      return koData
+    case 'zh':
+      setLanguage(zhData)
+      return zhData
     default:
       setLanguage(enData)
       return enData
