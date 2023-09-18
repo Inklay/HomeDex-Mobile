@@ -105,7 +105,7 @@ const PokemonAbout: React.FC<Props> = ({pokemon, color, dataLocale, UILocale}) =
     switch (pokemon.growth_rate) {
       case 'slow':
         return dataLocale.growth_rate.slow
-      case 'medium':
+      case 'medium-fast':
         return dataLocale.growth_rate.medium
       case 'fast':
         return dataLocale.growth_rate.fast
