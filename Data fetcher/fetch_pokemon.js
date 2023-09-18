@@ -331,6 +331,8 @@ function addManualForms ($, fullName, spriteURL, formType, baseName) {
         .children('table')
     } else if (formInfo.hasDivBefore) {
       table = table
+        .next('p')
+        .next('p')
         .next('div')
         .next('table')
     } else if (formInfo.isFurfrou) {
@@ -360,6 +362,11 @@ function addManualForms ($, fullName, spriteURL, formType, baseName) {
                 names.push($(row).children('a').children('span').text())
               } else {
                 names.push($(row).text().replace('\n', ''))
+                // Minior
+                if ($(row).children('a').length !== 0 && $(row).children('a').attr('class') === 'image') {
+                  pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formType, baseName,
+                    (index === 1 && rowIndex === 0 && formInfo.replaceDefault), names[rowIndex])
+                }
               }
             } else if (index % 2 === 1) {
               pushForm(forms, names[rowIndex], $(row).children('a').children('img').attr('src'), formType, baseName,
@@ -1120,7 +1127,6 @@ export async function getPokemonData (pokemonURL, abilities) {
     pokemons[i].types = formTypes.types
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
-    console.log(pokemons[i].names[0].name)
   }
   return pokemons
 }
