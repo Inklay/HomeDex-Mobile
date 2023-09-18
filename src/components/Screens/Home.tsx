@@ -114,7 +114,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       if (parseInt(search) > 0) {
         if (!p.dex_numbers.nat.toString().includes(search))
           return
-      } else if (!accent.remove(getName(p.names, UILocale.locale).toLocaleLowerCase()).includes(search))
+      } else if (!accent.remove(getName(p.names, dataLocale.locale).toLocaleLowerCase()).includes(search))
         return
       for (let i = 0; i < filters.types.length; i++) {
         if (p.types.length ===2) {
