@@ -648,6 +648,8 @@ function getDexName (generationNumber, name) {
     case 9:
       if (name === 'Paldea') {
         return 'SV'
+      } else if (name === 'Kitakami') {
+        return 'TTM'
       }
   }
 }
