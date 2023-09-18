@@ -324,6 +324,9 @@ function addManualForms ($, fullName, spriteURL, formType, baseName) {
     const names = []
     if (formInfo.hasDiv) {
       table = table
+        .next('p')
+        .next('p')
+        .next('p')
         .next('div')
         .children('table')
     } else if (formInfo.hasDivBefore) {
@@ -1117,6 +1120,7 @@ export async function getPokemonData (pokemonURL, abilities) {
     pokemons[i].types = formTypes.types
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
+    console.log(pokemons[i].names[0].name)
   }
   return pokemons
 }
