@@ -3,7 +3,6 @@ import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
 import { getOtherNames } from './utils.js'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
-let debug = true
 
 export async function getPokemonURLList () {
   const weekTimeMS = 7 * 24 * 60 * 60 * 1000
@@ -1014,13 +1013,8 @@ export async function getPokemonData (pokemonURL, abilities) {
   const flavorText = processPokedexEntries($, dexNumbers)
   const stats = processStats($)
   const otherNames = getOtherNames($, true)
-  let abilityList
+  const abilityList = processAbilities($, abilities)
 
-  if (debug) {
-    abilityList = []
-  } else {
-    abilityList = processAbilities($, abilities)
-  }
   if (flavorText === undefined) {
     console.log(`No flavor text found for ${pokemons[0].names[0].name}`)
   }
@@ -1119,6 +1113,7 @@ export async function getPokemonData (pokemonURL, abilities) {
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
   }
+  console.log(pokemons)
   return pokemons
 }
 
@@ -1136,8 +1131,3 @@ export async function getAllPokemonData (abilities) {
 }
 
 const pokemonURLList = await getPokemonURLList()
-const argv = process.argv[2]
-if (process.argv[2] !== undefined) {
-  debug = true
-  getPokemonData(pokemonURLList[parseInt(argv) - 1], [])
-}
