@@ -250,6 +250,7 @@ function getManualFormsInfo (fullName) {
     case 'Cosplay Pikachu':
       tableId = 'Cosplay_Pikachu_2'
       hasArrow = true
+      hasP = true
       break
     case 'Pikachu in a cap':
       tableId = 'Pikachu_in_a_cap'
@@ -290,6 +291,10 @@ function addManualForms ($, fullName, spriteURL, formType, baseName) {
   if (formInfo.tableId !== '' && formInfo.hasArrow) {
     $(`span#${formInfo.tableId}`)
       .parent()
+      .next('p')
+      .next('table')
+      .next('p')
+      .next('p')
       .next('div')
       .children('table')
       .children('tbody')
@@ -1113,7 +1118,6 @@ export async function getPokemonData (pokemonURL, abilities) {
     // Some issues that are easier to fix here than in the data
     pokemons[i] = fixRandomStuff(pokemons[i], stats)
   }
-  console.log(pokemons)
   return pokemons
 }
 
