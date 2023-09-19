@@ -1,7 +1,10 @@
 import { load } from 'cheerio'
 import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
 import { getOtherNames } from './utils.js'
+import { createAlolanNames, createGalarianNames, createGigantamaxNames, createHisuianNames } from './pokemon/translation/getTranslatedFormNames.js'
 import fs from 'fs'
+import { getTranslatedData } from './pokemon/translation/getTranslatedData.js'
+import { getCategory } from './pokemon/getCategories.js'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
 const manualData = JSON.parse(fs.readFileSync('manual_data.json'))
@@ -586,27 +589,6 @@ function processGrowthRate ($) {
   return rate
 }
 
-function processCategory ($) {
-  const data = []
-  const categoriesSpan = $('td > a[href=\'/wiki/Pok%C3%A9mon_category\'] > span')
-  if ($(categoriesSpan).children('span').length === 0) {
-    data.push({
-      name: $(categoriesSpan).text(),
-      language: 'en',
-      form: 'default'
-    })
-  } else {
-    $(categoriesSpan).children('span').each((__, element) => {
-      data.push({
-        name: `${$(element).text()} Pokémon`,
-        language: 'en',
-        form: $(element).attr('title')
-      })
-    })
-  }
-  return data
-}
-
 function getDexName (generationNumber, name) {
   switch (generationNumber) {
     case 1:
@@ -1028,11 +1010,12 @@ export async function getPokemonData (pokemonURL, abilities) {
   const eggGroups = processEggGroups($)
   const genderRatio = processGenderRatio($)
   const growthRate = processGrowthRate($)
-  const category = processCategory($)
   const flavorText = processPokedexEntries($, dexNumbers)
   const stats = processStats($)
   const otherNames = getOtherNames($, true)
+  const translatedData = await getTranslatedData(otherNames)
   const abilityList = processAbilities($, abilities)
+  const category = getCategory($, pokemons[0].names[0].name, translatedData.category)
 
   if (flavorText === undefined) {
     console.log(`No flavor text found for ${pokemons[0].names[0].name}`)
@@ -1042,7 +1025,7 @@ export async function getPokemonData (pokemonURL, abilities) {
   }
   for (let i = 0; i < pokemons.length; i++) {
     pokemons[i].dex_numbers = dexNumbers
-    if (pokemons[i].form_type !== 'default') {
+    if (pokemons[i].form_type === 'other') {
       const data = manualData.find(data => data.id === pokemons[i].dex_numbers.nat)
       if (data !== undefined) {
         const formData = data.forms.find(form => form.english === pokemons[i].names[0].name)
@@ -1067,10 +1050,25 @@ export async function getPokemonData (pokemonURL, abilities) {
           }
         }
       }
-    } else {
+    } else if (pokemons[i].form_type === 'default') {
       pokemons[i].names = [
         ...pokemons[i].names,
         ...otherNames
+      ]
+    } else {
+      let otherFormNames = []
+      if (pokemons[i].form_type === 'alola') {
+        otherFormNames = createAlolanNames(otherNames)
+      } else if (pokemons[i].form_type === 'galar') {
+        otherFormNames = createGalarianNames(otherNames)
+      } else if (pokemons[i].form_type === 'gmax') {
+        otherFormNames = createGigantamaxNames(otherNames)
+      } else if (pokemons[i].form_type === 'hisui') {
+        otherFormNames = createHisuianNames(otherNames)
+      }
+      pokemons[i].names = [
+        ...pokemons[i].names,
+        ...otherFormNames
       ]
     }
     let formTypes = types.find(type => type.name === pokemons[i].form_name)
@@ -1105,14 +1103,16 @@ export async function getPokemonData (pokemonURL, abilities) {
     if (formCategory === undefined) {
       formCategory = category.find(category => category.form === pokemons[i].form_name)
       if (formCategory === undefined) {
-        formCategory = category.find(category => category.form === 'default')
+        formCategory = category.find(category => category.form === pokemons[i].form_type)
         if (formCategory === undefined) {
-          formCategory = category[0]
+          formCategory = category.find(category => category.form === 'default')
+          if (formCategory === undefined) {
+            formCategory = category[0]
+          }
         }
       }
     }
-    delete formCategory.form
-    pokemons[i].category = [formCategory]
+    pokemons[i].category = formCategory.categories
     if (pokemons[i].form_type === 'default') {
       if (flavorText.find(flavorText => flavorText.form === 'default') === undefined) {
         console.log(pokemonURL)
@@ -1171,7 +1171,6 @@ export async function getAllPokemonData (abilities) {
       console.log(`Got data for ${i}/${pokemonURLList.length} pokemon`)
     }
   }
-  console.log('Got data for all pokemon')
   return data
 }
 

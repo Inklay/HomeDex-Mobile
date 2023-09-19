@@ -1,5 +1,37 @@
 [
   {
+    "id": 19,
+    "forms": [
+      {
+        "english": "Alolan Rattata",
+        "names": [
+          { "language": "ja", "name": "コラッタ（アローラのすがた）"},
+          { "language": "zh-Hant", "name": "阿罗拉小拉達"},
+          { "language": "fr", "name": "Rattata d'Alola"},
+          { "language": "de", "name": "Rattfratz (Alola-Form)"},
+          { "language": "it", "name": "Rattata di Alola"},
+          { "language": "es", "name": "Rattata de Alola"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "forms": [
+      {
+        "english": "Alolan Raticate",
+        "names": [
+          { "language": "ja", "name": "ラッタ（アローラのすがた）"},
+          { "language": "zh-Hant", "name": "阿罗拉拉達"},
+          { "language": "fr", "name": "Rattatac d'Alola"},
+          { "language": "de", "name": "Rattikarl (Alola-Form)"},
+          { "language": "it", "name": "Raticate di Alola"},
+          { "language": "es", "name": "Raticate de Alola"}
+        ]
+      }
+    ]
+  },
+  {
     "id": 25,
     "forms": [
       {
@@ -7,7 +39,7 @@
         "names" : [
           { "language": "ja", "name": "ピカチュウの相棒"},
           { "language": "zh-Hant", "name": "皮卡丘"},
-          { "language": "fr", "name": "Pikachu Partenaire "},
+          { "language": "fr", "name": "Pikachu Partenaire"},
           { "language": "de", "name": "Partner-Pikachu"},
           { "language": "it", "name": "Pikachu (Let's Go)"},
           { "language": "es", "name": "Pikachu (Let's Go)"}
@@ -512,7 +544,7 @@
         "english": "Gigantamax Pikachu",
         "names" : [
           { "language": "ja", "name": "キョダイマックス・ピカチュウ"},
-          { "language": "zh-Hant", "name": "皮卡丘 (极巨化)"},
+          { "language": "zh-Hant", "name": "皮卡丘 (超极巨化)"},
           { "language": "fr", "name": "Pikachu Gigamax"},
           { "language": "de", "name": "Gigadynamax-Pikachu"},
           { "language": "it", "name": "Pikachu Gigamax"},
