@@ -60,6 +60,42 @@ async function getFRCategory ($, name) {
 
 function getDECategory ($) {
   const data = []
+  const categoryElement = $('a[title=\'Kategorie (Pokémoneigenschaft)\']').parent().next('td')
+  if ($(categoryElement).children('br').length === 0) {
+    data.push({
+      form: 'default',
+      categories: [{
+        name: $(categoryElement).text(),
+        language: 'de'
+      }]
+    })
+  } else {
+    let form
+    let name
+    $(categoryElement).contents().each((index, value) => {
+      const text = $(value).text().replace('\n', '')
+      if (index % 2 === 0) {
+        name = text
+      } else {
+        if (text === '') {
+          form = 'default'
+        } else if (text === '(Hisui)') {
+          form = 'hisui'
+        } else if (text === '(Paldea)') {
+          form = 'paldea'
+        } else if (text === '(Galar)') {
+          form = 'galar'
+        }
+        data.push({
+          form,
+          categories: [{
+            name,
+            language: 'de'
+          }]
+        })
+      }
+    })
+  }
   return data
 }
 
