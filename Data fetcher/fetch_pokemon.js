@@ -1,7 +1,7 @@
 import { load } from 'cheerio'
 import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
 import { getOtherNames } from './utils.js'
-import { createAlolanNames, createGalarianNames, createGigantamaxNames, createHisuianNames } from './pokemon/translation/getTranslatedFormNames.js'
+import { createAlolanNames, createGalarianNames, createGigantamaxNames, createHisuianNames, createPaldeanNames } from './pokemon/translation/getTranslatedFormNames.js'
 import fs from 'fs'
 import { getTranslatedData } from './pokemon/translation/getTranslatedData.js'
 import { getCategory } from './pokemon/getCategories.js'
@@ -1065,6 +1065,8 @@ export async function getPokemonData (pokemonURL, abilities) {
         otherFormNames = createGigantamaxNames(otherNames)
       } else if (pokemons[i].form_type === 'hisui') {
         otherFormNames = createHisuianNames(otherNames)
+      } else if (pokemons[i].form_type === 'paldea') {
+        otherFormNames = createPaldeanNames(otherNames)
       }
       pokemons[i].names = [
         ...pokemons[i].names,

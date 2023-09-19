@@ -196,11 +196,73 @@ function getITCategory ($) {
 
 function getJACategory ($) {
   const data = []
+  let defaultCategory
+  $('table[class=\'blueinfobox\'] > tbody tr > th:contains("分類")').each((index, value) => {
+    let form
+    const name = $(value).next().text().replaceAll('\n', '')
+    if (index === 0) {
+      form = 'default'
+      defaultCategory = name
+    } else {
+      const headerContent = $(value).parent().prev().text().replaceAll('\n', '')
+      if (headerContent === 'ヒスイのすがた') {
+        form = 'hisui'
+      } else if (headerContent === 'ガラルのすがた') {
+        form = 'galar'
+      } else if (headerContent === 'パルデアのすがた') {
+        form = 'paldea'
+      }
+    }
+    if (form === 'default' || name !== defaultCategory) {
+      data.push({
+        form,
+        categories: [{
+          name,
+          language: 'ja'
+        }]
+      })
+    }
+  })
   return data
 }
 
 function getZHHANTCategory ($) {
   const data = []
+  let defaultCategory
+  const formContainer = $('tr[class=\'md-hide\']')
+  const formName = []
+  $(formContainer).each((index, value) => {
+    if (index === 0) {
+      formName.push('default')
+      return
+    }
+    const form = $(value).text().trim().replace('\n', '')
+    if (form.search('洗翠') !== -1) {
+      formName.push('hisui')
+    } else if (form.search('帕底亚') !== -1) {
+      formName.push('paldea')
+    } else if (form.search('伽勒尔') !== -1) {
+      formName.push('galar')
+    }
+  })
+  $('a[title=\'分类\']').each((index, value) => {
+    if (index >= formContainer.length) {
+      return
+    }
+    const name = $(value).parent().next().text().trim().replace('\n', '')
+    if (index === 0) {
+      defaultCategory = name
+    }
+    if (name !== defaultCategory || index === 0) {
+      data.push({
+        form: formName[index],
+        categories: [{
+          name,
+          language: 'zh-Hant'
+        }]
+      })
+    }
+  })
   return data
 }
 

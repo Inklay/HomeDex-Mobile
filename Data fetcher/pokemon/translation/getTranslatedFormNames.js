@@ -137,3 +137,38 @@ export function createGigantamaxNames (otherNames) {
   }
   return names
 }
+
+export function createPaldeanNames (otherNames) {
+  const names = []
+  for (let i = 0; i < otherNames.length; i++) {
+    let name
+    switch (otherNames[i].language) {
+      case 'fr':
+        name = `${otherNames[i].name} de Paldea`
+        break
+      case 'de':
+        name = `${otherNames[i].name} (Paldea-Form)`
+        break
+      case 'it':
+        name = `${otherNames[i].name} di Paldea`
+        break
+      case 'es':
+        name = `${otherNames[i].name} de Paldea`
+        break
+      case 'zh-Hant':
+        name = `帕底亚${otherNames[i].name}`
+        break
+      case 'ja':
+        name = `${otherNames[i].name} (パルデアのすがた)`
+        break
+      case 'ko':
+        name = `${otherNames[i].name}`
+        break
+    }
+    names.push({
+      name,
+      language: otherNames[i].language
+    })
+  }
+  return names
+}
