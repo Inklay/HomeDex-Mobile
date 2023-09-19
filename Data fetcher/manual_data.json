@@ -617,5 +617,80 @@
         ]
       }
     ]
+  },
+  {
+    "id": 382,
+    "forms": [
+      {
+        "english": "Primal Kyogre",
+        "names" : [
+          { "language": "ja", "name": "ゲンシカイオーガ"},
+          { "language": "zh-Hant", "name": "原始盖欧卡"},
+          { "language": "fr", "name": "Primo Kyogre"},
+          { "language": "de", "name": "Kyogre (Protomorphose)"},
+          { "language": "it", "name": "ArcheoKyogre"},
+          { "language": "es", "name": "Kyogre primigenio"},
+          { "language": "ko", "name": "가이오가"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": 383,
+    "forms": [
+      {
+        "english": "Primal Groudon",
+        "names" : [
+          { "language": "ja", "name": "ゲンシグラードン"},
+          { "language": "zh-Hant", "name": "原始固拉多"},
+          { "language": "fr", "name": "Primo Groudon"},
+          { "language": "de", "name": "Groudon (Protomorphose)"},
+          { "language": "it", "name": "ArcheoGroudon"},
+          { "language": "es", "name": "Groudon primigenio"},
+          { "language": "ko", "name": "그란돈"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": 386,
+    "forms": [
+      {
+        "english": "Deoxys Attack Forme",
+        "names" : [
+          { "language": "ja", "name": "デオキシス (アタックフォルム)"},
+          { "language": "zh-Hant", "name": "代歐奇希斯 (攻擊形態)"},
+          { "language": "fr", "name": "Deoxys Forme Attaque"},
+          { "language": "de", "name": "Deoxys Angriffsform"},
+          { "language": "it", "name": "Deoxys Forma Attacco"},
+          { "language": "es", "name": "Deoxys Forma Ataque"},
+          { "language": "ko", "name": "테오키스 (어택폼)"}
+        ]
+      },
+      {
+        "english": "Deoxys Defense Forme",
+        "names" : [
+          { "language": "ja", "name": "デオキシス (ディフェンスフォルム)"},
+          { "language": "zh-Hant", "name": "代歐奇希斯 (防禦形態)"},
+          { "language": "fr", "name": "Deoxys Forme Défense"},
+          { "language": "de", "name": "Deoxys Verteidigungsform"},
+          { "language": "it", "name": "Deoxys Forma Difesa"},
+          { "language": "es", "name": "Deoxys Forma Defensa"},
+          { "language": "ko", "name": "테오키스 (디펜스폼)"}
+        ]
+      },
+      {
+        "english": "Deoxys Speed Forme",
+        "names" : [
+          { "language": "ja", "name": "デオキシス (スピードフォルム)"},
+          { "language": "zh-Hant", "name": "代歐奇希斯 (速度形態)"},
+          { "language": "fr", "name": "Deoxys Forme Vitesse"},
+          { "language": "de", "name": "Deoxys Initiativeform"},
+          { "language": "it", "name": "Deoxys Forma Velocità"},
+          { "language": "es", "name": "Deoxys Forma Velocidad"},
+          { "language": "ko", "name": "테오키스 (스피드폼)"}
+        ]
+      }
+    ]
   }
 ]
