@@ -207,3 +207,14 @@ export function createMegaNames (otherNames, extra) {
   }
   return names
 }
+
+export function createUnownNames (otherNames, extra) {
+  const names = []
+  for (let i = 0; i < otherNames.length; i++) {
+    names.push({
+      name: `${otherNames[i].name} ${extra}`,
+      language: otherNames[i].language
+    })
+  }
+  return names
+}

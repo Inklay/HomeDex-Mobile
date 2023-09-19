@@ -23,7 +23,7 @@ export function getOtherNames ($, isPokemon) {
   let elem = $('span#In_other_languages')
     .parent()
     .next('table')
-  if ($(elem).attr('align') === 'center') {
+  if ($(elem).attr('align') === 'center' || $(elem).attr('width') === '75%') {
     elem = $(elem).next('table')
   }
   $(elem)

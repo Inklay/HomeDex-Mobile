@@ -1,48 +1,17 @@
 [
   {
-    "id": 19,
-    "forms": [
-      {
-        "english": "Alolan Rattata",
-        "names": [
-          { "language": "ja", "name": "コラッタ（アローラのすがた）"},
-          { "language": "zh-Hant", "name": "阿罗拉小拉達"},
-          { "language": "fr", "name": "Rattata d'Alola"},
-          { "language": "de", "name": "Rattfratz (Alola-Form)"},
-          { "language": "it", "name": "Rattata di Alola"},
-          { "language": "es", "name": "Rattata de Alola"}
-        ]
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "forms": [
-      {
-        "english": "Alolan Raticate",
-        "names": [
-          { "language": "ja", "name": "ラッタ（アローラのすがた）"},
-          { "language": "zh-Hant", "name": "阿罗拉拉達"},
-          { "language": "fr", "name": "Rattatac d'Alola"},
-          { "language": "de", "name": "Rattikarl (Alola-Form)"},
-          { "language": "it", "name": "Raticate di Alola"},
-          { "language": "es", "name": "Raticate de Alola"}
-        ]
-      }
-    ]
-  },
-  {
     "id": 25,
     "forms": [
       {
         "english": "Partner Pikachu",
         "names" : [
-          { "language": "ja", "name": "ピカチュウの相棒"},
+          { "language": "ja", "name": "ピカチュウ（相棒）"},
           { "language": "zh-Hant", "name": "皮卡丘"},
           { "language": "fr", "name": "Pikachu Partenaire"},
           { "language": "de", "name": "Partner-Pikachu"},
           { "language": "it", "name": "Pikachu (Let's Go)"},
-          { "language": "es", "name": "Pikachu (Let's Go)"}
+          { "language": "es", "name": "Pikachu (Let's Go)"},
+          { "language": "ko", "name": "피카츄"}
         ]
       },
       {
@@ -53,7 +22,8 @@
           { "language": "fr", "name": "Pikachu Rockeur"},
           { "language": "de", "name": "Rocker-Pikachu"},
           { "language": "it", "name": "Pikachu rockstar"},
-          { "language": "es", "name": "Roquera Pikach"}
+          { "language": "es", "name": "Roquera Pikach"},
+          { "language": "ko", "name": "피카츄"}
         ]
       },
       {
@@ -64,7 +34,8 @@
           { "language": "fr", "name": "Pikachu Lady"},
           { "language": "de", "name": "Damen-Pikachu"},
           { "language": "it", "name": "Pikachu damigella"},
-          { "language": "es", "name": "Aristócrata Pikach"}
+          { "language": "es", "name": "Aristócrata Pikach"},
+          { "language": "ko", "name": "피카츄"}
         ]
       },
       {
@@ -75,7 +46,8 @@
           { "language": "fr", "name": "Pikachu Star"},
           { "language": "de", "name": "Star-Pikachu"},
           { "language": "it", "name": "Pikachu confetto"},
-          { "language": "es", "name": "Superstar Pikach"}
+          { "language": "es", "name": "Superstar Pikach"},
+          { "language": "ko", "name": "피카츄"}
         ]
       },
       {
@@ -86,7 +58,8 @@
           { "language": "fr", "name": "Pikachu Docteur"},
           { "language": "de", "name": "Professoren-Pikachu"},
           { "language": "it", "name": "Pikachu scienziata"},
-          { "language": "es", "name": "Erudita Pikach"}
+          { "language": "es", "name": "Erudita Pikach"},
+          { "language": "ko", "name": "피카츄"}
         ]
       },
       {
@@ -97,7 +70,8 @@
           { "language": "fr", "name": "Pikachu Docteur"},
           { "language": "de", "name": "Wrestler-Pikachu"},
           { "language": "it", "name": "Pikachu wrestler"},
-          { "language": "es", "name": "Enmascarada Pikach"}
+          { "language": "es", "name": "Enmascarada Pikach"},
+          { "language": "ko", "name": "피카츄"}
         ]
       },
       {
@@ -108,7 +82,8 @@
           { "language": "fr", "name": "Pikachu (Casquette Originale)"},
           { "language": "de", "name": "Pikachu (Original-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Originale"},
-          { "language": "es", "name": "Pikachu con gorra Original"}
+          { "language": "es", "name": "Pikachu con gorra Original"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -163,7 +138,8 @@
           { "language": "fr", "name": "Pikachu (Casquette de Hoenn)"},
           { "language": "de", "name": "Pikachu (Hoenn-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Hoenn"},
-          { "language": "es", "name": "Pikachu con gorra Hoenn"}
+          { "language": "es", "name": "Pikachu con gorra Hoenn"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -218,7 +194,8 @@
           { "language": "fr", "name": "Pikachu (Casquette de Sinnoh)"},
           { "language": "de", "name": "Pikachu (Sinnoh-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Sinnoh"},
-          { "language": "es", "name": "Pikachu con gorra Sinnoh"}
+          { "language": "es", "name": "Pikachu con gorra Sinnoh"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -273,7 +250,8 @@
           { "language": "fr", "name": "Pikachu (Casquette d'Unys)"},
           { "language": "de", "name": "Pikachu (Einall-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Unima"},
-          { "language": "es", "name": "Pikachu con gorra Teselia"}
+          { "language": "es", "name": "Pikachu con gorra Teselia"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -328,7 +306,8 @@
           { "language": "fr", "name": "Pikachu (Casquette de Kalos)"},
           { "language": "de", "name": "Pikachu (Kalos-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Kalos"},
-          { "language": "es", "name": "Pikachu con gorra Kalos"}
+          { "language": "es", "name": "Pikachu con gorra Kalos"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -383,7 +362,8 @@
           { "language": "fr", "name": "Pikachu (Casquette d'Alola)"},
           { "language": "de", "name": "Pikachu (Alola-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Alola"},
-          { "language": "es", "name": "Pikachu con gorra Alola"}
+          { "language": "es", "name": "Pikachu con gorra Alola"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -438,7 +418,8 @@
           { "language": "fr", "name": "Pikachu (Casquette Partenaire)"},
           { "language": "de", "name": "Pikachu (Partner-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Compagni"},
-          { "language": "es", "name": "Pikachu con gorra Compañero"}
+          { "language": "es", "name": "Pikachu con gorra Compañero"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -493,7 +474,8 @@
           { "language": "fr", "name": "Pikachu (Casquette Monde)"},
           { "language": "de", "name": "Pikachu (Weltreise-Kappe)"},
           { "language": "it", "name": "Pikachu Berretto Giramondo"},
-          { "language": "es", "name": "Pikachu con gorra Trotamundos"}
+          { "language": "es", "name": "Pikachu con gorra Trotamundos"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -548,7 +530,8 @@
           { "language": "fr", "name": "Pikachu Gigamax"},
           { "language": "de", "name": "Gigadynamax-Pikachu"},
           { "language": "it", "name": "Pikachu Gigamax"},
-          { "language": "es", "name": "Pikachu Gigamax"}
+          { "language": "es", "name": "Pikachu Gigamax"},
+          { "language": "ko", "name": "피카츄"}
         ],
         "flavor_texts": [
           {
@@ -573,6 +556,64 @@
               {"language": "es", "name": "Un golpe con su cola en forma de rayo puede propinar al rival una descarga eléctrica con una intensidad comparable a la de un relámpago."}
             ]
           }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "forms": [
+      {
+        "english": "Partner Eevee",
+        "names" : [
+          { "language": "ja", "name": "イーブイ（相棒）"},
+          { "language": "zh-Hant", "name": "伊布"},
+          { "language": "fr", "name": "Évoli Partenaire"},
+          { "language": "de", "name": "Partner-Evoli"},
+          { "language": "it", "name": "Eevee (Let's Go)"},
+          { "language": "es", "name": "Eevee (Let's Go)"},
+          { "language": "ko", "name": "이브이"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": 351,
+    "forms": [
+      {
+        "english": "Castform Sunny Form",
+        "names" : [
+          { "language": "ja", "name": "ポワルン (たいようのすがた)"},
+          { "language": "zh-Hant", "name": "飄浮泡泡 (太陽的樣子)"},
+          { "language": "fr", "name": "Morphéo Forme Solaire"},
+          { "language": "de", "name": "Formeo Sonnenform"},
+          { "language": "it", "name": "Castform Forma Sole"},
+          { "language": "es", "name": "Castform Forma Sol"},
+          { "language": "ko", "name": "캐스퐁 (태양의 모습)"}
+        ]
+      },
+      {
+        "english": "Castform Rainy Form",
+        "names" : [
+          { "language": "ja", "name": "ポワルン (あまみずのすがた)"},
+          { "language": "zh-Hant", "name": "飄浮泡泡 (雨水的樣子)"},
+          { "language": "fr", "name": "Morphéo Forme Eau de Pluie"},
+          { "language": "de", "name": "Formeo Regenform"},
+          { "language": "it", "name": "Castform Forma Pioggia"},
+          { "language": "es", "name": "Castform Forma Lluvia"},
+          { "language": "ko", "name": "캐스퐁 (빗방울의 모습)"}
+        ]
+      },
+      {
+        "english": "Castform Snowy Form",
+        "names" : [
+          { "language": "ja", "name": "ポワルン (ゆきぐものすがた)"},
+          { "language": "zh-Hant", "name": "飄浮泡泡 (雪雲的樣子)"},
+          { "language": "fr", "name": "Morphéo Forme Blizzard"},
+          { "language": "de", "name": "Formeo Schneeform"},
+          { "language": "it", "name": "Castform Forma Nuvola di Neve"},
+          { "language": "es", "name": "Castform Forma Nieve"},
+          { "language": "ko", "name": "캐스퐁 (설운의 모습)"}
         ]
       }
     ]

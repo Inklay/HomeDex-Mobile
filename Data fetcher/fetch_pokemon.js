@@ -1,20 +1,18 @@
 import { load } from 'cheerio'
-import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
 import { getOtherNames } from './utils.js'
-import { createAlolanNames, createGalarianNames, createGigantamaxNames, createHisuianNames, createMegaNames, createPaldeanNames } from './pokemon/translation/getTranslatedFormNames.js'
+import { createAlolanNames, createGalarianNames, createGigantamaxNames, createHisuianNames, createMegaNames, createPaldeanNames, createUnownNames } from './pokemon/translation/getTranslatedFormNames.js'
 import fs from 'fs'
 import { getTranslatedData } from './pokemon/translation/getTranslatedData.js'
 import { getCategory } from './pokemon/getCategories.js'
+import { getFetch } from './cached_fetch.js'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
 const manualData = JSON.parse(fs.readFileSync('manual_data.json'))
 
 export async function getPokemonURLList () {
-  const weekTimeMS = 7 * 24 * 60 * 60 * 1000
-  const fetchCache = fetchBuilder.withCache(new FileSystemCache({ cacheDirectory: './cache', ttl: weekTimeMS }))
   const list = []
   const URL = `${baseURL}/wiki/List_of_Pokémon_by_National_Pokédex_number`
-  const pageHTML = await (await fetchCache(URL)).text()
+  const pageHTML = await (await getFetch(URL)).text()
   const $ = load(pageHTML)
   // Get all tables with class roundy (one for each generation)
   $('table.roundy').each((__, tbody) => {
@@ -1068,7 +1066,6 @@ export async function getPokemonData (pokemonURL, abilities) {
       } else if (pokemons[i].form_type === 'paldea') {
         otherFormNames = createPaldeanNames(otherNames)
       } else if (pokemons[i].form_type === 'mega') {
-        console.log("ici")
         if (pokemons[i].names[0].name.search(' X') !== -1) {
           otherFormNames = createMegaNames(otherNames, ' X')
         } else if (pokemons[i].names[0].name.search(' Y') !== -1) {
@@ -1076,6 +1073,8 @@ export async function getPokemonData (pokemonURL, abilities) {
         } else {
           otherFormNames = createMegaNames(otherNames, '')
         }
+      } else if (pokemons[i].names[0].name.startsWith('Unown ')) {
+        otherFormNames = createUnownNames(otherNames, pokemons[i].names[0].name.split(' ')[1])
       }
       pokemons[i].names = [
         ...pokemons[i].names,

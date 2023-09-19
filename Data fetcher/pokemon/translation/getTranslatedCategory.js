@@ -1,4 +1,5 @@
 import { load } from 'cheerio'
+import { getFetch } from '../../cached_fetch.js'
 
 async function getFRCategory ($, name) {
   const data = []
@@ -12,7 +13,7 @@ async function getFRCategory ($, name) {
   })
   if ($(`a[title='${name.name} de Paldea']`).length !== 0) {
     const URL = `https://www.pokepedia.fr/${name.name}_de_Paldea`
-    const pageHTML = await (await fetch(URL)).text()
+    const pageHTML = await (await getFetch(URL)).text()
     const $paldea = load(pageHTML)
     const category = $paldea('a[title=\'Catégorie\']').parent().next('td').text()
     if (category !== defaultCategory) {
@@ -27,7 +28,7 @@ async function getFRCategory ($, name) {
   }
   if ($(`a[title='${name.name} de Hisui']`).length !== 0) {
     const URL = `https://www.pokepedia.fr/${name.name}_de_Hisui`
-    const pageHTML = await (await fetch(URL)).text()
+    const pageHTML = await (await getFetch(URL)).text()
     const $hisui = load(pageHTML)
     const category = $hisui('a[title=\'Catégorie\']').parent().next('td').text()
     if (category !== defaultCategory) {
@@ -42,7 +43,7 @@ async function getFRCategory ($, name) {
   }
   if ($(`a[title='${name.name} de Galar']`).length !== 0) {
     const URL = `https://www.pokepedia.fr/${name.name}_de_Galar`
-    const pageHTML = await (await fetch(URL)).text()
+    const pageHTML = await (await getFetch(URL)).text()
     const $galar = load(pageHTML)
     const category = $galar('a[title=\'Catégorie\']').parent().next('td').text()
     if (category !== defaultCategory) {
@@ -111,7 +112,7 @@ async function getESCategory ($, name) {
   })
   if ($(`a[title='${name.name.replace('\'', '%27')} de Paldea']`).length !== 0) {
     const URL = `https://www.wikidex.net/wiki/${name.name}_de_Paldea`
-    const pageHTML = await (await fetch(URL)).text()
+    const pageHTML = await (await getFetch(URL)).text()
     const $paldea = load(pageHTML)
     const category = $paldea('a[title=\'Categoría\']').parent().next('td').text()
     if (category !== defaultCategory) {
@@ -126,7 +127,7 @@ async function getESCategory ($, name) {
   }
   if ($(`a[title='${name.name.replace('\'', '%27')} de Hisui']`).length !== 0) {
     const URL = `https://www.pokepedia.fr/${name.name}_de_Hisui`
-    const pageHTML = await (await fetch(URL)).text()
+    const pageHTML = await (await getFetch(URL)).text()
     const $hisui = load(pageHTML)
     const category = $hisui('a[title=\'Categoría\']').parent().next('td').text()
     if (category !== defaultCategory) {
@@ -141,7 +142,7 @@ async function getESCategory ($, name) {
   }
   if ($(`a[title='${name.name.replace('\'', '%27')} de Galar']`).length !== 0) {
     const URL = `https://www.pokepedia.fr/${name.name}_de_Galar`
-    const pageHTML = await (await fetch(URL)).text()
+    const pageHTML = await (await getFetch(URL)).text()
     const $galar = load(pageHTML)
     const category = $galar('a[title=\'Categoría\']').parent().next('td').text()
     if (category !== defaultCategory) {

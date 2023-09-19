@@ -42,6 +42,9 @@ export function getCategory ($, baseName, translatedCategories) {
     })
   }
   for (let i = 0; i < data.length; i++) {
+    if (translatedCategories === undefined) {
+      console.log(baseName)
+    }
     for (let j = 0; j < translatedCategories.length; j++) {
       if (data[i].form === translatedCategories[j].form) {
         data[i].categories = [

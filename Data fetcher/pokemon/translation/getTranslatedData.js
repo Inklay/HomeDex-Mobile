@@ -1,5 +1,6 @@
 import { load } from 'cheerio'
 import { getTranslatedCategory } from './getTranslatedCategory.js'
+import { getFetch } from '../../cached_fetch.js'
 
 function createURL (name) {
   switch (name.language) {
@@ -25,7 +26,7 @@ export async function getTranslatedData (translatedNames) {
     if (URL === undefined) {
       continue
     }
-    const pageHTML = await (await fetch(URL)).text()
+    const pageHTML = await (await getFetch(URL)).text()
     const $ = load(pageHTML)
     if (data.category === undefined) {
       data.category = []
