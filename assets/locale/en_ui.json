@@ -81,8 +81,13 @@
     "credits": {
       "credits": "Credits",
       "nintendo": "The name of the characters, their artwork, the theme \"Pokémon ®\" and their brands are the properties of © Nintendo, The Pokémon Company, Game Freak and Creatures Inc.",
-      "bulbapedia": "Most of the data of the Pokédex are from Bulbapedia.",
-      "pokepedia": "Some french translations of the data of the Pokédex are from Poképedia.",
+      "englishWiki": "Most of the data of the Pokédex are from Bulbapedia.",
+      "frenchWiki": "Some french translations of the data of the Pokédex are from Poképedia.",
+      "germanWiki": "Some german translations of the data of the Pokédex are from PokéWiki.",
+      "spanishWiki": "Some spanish translations of the data of the Pokédex are from WikiDex.",
+      "italianWiki": "Some italian translations of the data of the Pokédex are from Pokémon Central.",
+      "japaneseWiki": "Some japanese translations of the data of the Pokédex are from ポケモンWiki.",
+      "chineseWiki": "Some chinese translations of the data of the Pokédex are from 神奇宝贝百科.",
       "flavioFarias": "The design of the application is based on the one created by Flavio Farias."
     },
     "links": {

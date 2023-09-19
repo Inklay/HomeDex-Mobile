@@ -81,8 +81,13 @@ export default interface UILocale {
     credits: {
       credits: string
       nintendo: string
-      bulbapedia: string
-      pokepedia: string
+      englishWiki: string
+      frenchWiki: string
+      germanWiki: string
+      spanishWiki: string
+      italianWiki: string
+      japaneseWiki: string
+      chineseWiki: string
       flavioFarias: string
     }
     links: {

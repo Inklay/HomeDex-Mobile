@@ -418,7 +418,7 @@ export const Style = StyleSheet.create({
   },
 
   settingsContainer: {
-    height: height - 90
+    marginBottom: 20
   },
 
   settingsContent: {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableWithoutFeedback, Linking } from 'react-native'
+import { Text, View, TouchableWithoutFeedback, Linking, ScrollView } from 'react-native'
 import { setUILocale, setDataLocale } from '../../utils'
 import { BackgroundColors, Style } from '../../style'
 import LeftArrow from '../svgs/LeftArrow'
@@ -68,56 +68,69 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
         </TouchableWithoutFeedback>
         <Text style={Style.settingsHeaderText}>{UILocale.settings.settings}</Text>
       </View>
-      <View style={Style.settingsContainer}>
-        <View style={Style.settingsContent}>
-          <Text style={Style.settingsSectionHeader}>{UILocale.settings.language.languages}</Text>
-          <View style={{ marginHorizontal: 20 }}>
-            <TouchableWithoutFeedback onPress={showUILanguagePicker}>
-              <View>
-                <Text style={Style.settingsSectionItem}>{UILocale.settings.language.interface}</Text>
-                <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.language.interfaceDescription}</Text>
-              </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={showDataLanguagePicker}>
-              <View>
-                <Text style={Style.settingsSectionItem}>{UILocale.settings.language.data}</Text>
-                <Text style={Style.settingsSectionItemDescription}>{DataLocale.name}{"\n\n"}{UILocale.settings.language.dataDescription}</Text>
-              </View>
-            </TouchableWithoutFeedback>
+      <ScrollView>
+        <View style={Style.settingsContainer}>
+          <View style={Style.settingsContent}>
+            <Text style={Style.settingsSectionHeader}>{UILocale.settings.language.languages}</Text>
+            <View style={{ marginHorizontal: 20 }}>
+              <TouchableWithoutFeedback onPress={showUILanguagePicker}>
+                <View>
+                  <Text style={Style.settingsSectionItem}>{UILocale.settings.language.interface}</Text>
+                  <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.language.interfaceDescription}</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={showDataLanguagePicker}>
+                <View>
+                  <Text style={Style.settingsSectionItem}>{UILocale.settings.language.data}</Text>
+                  <Text style={Style.settingsSectionItemDescription}>{DataLocale.name}{"\n\n"}{UILocale.settings.language.dataDescription}</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          </View>
+          <View style={Style.settingsContent}>
+            <Text style={Style.settingsSectionHeader}>{UILocale.settings.links.links}</Text>
+            <View style={{ marginHorizontal: 20 }}>
+              <Text style={Style.settingsSectionItem}>Github</Text>
+              <TouchableWithoutFeedback onPress={openGithub}>
+                <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.links.githubDescription}</Text>
+              </TouchableWithoutFeedback>
+              <Text style={Style.settingsSectionItem}>Patreon</Text>
+              <TouchableWithoutFeedback onPress={openPatreon}>
+                <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.links.patreonDescription}</Text>
+              </TouchableWithoutFeedback>
+            </View>
+          </View>
+          <View style={Style.settingsContent}>
+            <Text style={[
+              Style.settingsSectionHeader,
+              { marginBottom: 10 }
+            ]}>{UILocale.settings.credits.credits}</Text>
+            <View style={{ marginHorizontal: 20 }}>
+              <Text style={Style.settingsSectionItemDescription}>
+                {UILocale.settings.credits.nintendo}
+                {"\n\n"}
+                {UILocale.settings.credits.englishWiki}
+                {"\n\n"}
+                {UILocale.settings.credits.frenchWiki}
+                {"\n\n"}
+                {UILocale.settings.credits.germanWiki}
+                {"\n\n"}
+                {UILocale.settings.credits.spanishWiki}
+                {"\n\n"}
+                {UILocale.settings.credits.italianWiki}
+                {"\n\n"}
+                {UILocale.settings.credits.japaneseWiki}
+                {"\n\n"}
+                {UILocale.settings.credits.chineseWiki}
+                {"\n\n"}
+                {UILocale.settings.credits.flavioFarias}
+              </Text>
+            </View>
           </View>
         </View>
-        <View style={Style.settingsContent}>
-          <Text style={Style.settingsSectionHeader}>{UILocale.settings.links.links}</Text>
-          <View style={{ marginHorizontal: 20 }}>
-            <Text style={Style.settingsSectionItem}>Github</Text>
-            <TouchableWithoutFeedback onPress={openGithub}>
-              <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.links.githubDescription}</Text>
-            </TouchableWithoutFeedback>
-            <Text style={Style.settingsSectionItem}>Patreon</Text>
-            <TouchableWithoutFeedback onPress={openPatreon}>
-              <Text style={Style.settingsSectionItemDescription}>{UILocale.settings.links.patreonDescription}</Text>
-            </TouchableWithoutFeedback>
-          </View>
-        </View>
-        <View style={Style.settingsContent}>
-          <Text style={[
-            Style.settingsSectionHeader,
-            { marginBottom: 10 }
-          ]}>{UILocale.settings.credits.credits}</Text>
-          <View style={{ marginHorizontal: 20 }}>
-            <Text style={Style.settingsSectionItemDescription}>
-              {UILocale.settings.credits.nintendo}
-              {"\n\n"}
-              {UILocale.settings.credits.bulbapedia}
-              {"\n\n"}
-              {UILocale.settings.credits.pokepedia}
-              {"\n\n"}
-              {UILocale.settings.credits.flavioFarias}
-            </Text>
-          </View>
-        </View>
-      </View>
+      </ScrollView>
       <Picker
+        style={{display: 'none'}}
         ref={UILanguagePickerRef}
         selectedValue={UILanguage}
         onValueChange={(itemValue) =>
@@ -128,6 +141,7 @@ const Settings: React.FC<Props> = ({navigation, route}) => {
         <Picker.Item label="Français" value="fr"/>
       </Picker>
       <Picker
+        style={{display: 'none'}}
         ref={DataLanguagePickerRef}
         selectedValue={DataLanguage}
         onValueChange={(itemValue) =>
