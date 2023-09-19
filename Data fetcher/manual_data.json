@@ -590,6 +590,52 @@
           { "language": "it", "name": "Castform Forma Sole"},
           { "language": "es", "name": "Castform Forma Sol"},
           { "language": "ko", "name": "캐스퐁 (태양의 모습)"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Ultra Moon",
+            "texts": [
+              {"language": "ja", "name": "あつい ひざしを あびていると このすがたに かわる。 ほてった からだを さわると パサパサするぞ。"},
+              {"language": "zh-Hant", "name": "如果在烈日下暴晒，就会变成这个样子。如果碰到它热烘烘的身体，会感觉干巴巴的。"},
+              {"language": "fr", "name": "Morphéo adopte cette apparence lorsqu'il y a du soleil. Son corps rougeoyant est très sec au toucher."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo bei einem heißen Sonnenbad an. Sein glühender Körper fühlt sich sehr trocken an."},
+              {"language": "it", "name": "Castform assume questa forma quando viene scaldato dai raggi del sole. Il suo corpo ardente è molto secco al tatto."},
+              {"language": "es", "name": "Castform adopta esta forma cuando hace sol. Su cuerpo ardiente es muy reseco al tacto."}
+            ]
+          },
+          {
+            "game": "Ultra Sun",
+            "texts": [
+              {"language": "ja", "name": "はれた ひの ポワルンの すがた。 ヒーターのまえに おく じっけんでは この かたちに へんかしなかった。"},
+              {"language": "zh-Hant", "name": "天气晴朗时飘浮泡泡的样子。在将它放到取暖器前的实验里，没有变成这个形态。"},
+              {"language": "fr", "name": "Morphéo adopte cette apparence uniquement les jours ensoleillés. On a tenté de reproduire ce phénomène avec un radiateur, sans succès."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an sonnigen Tagen an. Versuche, diesen Wandel künstlich mit einem Heizstrahler herbeizuführen, schlugen fehl."},
+              {"language": "it", "name": "È la forma di Castform nei giorni di sole. Come dimostrato, non è sufficiente metterlo davanti a una stufa per farlo trasformare..."},
+              {"language": "es", "name": "Castform adopta esta forma cuando hace sol. Ponerlo delante de un radiador no basta para desencadenar esta transformación."}
+            ]
+          },
+          {
+            "game": "Moon",
+            "texts": [
+              {"language": "ja", "name": "かいせいに めぐまれたときの ポワルンの すがた。 からだは ポカポカと ほてっているぞ。"},
+              {"language": "zh-Hant", "name": "受惠于晴朗天气时的飘浮泡泡的样子。身体被照得暖洋洋的。"},
+              {"language": "fr", "name": "Morphéo prend cette apparence lorsqu'il y a du soleil. Son corps devient alors plus chaud."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo bei einem heißen Sonnenbad an. Sein glühender Körper fühlt sich sehr trocken an."},
+              {"language": "it", "name": "È la forma di Castform quando il sole brilla nel cielo. La temperatura del suo corpo sale e inizia a irradiare calore."},
+              {"language": "es", "name": "Castform adopta esta forma cuando hace un tiempo espléndido. Su cuerpo comienza a irradiar calor."}
+            ]
+          },
+          {
+            "game": "Sun",
+            "texts": [
+              {"language": "ja", "name": "よく はれた ひの ポワルンの すがた。 ひふに ふれると いがいに あついので ちゅうい しよう。"},
+              {"language": "zh-Hant", "name": "万里无云时飘浮泡泡的样子。如果接触到皮肤，会出人意料的热。所以要小心哦"},
+              {"language": "fr", "name": "Morphéo prend cette apparence les jours ensoleillés. Attention à ne pas le toucher dans cet état, car sa peau est très chaude."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an sonnigen Tagen an. Versuche, diesen Wandel künstlich mit einem Heizstrahler herbeizuführen, schlugen fehl."},
+              {"language": "it", "name": "È la forma che Castform assume nei giorni di sole. Bisogna fare attenzione a toccarlo perché la sua pelle è più calda di quanto sembri."},
+              {"language": "es", "name": "Castform adopta esta forma cuando el sol brilla con fuerza. Conviene tener cuidado al tocarlo, ya que su piel alcanza altas temperaturas."}
+            ]
+          }
         ]
       },
       {
@@ -602,6 +648,52 @@
           { "language": "it", "name": "Castform Forma Pioggia"},
           { "language": "es", "name": "Castform Forma Lluvia"},
           { "language": "ko", "name": "캐스퐁 (빗방울의 모습)"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Ultra Moon",
+            "texts": [
+              {"language": "ja", "name": "あめに うたれる ポワルンの すがた。 シャワーを あびせた じっけんでは この かたちに へんかしなかった。"},
+              {"language": "zh-Hant", "name": "被雨淋到时飘浮泡泡的样子。在让它淋浴的实验里，没有变成这个形态。"},
+              {"language": "fr", "name": "Morphéo adopte cette apparence uniquement les jours de pluie. On a tenté de reproduire ce phénomène sous une douche, sans succès."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an Regentagen an. Versuche, diesen Wandel künstlich mithilfe einer Dusche herbeizuführen, schlugen fehl."},
+              {"language": "it", "name": "È la forma di Castform quando è bagnato dalla pioggia. Come dimostrato, non è sufficiente metterlo sotto la doccia per farlo trasformare..."},
+              {"language": "es", "name": "Castform adopta esta forma cuando llueve. Ponerlo bajo la ducha no basta para obtener esta transformación."}
+            ]
+          },
+          {
+            "game": "Ultra Sun",
+            "texts": [
+              {"language": "ja", "name": "あめに うたれると このすがたに へんかする。 みずで すこしだけ からだが ふくらみ ブヨブヨしている。"},
+              {"language": "zh-Hant", "name": "被雨淋到后，就会变成这个样子。身体遇水会稍稍有点膨胀，软绵绵的。"},
+              {"language": "fr", "name": "Morphéo adopte cette apparence quand il est frappé par la pluie. L'eau gonfle légèrement son corps et lui donne une consistance gélatineuse."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an, wenn Regen auf es niederprasselt. Sein Körper ist dann weich und hat etwas Wasser aufgesogen."},
+              {"language": "it", "name": "È la forma di Castform quando è bagnato dalla pioggia. Con l’acqua si gonfia leggermente e diventa molle."},
+              {"language": "es", "name": "Castform adopta esta forma cuando llueve. Debido a la absorción de agua, su cuerpo resulta esponjoso al tacto."}
+            ]
+          },
+          {
+            "game": "Moon",
+            "texts": [
+              {"language": "ja", "name": "ふりしきる あめに うたれる ポワルンの すがた。 からだは しっけを おびて ぬめっている。"},
+              {"language": "zh-Hant", "name": "被下个不停的雨淋到的飘浮泡泡的样子。身体带着潮气，滑溜溜的。"},
+              {"language": "fr", "name": "Morphéo prend cette apparence quand il est sous la pluie. Son corps est imbibé d'humidité."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an Regentagen an. Versuche, diesen Wandel künstlich mithilfe einer Dusche herbeizuführen, schlugen fehl."},
+              {"language": "it", "name": "È la forma di Castform quando è bagnato dalla pioggia. Il suo corpo trattiene l'umidità e diventa scivoloso."},
+              {"language": "es", "name": "Castform adopta esta forma cuando llueve a cántaros. Su cuerpo se empapa de humedad y se vuelve escurridizo."}
+            ]
+          },
+          {
+            "game": "Sun",
+            "texts": [
+              {"language": "ja", "name": "あめに したたる ポワルンの すがた。 からだを おすと スポンジの ように すこし みずが しみだしてくる。"},
+              {"language": "zh-Hant", "name": "被雨淋到时飘浮泡泡的样子。如果按它的身体，就会像海绵一样渗出些水来。"},
+              {"language": "fr", "name": "Morphéo prend cette apparence les jours de pluie. Si l'on presse son corps dans cet état, un peu d'eau s'en échappe, comme d'une éponge."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an, wenn Regen auf es niederprasselt. Sein Körper ist dann weich und hat etwas Wasser aufgesogen."},
+              {"language": "it", "name": "Castform assume questa forma quando piove. Il suo corpo diventa come una spugna e, se lo si stringe, rilascia un po' d'acqua."},
+              {"language": "es", "name": "Castform adopta esta forma cuando llueve. Su cuerpo es como una esponja y suelta agua con solo presionarlo ligeramente."}
+            ]
+          }
         ]
       },
       {
@@ -614,6 +706,52 @@
           { "language": "it", "name": "Castform Forma Nuvola di Neve"},
           { "language": "es", "name": "Castform Forma Nieve"},
           { "language": "ko", "name": "캐스퐁 (설운의 모습)"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Ultra Moon",
+            "texts": [
+              {"language": "ja", "name": "あられに うたれると この すがたに へんかする。 ぜんしん つめたく ひふは すこし こおっているぞ。"},
+              {"language": "zh-Hant", "name": "如果被冰雹打到，就会变成这个样子。全身冷冷的，皮肤有点儿冻住。"},
+              {"language": "fr", "name": "Morphéo adopte cette apparence quand il est frappé par la grêle. Tout son corps est froid et sa peau légèrement givrée."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an, wenn es von Hagel getroffen wird. Sein Körper ist so kalt, dass seine Haut leicht gefriert."},
+              {"language": "it", "name": "È la forma di Castform quando grandina. Il suo corpo si raffredda e la sua pelle, in parte, è ghiacciata."},
+              {"language": "es", "name": "Castform adopta esta forma cuando graniza. Su cuerpo se enfría y su piel se congela parcialmente."}
+            ]
+          },
+          {
+            "game": "Ultra Sun",
+            "texts": [
+              {"language": "ja", "name": "あられを あびる ポワルンの すがた。 れいとうこに いれる じっけんでは この かたちに へんかしなかった。"},
+              {"language": "zh-Hant", "name": "被冰雹打到时飘浮泡泡的样子。在将它放入冷冻库的实验里，没有变成这个形态。"},
+              {"language": "fr", "name": "Morphéo adopte cette apparence uniquement les jours enneigés. On a tenté de reproduire ce phénomène avec un congélateur, sans succès."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an, wenn es hagelt. Versuche, diesen Wandel künstlich mithilfe einer Gefriertruhe herbeizuführen, schlugen fehl."},
+              {"language": "it", "name": "È la forma di Castform quando grandina. Come dimostrato, non è sufficiente metterlo nel congelatore per farlo trasformare..."},
+              {"language": "es", "name": "Castform adopta esta forma cuando graniza. Meterlo en un congelador no basta para desencadenar esta transformación."}
+            ]
+          },
+          {
+            "game": "Moon",
+            "texts": [
+              {"language": "ja", "name": "あられに ふられる ポワルンの すがた。 ひふは つめたく こおりの ように ツルツルだ。"},
+              {"language": "zh-Hant", "name": "被冰雹砸到的飘浮泡泡的样子。皮肤冷冷的，像冰一样滑溜溜。"},
+              {"language": "fr", "name": "Morphéo prend cette apparence quand il est frappé par la grêle. Sa peau est froide et lisse comme la glace."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an, wenn es von Hagel getroffen wird. Sein Körper ist so kalt, dass seine Haut leicht gefriert."},
+              {"language": "it", "name": "È la forma di Castform quando grandina. La sua pelle si raffredda e diventa liscia come il ghiaccio."},
+              {"language": "es", "name": "Castform adopta esta forma cuando graniza. Su piel se vuelve tan fría y resbaladiza como el hielo."}
+            ]
+          },
+          {
+            "game": "Sun",
+            "texts": [
+              {"language": "ja", "name": "ゆきに ふられる ポワルンの すがた。ぜんしんが こおりの ようで たいおんは マイナス5ど ぜんご。"},
+              {"language": "zh-Hant", "name": "被雪落到时飘浮泡泡的样子。全身像冰一般，体温是零下５度左右。"},
+              {"language": "fr", "name": "Morphéo prend cette apparence les jours de neige. Son corps est alors froid comme de la glace, à environ -5 ºC."},
+              {"language": "de", "name": "Diese Gestalt nimmt Formeo an, wenn es hagelt. Versuche, diesen Wandel künstlich mithilfe einer Gefriertruhe herbeizuführen, schlugen fehl."},
+              {"language": "it", "name": "È la forma di Castform quando cade la neve. Il suo corpo diventa simile al ghiaccio e la sua temperatura corporea scende a -5 °C."},
+              {"language": "es", "name": "Castform adopta esta forma cuando nieva. Su cuerpo se vuelve frío como un témpano, con una temperatura que alcanza los -5 °C."}
+            ]
+          }
         ]
       }
     ]

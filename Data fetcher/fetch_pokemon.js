@@ -801,6 +801,10 @@ function processFlavorText ($, flavorTextId) {
             if (gameName.slice(gameName.length - 1) === ' ') {
               gameName = gameName.slice(0, -1)
             }
+            if (form === 'Normal') {
+              console.log(oldText)
+              formIndex = flavorText.findIndex(f => f.form === 'default')
+            }
             if (form === 'Hoenn, Sinnoh, Unova, Kalos, and Alola Cap Pikachu') {
               processCapPikachuFlavorText(gameName, oldText, flavorText)
             } else if (form === 'All Cores') {
