@@ -1067,6 +1067,14 @@ export async function getPokemonData (pokemonURL, abilities) {
         otherFormNames = createHisuianNames(otherNames)
       } else if (pokemons[i].form_type === 'paldea') {
         otherFormNames = createPaldeanNames(otherNames)
+      } else if (pokemons[i].form_type === 'mega') {
+        if (pokemons[i].names[0].name.search(' X') !== -1) {
+          otherFormNames = createPaldeanNames(otherNames, ' X')
+        } else if (pokemons[i].names[0].name.search(' Y') !== -1) {
+          otherFormNames = createPaldeanNames(otherNames, ' Y')
+        } else {
+          otherFormNames = createPaldeanNames(otherNames, '')
+        }
       }
       pokemons[i].names = [
         ...pokemons[i].names,

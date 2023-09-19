@@ -109,7 +109,7 @@ async function getESCategory ($, name) {
       language: 'es'
     }]
   })
-  if ($(`a[title='${name.name} de Paldea']`).length !== 0) {
+  if ($(`a[title='${name.name.replace('\'', '%27')} de Paldea']`).length !== 0) {
     const URL = `https://www.wikidex.net/wiki/${name.name}_de_Paldea`
     const pageHTML = await (await fetch(URL)).text()
     const $paldea = load(pageHTML)
@@ -124,7 +124,7 @@ async function getESCategory ($, name) {
       })
     }
   }
-  if ($(`a[title='${name.name} de Hisui']`).length !== 0) {
+  if ($(`a[title='${name.name.replace('\'', '%27')} de Hisui']`).length !== 0) {
     const URL = `https://www.pokepedia.fr/${name.name}_de_Hisui`
     const pageHTML = await (await fetch(URL)).text()
     const $hisui = load(pageHTML)
@@ -139,7 +139,7 @@ async function getESCategory ($, name) {
       })
     }
   }
-  if ($(`a[title='${name.name} de Galar']`).length !== 0) {
+  if ($(`a[title='${name.name.replace('\'', '%27')} de Galar']`).length !== 0) {
     const URL = `https://www.pokepedia.fr/${name.name}_de_Galar`
     const pageHTML = await (await fetch(URL)).text()
     const $galar = load(pageHTML)

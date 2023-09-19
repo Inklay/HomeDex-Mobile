@@ -172,3 +172,38 @@ export function createPaldeanNames (otherNames) {
   }
   return names
 }
+
+export function createMegaNames (otherNames, extra) {
+  const names = []
+  for (let i = 0; i < otherNames.length; i++) {
+    let name
+    switch (otherNames[i].language) {
+      case 'fr':
+        name = `Mega ${otherNames[i].name}${extra}`
+        break
+      case 'de':
+        name = `Mega-${otherNames[i].name}${extra}`
+        break
+      case 'it':
+        name = `Mega ${otherNames[i].name}${extra}`
+        break
+      case 'es':
+        name = `Mega-${otherNames[i].name}${extra}`
+        break
+      case 'zh-Hant':
+        name = `超级${otherNames[i].name}${extra}`
+        break
+      case 'ja':
+        name = `メガ${otherNames[i].name}${extra}`
+        break
+      case 'ko':
+        name = `${otherNames[i].name}`
+        break
+    }
+    names.push({
+      name,
+      language: otherNames[i].language
+    })
+  }
+  return names
+}
