@@ -51,6 +51,5 @@ export function getCategory ($, baseName, translatedCategories) {
       }
     }
   }
-  console.log(data)
   return data
 }
