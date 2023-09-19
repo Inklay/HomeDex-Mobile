@@ -20,9 +20,13 @@ function getLanguageCode (languageName) {
 
 export function getOtherNames ($, isPokemon) {
   const data = []
-  $('span#In_other_languages')
+  let elem = $('span#In_other_languages')
     .parent()
     .next('table')
+  if ($(elem).attr('align') === 'center') {
+    elem = $(elem).next('table')
+  }
+  $(elem)
     .children('tbody')
     .children('tr')
     .children('td')

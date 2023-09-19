@@ -1,8 +1,10 @@
 import { load } from 'cheerio'
 import { fetchBuilder, FileSystemCache } from 'node-fetch-cache'
 import { getOtherNames } from './utils.js'
+import fs from 'fs'
 
 const baseURL = 'https://bulbapedia.bulbagarden.net'
+const manualData = JSON.parse(fs.readFileSync('manual_data.json'))
 
 export async function getPokemonURLList () {
   const weekTimeMS = 7 * 24 * 60 * 60 * 1000
@@ -808,6 +810,8 @@ function processFlavorText ($, flavorTextId) {
               form,
               entries: []
             }) - 1
+          } else {
+            formIndex = flavorText.findIndex(f => f.form === form)
           }
           if ($(game).children('td').length !== 0) {
             oldText = $(game).children('td').text()
@@ -1037,11 +1041,38 @@ export async function getPokemonData (pokemonURL, abilities) {
     console.log(`No stats found for ${pokemons[0].names[0].name}`)
   }
   for (let i = 0; i < pokemons.length; i++) {
-    pokemons[i].names = [
-      ...pokemons[i].names,
-      ...otherNames
-    ]
     pokemons[i].dex_numbers = dexNumbers
+    if (pokemons[i].form_type !== 'default') {
+      const data = manualData.find(data => data.id === pokemons[i].dex_numbers.nat)
+      if (data !== undefined) {
+        const formData = data.forms.find(form => form.english === pokemons[i].names[0].name)
+        if (formData) {
+          pokemons[i].names = [
+            ...pokemons[i].names,
+            ...formData.names
+          ]
+          if (formData.flavor_texts !== undefined) {
+            for (let j = 0; j < formData.flavor_texts.length; j++) {
+              const formText = flavorText.find(text => text.form === pokemons[i].names[0].name)
+              if (formText !== undefined) {
+                const gameText = formText.entries.find(entry => entry.game === formData.flavor_texts[j].game)
+                if (gameText !== undefined) {
+                  gameText.texts = [
+                    ...gameText.texts,
+                    ...formData.flavor_texts[j].texts
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    } else {
+      pokemons[i].names = [
+        ...pokemons[i].names,
+        ...otherNames
+      ]
+    }
     let formTypes = types.find(type => type.name === pokemons[i].form_name)
     // If the form has the same type as the base form
     if (formTypes === undefined) {

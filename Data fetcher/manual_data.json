@@ -1,0 +1,548 @@
+[
+  {
+    "id": 25,
+    "forms": [
+      {
+        "english": "Partner Pikachu",
+        "names" : [
+          { "language": "ja", "name": "ピカチュウの相棒"},
+          { "language": "zh-Hant", "name": "皮卡丘"},
+          { "language": "fr", "name": "Pikachu Partenaire "},
+          { "language": "de", "name": "Partner-Pikachu"},
+          { "language": "it", "name": "Pikachu (Let's Go)"},
+          { "language": "es", "name": "Pikachu (Let's Go)"}
+        ]
+      },
+      {
+        "english": "Pikachu Rock Star",
+        "names" : [
+          { "language": "ja", "name": "ハードロック・ピカチュウ"},
+          { "language": "zh-Hant", "name": "硬摇滚皮卡丘"},
+          { "language": "fr", "name": "Pikachu Rockeur"},
+          { "language": "de", "name": "Rocker-Pikachu"},
+          { "language": "it", "name": "Pikachu rockstar"},
+          { "language": "es", "name": "Roquera Pikach"}
+        ]
+      },
+      {
+        "english": "Pikachu Belle",
+        "names" : [
+          { "language": "ja", "name": "マダム・ピカチュウ"},
+          { "language": "zh-Hant", "name": "贵妇皮卡丘"},
+          { "language": "fr", "name": "Pikachu Lady"},
+          { "language": "de", "name": "Damen-Pikachu"},
+          { "language": "it", "name": "Pikachu damigella"},
+          { "language": "es", "name": "Aristócrata Pikach"}
+        ]
+      },
+      {
+        "english": "Pikachu Pop Star",
+        "names" : [
+          { "language": "ja", "name": "アイドル・ピカチュウ"},
+          { "language": "zh-Hant", "name": "偶像皮卡丘"},
+          { "language": "fr", "name": "Pikachu Star"},
+          { "language": "de", "name": "Star-Pikachu"},
+          { "language": "it", "name": "Pikachu confetto"},
+          { "language": "es", "name": "Superstar Pikach"}
+        ]
+      },
+      {
+        "english": "Pikachu, Ph.D",
+        "names" : [
+          { "language": "ja", "name": "ドクター・ピカチュウ"},
+          { "language": "zh-Hant", "name": "博士皮卡丘"},
+          { "language": "fr", "name": "Pikachu Docteur"},
+          { "language": "de", "name": "Professoren-Pikachu"},
+          { "language": "it", "name": "Pikachu scienziata"},
+          { "language": "es", "name": "Erudita Pikach"}
+        ]
+      },
+      {
+        "english": "Pikachu Libre",
+        "names" : [
+          { "language": "ja", "name": "マスクド・ピカチュウ"},
+          { "language": "zh-Hant", "name": "面罩摔角手皮卡丘"},
+          { "language": "fr", "name": "Pikachu Docteur"},
+          { "language": "de", "name": "Wrestler-Pikachu"},
+          { "language": "it", "name": "Pikachu wrestler"},
+          { "language": "es", "name": "Enmascarada Pikach"}
+        ]
+      },
+      {
+        "english": "Pikachu Original Cap",
+        "names" : [
+          { "language": "ja", "name": "オリジナルキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（初始帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette Originale)"},
+          { "language": "de", "name": "Pikachu (Original-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Originale"},
+          { "language": "es", "name": "Pikachu con gorra Original"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 相棒と たくさんの 地方を 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着许许多多和搭档在许多地区冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de ses aventures dans de nombreuses régions aux côtés de son partenaire."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner durch viele verschiedene Regionen."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda i viaggi fatti con il suo inseparabile compagno in varie regioni."},
+              {"language": "es", "name": "La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que compartió con su compañero por numerosas regiones."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は たくさんの 地方を 冒険して 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴在许多地区冒险而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés lors de leurs aventures à travers diverses régions."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie auf ihren Abenteuern in vielen Regionen vertieft haben."},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico durante le loro avventure in varie regioni."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon durante las aventuras compartidas por numerosas regiones."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 さまざまな ちほうの おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多在不同地区冒险的回忆。"},
+              {"language": "fr", "name": "Il porte la casquette de son partenaire. Elle lui rappelle leurs aventures dans les nombreuses régions qu'ils ont traversées."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre Abenteuer in den verschiedensten Regionen."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. Gli ricorda le avventure vissute durante i loro viaggi in varie regioni."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 たくさんの ちほうを いっしょに ぼうけんした あかしだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档一起在不同地区冒险过的证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire en souvenir des nombreuses régions qu'ils ont traversées ensemble."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt davon, dass sie in vielen Regionen zusammen Abenteuer erlebt haben."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore in ricordo delle avventure vissute durante i loro viaggi in varie regioni."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Pikachu Hoenn Cap",
+        "names" : [
+          { "language": "ja", "name": "ホウエンキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（丰缘帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette de Hoenn)"},
+          { "language": "de", "name": "Pikachu (Hoenn-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Hoenn"},
+          { "language": "es", "name": "Pikachu con gorra Hoenn"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 相棒と ホウエン地方を 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着许许多多和搭档在丰缘地区冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de ses aventures à Hoenn aux côtés de son partenaire."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner durch die Hoenn-Region."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda il viaggio fatto con il suo inseparabile compagno nella regione di Hoenn."},
+              {"language": "es", "name": "La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que compartió con su compañero por la región de Hoenn."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は たくさんの 地方を 冒険して 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴在丰缘地区冒险而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés lors de leurs aventures à travers Hoenn."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie auf ihren Abenteuern in der Hoenn-Region vertieft haben."},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico durante le loro avventure nella regione di Hoenn."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon durante las aventuras compartidas por la región de Hoenn."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 ホウエンを たびした おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多在丰缘地区冒险的回忆。"},
+              {"language": "fr", "name": "Il porte la casquette de son partenaire. Elle lui rappelle leurs aventures lors de leur voyage à travers la région de Hoenn."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre Abenteuer in der Hoenn-Region."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. Gli ricorda le avventure vissute durante il loro viaggio nella regione di Hoenn."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 ホウエンちほうを いっしょに ぼうけんした あかし なのだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档一起在丰缘地区冒险过的证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire en souvenir de la région de Hoenn qu'ils ont traversée ensemble."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt davon, dass sie in der Hoenn-Region zusammen Abenteuer erlebt haben."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore in ricordo delle avventure vissute durante il loro viaggio nella regione di Hoenn."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Pikachu Sinnoh Cap",
+        "names" : [
+          { "language": "ja", "name": "シンオウキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（神奥帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette de Sinnoh)"},
+          { "language": "de", "name": "Pikachu (Sinnoh-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Sinnoh"},
+          { "language": "es", "name": "Pikachu con gorra Sinnoh"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 相棒と シンオウ地方を 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着许许多多和搭档在神奥地区冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de ses aventures à Sinnoh aux côtés de son partenaire."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner durch die Sinnoh-Region."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda il viaggio fatto con il suo inseparabile compagno nella regione di Sinnoh."},
+              {"language": "es", "name": " La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que compartió con su compañero por la región de Sinnoh."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は シンオウ地方を 冒険して 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴在神奥地区冒险而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés lors de leurs aventures à travers Sinnoh."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie auf ihren Abenteuern in der Sinnoh-Region vertieft haben."},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico durante le loro avventure nella regione di Sinnoh."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon durante las aventuras compartidas por la región de Sinnoh."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 シンオウを たびした おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多在神奥地区冒险的回忆。"},
+              {"language": "fr", "name": "Il porte la casquette de son partenaire. Elle lui rappelle leurs aventures lors de leur voyage à travers la région de Sinnoh."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre Abenteuer in der Sinnoh-Region."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. Gli ricorda le avventure vissute durante il loro viaggio nella regione di Sinnoh."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 シンオウちほうを いっしょに ぼうけんした あかし なのだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档一起在神奥地区冒险过的证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire en souvenir de la région de Sinnoh qu'ils ont traversée ensemble."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt davon, dass sie in der Sinnoh-Region zusammen Abenteuer erlebt haben."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore in ricordo delle avventure vissute durante il loro viaggio nella regione di Sinnoh."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Pikachu Unova Cap",
+        "names" : [
+          { "language": "ja", "name": "イッシュキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（合众帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette d'Unys)"},
+          { "language": "de", "name": "Pikachu (Einall-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Unima"},
+          { "language": "es", "name": "Pikachu con gorra Teselia"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 相棒と イッシュ地方を 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着许许多多和搭档在合众地区冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de ses aventures à Unys aux côtés de son partenaire."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner durch die Einall-Region."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda il viaggio fatto con il suo inseparabile compagno nella regione di Unima."},
+              {"language": "es", "name": " La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que compartió con su compañero por la región de Teselia."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は イッシュ地方を 冒険して 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴在合众地区冒险而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés lors de leurs aventures à travers Unys."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie auf ihren Abenteuern in der Einall-Region vertieft haben."},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico durante le loro avventure nella regione di Unima."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon durante las aventuras compartidas por la región de Teselia."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 イッシュを たびした おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多在合众地区冒险的回忆。"},
+              {"language": "fr", "name": "Il porte la casquette de son partenaire. Elle lui rappelle leurs aventures lors de leur voyage à travers la région d'Unys."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre Abenteuer in der Einall-Region."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. Gli ricorda le avventure vissute durante il loro viaggio nella regione di Unima."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 イッシュちほうを いっしょに ぼうけんした あかし なのだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档一起在合众地区冒险过的证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire en souvenir de la région d'Unys qu'ils ont traversée ensemble."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt davon, dass sie in der Einall-Region zusammen Abenteuer erlebt haben."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore in ricordo delle avventure vissute durante il loro viaggio nella regione di Unima."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Pikachu Kalos Cap",
+        "names" : [
+          { "language": "ja", "name": "カロスキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（卡洛斯帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette de Kalos)"},
+          { "language": "de", "name": "Pikachu (Kalos-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Kalos"},
+          { "language": "es", "name": "Pikachu con gorra Kalos"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 相棒と カロス地方を 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着许许多多和搭档在卡洛斯地区冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de ses aventures à Kalos aux côtés de son partenaire."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner durch die Kalos-Region."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda il viaggio fatto con il suo inseparabile compagno nella regione di Kalos."},
+              {"language": "es", "name": "La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que compartió con su compañero por la región de Kalos."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は カロス地方を 冒険して 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴在卡洛斯地区冒险而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés lors de leurs aventures à travers Kalos."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie auf ihren Abenteuern in der Kalos-Region vertieft haben."},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico durante le loro avventure nella regione di Kalos."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon durante las aventuras compartidas por la región de Kalos."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 カロスを たびした おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多在卡洛斯地区冒险的回忆。"},
+              {"language": "fr", "name": "Il porte la casquette de son partenaire. Elle lui rappelle leurs aventures lors de leur voyage à travers la région de Kalos."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre Abenteuer in der Kalos-Region."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. Gli ricorda le avventure vissute durante il loro viaggio nella regione di Kalos."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 カロスちほうを いっしょに ぼうけんした あかし なのだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档一起在卡洛斯地区冒险过的证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire en souvenir de la région de Kalos qu'ils ont traversée ensemble."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt davon, dass sie in der Kalos-Region zusammen Abenteuer erlebt haben."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore in ricordo delle avventure vissute durante il loro viaggio nella regione di Kalos."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Pikachu Alola Cap",
+        "names" : [
+          { "language": "ja", "name": "アローラキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（阿罗拉帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette d'Alola)"},
+          { "language": "de", "name": "Pikachu (Alola-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Alola"},
+          { "language": "es", "name": "Pikachu con gorra Alola"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 相棒と アローラ地方を 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着许许多多和搭档在阿罗拉地区冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de ses aventures à Alola aux côtés de son partenaire."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner durch die Alola-Region."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda il viaggio fatto con il suo inseparabile compagno nella regione di Alola."},
+              {"language": "es", "name": "La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que compartió con su compañero por la región de Alola."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は アローラ地方を 冒険して 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴在阿罗拉地区冒险而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés lors de leurs aventures à travers Alola."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie auf ihren Abenteuern in der Alola-Region vertieft haben."},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico durante le loro avventure nella regione di Alola."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon durante las aventuras compartidas por la región de Alola."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 アローラで すごした おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多在阿罗拉地区冒险的回忆。"},
+              {"language": "fr", "name": "Il porte la casquette de son partenaire. Elle lui rappelle leurs aventures lors de leur voyage à travers la région d'Alola."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre Zeit in der Alola-Region."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. Gli ricorda le avventure vissute durante il loro viaggio nella regione di Alola."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 アローラちほうを いっしょに ぼうけんした あかし なのだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档一起在阿罗拉地区冒险过的证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire en souvenir de la région d'Alola qu'ils ont traversée ensemble."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt davon, dass sie in der Alola-Region zusammen Abenteuer erlebt haben."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore in ricordo delle avventure vissute durante il loro viaggio nella regione di Alola."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Pikachu Partner Cap",
+        "names" : [
+          { "language": "ja", "name": "キミにきめたキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（就决定是你了之帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette Partenaire)"},
+          { "language": "de", "name": "Pikachu (Partner-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Compagni"},
+          { "language": "es", "name": "Pikachu con gorra Compañero"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 運命的に 出会った 相棒と 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着和命中注定的搭档一起冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de sa rencontre prédestinée avec son partenaire, et de leurs aventures ensemble."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner, dem es wie durch Schicksal begegnete."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda i viaggi fatti con il suo inseparabile compagno. Il loro incontro è stato voluto dal destino."},
+              {"language": "es", "name": "La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que, por obra del destino, compartió con su compañero."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は ともに 困難を 乗り越えて 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴共同克服困难而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés en surmontant ensemble de nombreux obstacles."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie durch das gemeinsame Überwinden von Schwierigkeiten vertieft haben"},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico superando insieme mille difficoltà."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon superando juntos toda clase de dificultades."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 であった ときの おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多与对方相遇时的回忆。"},
+              {"language": "fr", "name": "Il porte la casquette de son partenaire. Elle lui rappelle leur première rencontre."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre erste Begegnung."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. È un prezioso ricordo del loro fatidico incontro."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 うんめいてきな であいの たいせつな あかし なのだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档命运般相遇的重要证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire, souvenir inestimable d'une rencontre marquée par le sceau du destin."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie ist ein kostbares Andenken an ihre schicksalhafte erste Begegnung."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore. È un prezioso ricordo del loro fatidico incontro."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Pikachu World Cap",
+        "names" : [
+          { "language": "ja", "name": "ワールドキャップ・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘（世界帽子)"},
+          { "language": "fr", "name": "Pikachu (Casquette Monde)"},
+          { "language": "de", "name": "Pikachu (Weltreise-Kappe)"},
+          { "language": "it", "name": "Pikachu Berretto Giramondo"},
+          { "language": "es", "name": "Pikachu con gorra Trotamundos"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Scarlet",
+            "texts": [
+              {"language": "ja", "name": "ピカチュウが かぶる 帽子には 相棒と 世界中を 旅した 思い出が つまっている。"},
+              {"language": "zh-Hant", "name": "皮卡丘戴着的帽子承载着许许多多和搭档在世界各地冒险的回忆。"},
+              {"language": "fr", "name": "La casquette que porte ce Pikachu est chargée de souvenirs de ses aventures à travers le monde aux côtés de son partenaire."},
+              {"language": "de", "name": "Die Kappe, die dieses Pikachu trägt, steckt voller Erinnerungen an die gemeinsame Reise mit seinem Partner um die ganze Welt."},
+              {"language": "it", "name": "Il cappello che Pikachu indossa gli ricorda i viaggi fatti con il suo inseparabile compagno in giro per il mondo."},
+              {"language": "es", "name": "La gorra que lleva este Pikachu está cargada de gratos recuerdos de los viajes que compartió con su compañero por todo el mundo."}
+            ]
+          },
+          {
+            "game": "Violet",
+            "texts": [
+              {"language": "ja", "name": "かぶっている パートナーの 帽子は 世界中を 冒険して 深めた 絆の あかしである。"},
+              {"language": "zh-Hant", "name": "它所戴的这顶伙伴的帽子，是它与伙伴在世界各地冒险而加深了牵绊的证明。"},
+              {"language": "fr", "name": "Ce Pikachu porte la casquette de son partenaire. Elle symbolise les liens étroits qu'ils ont tissés lors de leurs aventures à travers le monde."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie zeugt von der Freundschaft, die sie auf ihren Abenteuern auf der ganzen Welt vertieft haben."},
+              {"language": "it", "name": "Il cappello che indossa è segno del profondo legame instaurato con il suo inseparabile amico durante le loro avventure in giro per il mondo."},
+              {"language": "es", "name": "La gorra que lleva de su compañero simboliza los lazos afectivos que estrecharon durante las aventuras compartidas por todo el mundo."}
+            ]
+          },
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "かぶっているのは パートナーの ぼうし。 いろんな せかいを たびした おもいでが たくさん つまっている。"},
+              {"language": "zh-Hant", "name": "戴着的是伙伴训练家的帽子。帽子上承载着许许多多在世界各地旅行时的回忆。"},
+              {"language": "fr", "name": "Il porte sa casquette de son partenaire. Elle lui rappelle leurs aventures dans diverses régions."},
+              {"language": "de", "name": "Die Kappe, die es trägt, gehört seinem Partner. Sie steckt voller Erinnerungen an ihre Abenteuer in verschiedenen Regionen."},
+              {"language": "it", "name": "Indossa il cappello del suo inseparabile amico. Gli ricorda le avventure vissute durante i loro viaggi in varie regioni."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "あいぼうの ぼうしを かぶっている。 いろんな せかいを ともに たびする たいせつな あかし なのだ。"},
+              {"language": "zh-Hant", "name": "戴着搭档训练家的帽子。这顶帽子是与搭档一起在各种世界里游历的重要证明。"},
+              {"language": "fr", "name": "Un Pikachu qui porte la casquette de son partenaire, souvenir inestimable de leurs voyages dans diverses régions."},
+              {"language": "de", "name": "Es trägt die Kappe seines Partners. Sie ist ein kostbares Andenken an die Abenteuer, die sie in verschiedenen Regionen zusammen erlebt haben."},
+              {"language": "it", "name": "Indossa il cappello del suo amato Allenatore in ricordo delle avventure vissute durante i loro viaggi in varie regioni."}
+            ]
+          }
+        ]
+      },
+      {
+        "english": "Gigantamax Pikachu",
+        "names" : [
+          { "language": "ja", "name": "キョダイマックス・ピカチュウ"},
+          { "language": "zh-Hant", "name": "皮卡丘 (极巨化)"},
+          { "language": "fr", "name": "Pikachu Gigamax"},
+          { "language": "de", "name": "Gigadynamax-Pikachu"},
+          { "language": "it", "name": "Pikachu Gigamax"},
+          { "language": "es", "name": "Pikachu Gigamax"}
+        ],
+        "flavor_texts": [
+          {
+            "game": "Sword",
+            "texts": [
+              {"language": "ja", "name": "ぼうちょうした キョダイマックスの パワーによって からだが ふくれて そらまで のびる しっぽに なった。"},
+              {"language": "zh-Hant", "name": "膨胀的超极巨化之力使得它的身体变大，尾巴也变得高耸入云。"},
+              {"language": "fr", "name": "L'énergie du phénomène Gigamax l'a tellement fait grossir que sa queue touche le ciel."},
+              {"language": "de", "name": "Durch die Gigadynamax-Energie ist sein Körper so stark gewachsen, dass sein Schweif nun bis in den Himmel ragt."},
+              {"language": "it", "name": "L'energia del fenomeno Gigamax ha ingigantito il suo corpo a tal punto che la sua coda arriva fino al cielo."},
+              {"language": "es", "name": "La energía del fenómeno Gigamax ha hecho que su cuerpo se expanda y que su cola pueda estirarse hasta alcanzar el cielo."}
+            ]
+          },
+          {
+            "game": "Shield",
+            "texts": [
+              {"language": "ja", "name": "カミナリの しっぽを たたきつけると らくらいに ひってきする でんあつと でんりゅうが あいてを つらぬく。"},
+              {"language": "zh-Hant", "name": "当它用闪电状的尾巴击中目标时，不亚于雷击的电压及电流便会贯穿对方的全身。"},
+              {"language": "fr", "name": "Un coup de sa queue en forme d'éclair donne à l'adversaire un choc électrique ayant l'intensité et la tension de la foudre qui tombe."},
+              {"language": "de", "name": "Schlägt es mit seinem blitzförmigen Schweif zu, fahren die Elektrizität und die Spannung eines einschlagenden Blitzes durch den Gegner."},
+              {"language": "it", "name": "Con un colpo della sua coda a forma di saetta trasmette all'avversario una scarica elettrica dall'intensità e dal voltaggio di un fulmine."},
+              {"language": "es", "name": "Un golpe con su cola en forma de rayo puede propinar al rival una descarga eléctrica con una intensidad comparable a la de un relámpago."}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
