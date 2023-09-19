@@ -159,6 +159,38 @@ async function getESCategory ($, name) {
 
 function getITCategory ($) {
   const data = []
+  const categories = $('a[title=\'Categoria\']').first().parent().text().split(')')
+  if (categories.length === 1) {
+    data.push({
+      form: 'default',
+      categories: [{
+        name: categories[0],
+        language: 'it'
+      }]
+    })
+  } else {
+    let form = 'default'
+    for (let i = 0; i < categories.length; i++) {
+      if (categories[i] === '') {
+        break
+      }
+      const category = categories[i].split('(')
+      if (category[1] === 'Forma di Hisui') {
+        form = 'hisui'
+      } else if (category[1] === 'Forma di Galar') {
+        form = 'galar'
+      } else if (category[1] === 'Forma di Paldea') {
+        form = 'paldea'
+      }
+      data.push({
+        form,
+        categories: [{
+          name: category[0],
+          language: 'it'
+        }]
+      })
+    }
+  }
   return data
 }
 
