@@ -1,6 +1,7 @@
 import { load } from 'cheerio'
 import { getTranslatedCategory } from './getTranslatedCategory.js'
 import { getFetch } from '../../cached_fetch.js'
+import { getTranslatedPokedexEntries } from './getTranslatedPokedexEntries.js'
 
 function createURL (name) {
   switch (name.language) {
@@ -19,7 +20,7 @@ function createURL (name) {
   }
 }
 
-export async function getTranslatedData (translatedNames) {
+export async function getTranslatedData (translatedNames, manualData, id) {
   const data = {}
   for (let i = 0; i < translatedNames.length; i++) {
     const URL = createURL(translatedNames[i])
@@ -31,9 +32,22 @@ export async function getTranslatedData (translatedNames) {
     if (data.category === undefined) {
       data.category = []
     }
+    if (data.flavor_text === undefined) {
+      data.flavor_text = []
+    }
     data.category = [
       ...data.category,
       ...await getTranslatedCategory($, translatedNames[i])
+    ]
+    let keywords = manualData.find(data => data.id === id)
+    if (keywords === undefined) {
+      keywords = []
+    } else {
+      keywords = keywords.forms
+    }
+    data.flavor_text = [
+      ...data.flavor_text,
+      ...await getTranslatedPokedexEntries($, translatedNames[i], keywords)
     ]
   }
   return data
