@@ -1,6 +1,6 @@
 import { load } from 'cheerio'
 import { getFetch } from '../../cached_fetch.js'
-import { getFRGameName } from './TranslateGameName.js'
+import { getDEGameName, getFRGameName } from './TranslateGameName.js'
 
 function getIndexOf (form, array) {
   let index = array.findIndex(f => f.form === form)
@@ -13,15 +13,15 @@ function getIndexOf (form, array) {
   return index
 }
 
-function getFRKeyword (keywords, value) {
-  if (value.toLowerCase() === 'forme normale') {
+function getKeyword (keywords, value, defaultFormName, language) {
+  if (value.toLowerCase() === defaultFormName) {
     return 'default'
   }
   for (let i = 0; i < keywords.length; i++) {
     if (keywords[i].flavor_texts_keyword === undefined) {
       continue
     }
-    const keyword = keywords[i].flavor_texts_keyword.find(text => text.language === 'fr')
+    const keyword = keywords[i].flavor_texts_keyword.find(text => text.language === language)
     if (keyword !== undefined && keyword.name === value) {
       return keywords[i].flavor_texts_keyword.find(text => text.language === 'en').name
     }
@@ -51,7 +51,7 @@ async function getFRPokedexEntries ($, keywords, name) {
     elem = $gen(elem).next()
     while ($gen(elem)[0].name !== 'h2') {
       if ($gen(elem)[0].name === 'h3' || $gen(elem)[0].name === 'h4') {
-        form = getFRKeyword(keywords, $gen(elem).text().replace('[modifier]', ''))
+        form = getKeyword(keywords, $gen(elem).text().replace('[modifier]', ''), 'forme normale', 'fr')
         if (form === undefined) {
           skip = true
         }
@@ -86,6 +86,53 @@ async function getFRPokedexEntries ($, keywords, name) {
 
 function getDEPokedexEntries ($, keywords) {
   const data = []
+  let elem = $('span[id="Pokédex-Einträge"]').parent().next()
+  let form = 'default'
+  let skip = false
+  let isFirstForm = true
+  while ($(elem)[0].name !== 'h3') {
+    if ($(elem)[0].name === 'dl') {
+      if (!skip && isFirstForm) {
+        isFirstForm = false
+      } else {
+        form = getKeyword(keywords, $(elem).text(), 'normalform', 'de')
+        skip = form === undefined
+      }
+    } else if ($(elem)[0].name === 'div' && !skip) {
+      $(elem).children('div').each((genIndex, gen) => {
+        if (genIndex === 0) {
+          return
+        }
+        let games
+        $(gen).children('div').each((index, value) => {
+          if (index === 0) {
+            return
+          }
+          if (index % 2 === 1) {
+            const DEgames = []
+            $(value).children('span').children('a').each((__, game) => {
+              DEgames.push($(game).children('span').attr('title'))
+            })
+            games = getDEGameName(DEgames)
+          } else {
+            for (let i = 0; i < games.length; i++) {
+              const index = getIndexOf(form, data)
+              data[index].entries.push({
+                game: games[i],
+                texts: [
+                  {
+                    name: $(value).text(),
+                    language: 'de'
+                  }
+                ]
+              })
+            }
+          }
+        })
+      })
+    }
+    elem = $(elem).next()
+  }
   return data
 }
 
