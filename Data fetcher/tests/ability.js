@@ -1,4 +1,5 @@
 import { getAbilityURLList, getAbilityData } from '../fetch_ability.js'
+import fs from 'fs'
 
 export async function testAllAbilities () {
   console.log('Trying to gather data for all abilities')
@@ -18,5 +19,6 @@ export async function testAllAbilities () {
     console.assert(data.id >= 0, `${abilityURLList[i]}: Id invalid -> ${data.id}`)
   }
   console.log('Successfully gathered the data for all abilities !')
+  fs.writeFileSync('cache/abilities.json', JSON.stringify(abilities))
   return abilities
 }

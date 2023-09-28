@@ -1,8 +1,9 @@
 import { getPokemonData, getPokemonURLList } from '../fetch_pokemon.js'
 import fs from 'fs'
 import { testAllAbilities } from './ability.js'
+import { testAllItems } from './item.js'
 
-export async function testAllPokemon (abilities = undefined) {
+export async function testAllPokemon (abilities = undefined, items = undefined) {
   if (abilities === undefined) {
     if (fs.existsSync('cache/abilities.json')) {
       console.log('Using already stored abilities')
@@ -11,6 +12,16 @@ export async function testAllPokemon (abilities = undefined) {
       console.log('Fetching abilities...')
       abilities = await testAllAbilities()
       fs.writeFileSync('cache/abilities.json', JSON.stringify(abilities))
+    }
+    if (items === undefined) {
+      if (fs.existsSync('cache/items.json')) {
+        console.log('Using already stored items')
+        items = JSON.parse(fs.readFileSync('cache/items.json'))
+      } else {
+        console.log('Fetching items...')
+        items = await testAllItems()
+        fs.writeFileSync('cache/items.json', JSON.stringify(items))
+      }
     }
   }
 
