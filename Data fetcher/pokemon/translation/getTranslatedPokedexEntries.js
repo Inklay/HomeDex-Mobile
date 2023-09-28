@@ -1,6 +1,6 @@
 import { load } from 'cheerio'
 import { getFetch } from '../../cached_fetch.js'
-import { getDEGameName, getFRGameName, getITGameName } from './TranslateGameName.js'
+import { getDEGameName, getESGameName, getFRGameName, getITGameName } from './TranslateGameName.js'
 
 function getIndexOf (form, array) {
   let index = array.findIndex(f => f.form === form)
@@ -25,6 +25,21 @@ function getKeyword (keywords, value, defaultFormName, language) {
     if (keyword !== undefined && keyword.name === value) {
       return keywords[i].flavor_texts_keyword.find(text => text.language === 'en').name
     }
+  }
+}
+
+function insertEntry (games, form, data, entry, language) {
+  for (let i = 0; i < games.length; i++) {
+    const index = getIndexOf(form, data)
+    data[index].entries.push({
+      game: games[i],
+      texts: [
+        {
+          name: entry,
+          language
+        }
+      ]
+    })
   }
 }
 
@@ -62,18 +77,7 @@ async function getFRPokedexEntries ($, keywords, name) {
           if ($gen(entry)[0].name === 'dt') {
             games = getFRGameName(text)
           } else if ($gen(entry)[0].name === 'dd') {
-            for (let i = 0; i < games.length; i++) {
-              const index = getIndexOf(form, data)
-              data[index].entries.push({
-                game: games[i],
-                texts: [
-                  {
-                    name: text,
-                    language: 'fr'
-                  }
-                ]
-              })
-            }
+            insertEntry(games, form, data, text, 'fr')
           }
           entry = $gen(entry).next()
         } while ($gen(entry).length !== 0)
@@ -115,18 +119,7 @@ function getDEPokedexEntries ($, keywords) {
             })
             games = getDEGameName(DEgames)
           } else {
-            for (let i = 0; i < games.length; i++) {
-              const index = getIndexOf(form, data)
-              data[index].entries.push({
-                game: games[i],
-                texts: [
-                  {
-                    name: $(value).text(),
-                    language: 'de'
-                  }
-                ]
-              })
-            }
+            insertEntry(games, form, data, $(value).text(), 'de')
           }
         })
       })
@@ -172,20 +165,8 @@ function getITPokedexEntries ($, keywords) {
               ITgames.push($(game).text())
             })
             games = getITGameName(ITgames)
-            console.log(games)
           } else {
-            for (let i = 0; i < games.length; i++) {
-              const index = getIndexOf(form, data)
-              data[index].entries.push({
-                game: games[i],
-                texts: [
-                  {
-                    name: $(value).text(),
-                    language: 'it'
-                  }
-                ]
-              })
-            }
+            insertEntry(games, form, data, $(value).text(), 'it')
           }
         })
       })
@@ -197,6 +178,39 @@ function getITPokedexEntries ($, keywords) {
 
 function getESPokedexEntries ($, keywords) {
   const data = []
+  $('#Descripción_Pokédex').parent().next().next().children('tbody').children('tr').each((index, value) => {
+    if (index === 0) {
+      return
+    }
+    let form = 'default'
+    const ESGames = []
+    let isFirstForm = true
+    const game = $(value).children('th:nth-child(2)')
+    if ($(game).children('a').length === 0) {
+      $(game).children('div').children('div').each((__, gameName) => {
+        ESGames.push($(gameName).text())
+      })
+    } else {
+      ESGames.push($(game).children('a').text())
+    }
+    const games = getESGameName(ESGames)
+    const entries = $(value).children('td')
+    if ($(entries).children('ul').length === 0) {
+      insertEntry(games, form, data, $(entries).text(), 'es')
+    } else {
+      $(entries).children('ul').children('li').each((__, entry) => {
+        const esFormName = $(entry).children('b').text()
+        if (isFirstForm) {
+          isFirstForm = false
+        } else {
+          form = getKeyword(keywords, esFormName, '', 'es')
+        }
+        if (form !== undefined) {
+          insertEntry(games, form, data, $(entry).text().replace(`${esFormName}: `, ''), 'es')
+        }
+      })
+    }
+  })
   return data
 }
 
