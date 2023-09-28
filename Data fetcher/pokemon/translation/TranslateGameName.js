@@ -229,3 +229,119 @@ export function getDEGameName (gameName) {
   }
   return games
 }
+
+export function getITGameName (gameName) {
+  const games = []
+  if (gameName.includes('Rosso')) {
+    games.push('Red')
+  }
+  if (gameName.includes('Blu')) {
+    games.push('Blue')
+  }
+  if (gameName.includes('Giallo')) {
+    games.push('Yellow')
+  }
+  if (gameName.includes('Oro')) {
+    games.push('Gold')
+  }
+  if (gameName.includes('Argento')) {
+    games.push('Silver')
+  }
+  if (gameName.includes('Cristallo')) {
+    games.push('Crystal')
+  }
+  if (gameName.includes('Rubino')) {
+    games.push('Ruby')
+  }
+  if (gameName.includes('Zaffiro')) {
+    games.push('Sapphire')
+  }
+  if (gameName.includes('Rosso Fuoco')) {
+    games.push('Firered')
+  }
+  if (gameName.includes('Verde Foglia')) {
+    games.push('Leafgreen')
+  }
+  if (gameName.includes('Smeraldo')) {
+    games.push('Emerald')
+  }
+  if (gameName.includes('Diamante')) {
+    games.push('Diamond')
+  }
+  if (gameName.includes('Perla')) {
+    games.push('Pearl')
+  }
+  if (gameName.includes('Platino')) {
+    games.push('Platinum')
+  }
+  if (gameName.includes('HeartGold')) {
+    games.push('HeartGold')
+  }
+  if (gameName.includes('SoulSilver')) {
+    games.push('SoulSilver')
+  }
+  if (gameName.includes('Nero')) {
+    games.push('Black')
+  }
+  if (gameName.includes('Bianco')) {
+    games.push('White')
+  }
+  if (gameName.includes('Nero 2')) {
+    games.push('Black 2')
+  }
+  if (gameName.includes('Bianco 2')) {
+    games.push('White 2')
+  }
+  if (gameName.includes('X')) {
+    games.push('X')
+  }
+  if (gameName.includes('Y')) {
+    games.push('Y')
+  }
+  if (gameName.includes('Rubino Omega')) {
+    games.push('Omega Ruby')
+  }
+  if (gameName.includes('Zaffiro Alpha')) {
+    games.push('Alpha Sapphire')
+  }
+  if (gameName.includes('Sole')) {
+    games.push('Sun')
+  }
+  if (gameName.includes('Luna')) {
+    games.push('Moon')
+  }
+  if (gameName.includes('Ultrasole')) {
+    games.push('Ultra Sun')
+  }
+  if (gameName.includes('Ultraluna')) {
+    games.push('Ultra Moon')
+  }
+  if (gameName.includes('Let\'s Go, Pikachu!')) {
+    games.push('Let\'s Go Pikachu')
+  }
+  if (gameName.includes('Let\'s Go, Eevee!')) {
+    games.push('Let\'s Go Eevee')
+  }
+  if (gameName.includes('Spada')) {
+    games.push('Sword')
+  }
+  if (gameName.includes('Scudo')) {
+    games.push('Shield')
+  }
+  if (gameName.includes('Diamante Lucente')) {
+    games.push('Brilliant Diamond')
+  }
+  if (gameName.includes('Perla Splendente')) {
+    games.push('Shining Pearl')
+  }
+  if (gameName.includes('Leggende Pokémon: Arceus')) {
+    games.push('Legends: Arceus')
+  }
+  if (gameName.includes('Scarlatto')) {
+    games.push('Scarlet')
+  }
+  if (gameName.includes('Violetto')) {
+    games.push('Violet')
+  }
+  return games
+}

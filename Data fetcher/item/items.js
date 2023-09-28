@@ -32,8 +32,6 @@ export async function getItemData (itemURL, id) {
   const pageHTML = await (await fetch(URL)).text()
   const $ = load(pageHTML)
   const otherNames = getOtherNames($, false)
-
-  console.log(otherNames)
   return {
     names: [
       {

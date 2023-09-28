@@ -1,6 +1,6 @@
 import { load } from 'cheerio'
 import { getFetch } from '../../cached_fetch.js'
-import { getDEGameName, getFRGameName } from './TranslateGameName.js'
+import { getDEGameName, getFRGameName, getITGameName } from './TranslateGameName.js'
 
 function getIndexOf (form, array) {
   let index = array.findIndex(f => f.form === form)
@@ -138,6 +138,60 @@ function getDEPokedexEntries ($, keywords) {
 
 function getITPokedexEntries ($, keywords) {
   const data = []
+  let elem
+  $('a[href="#Dati_di_gioco"]').next().children('li').each((__, value) => {
+    if ($(value).text().includes('Voci Pokédex')) {
+      const id = $(value).children('a').attr('href').substring(1)
+      elem = $(`span[id="${id}"]`).parent().next()
+    }
+  })
+  let form = 'default'
+  let skip = false
+  let isFirstForm = true
+  let games
+  while ($(elem)[0].name !== 'h2') {
+    if ($(elem)[0].name === 'h4') {
+      if (!skip && isFirstForm) {
+        isFirstForm = false
+      } else {
+        form = getKeyword(keywords, $(elem).text(), '', 'it')
+        skip = form === undefined
+      }
+    } else if ($(elem)[0].name === 'div' && !skip) {
+      $(elem).children('div').each((genIndex, gen) => {
+        if (genIndex === 0 && $(gen).attr('class') === 'black-text') {
+          return
+        }
+        $(gen).children('div').children('div').each((index, value) => {
+          if (index === 0) {
+            return
+          }
+          if (index % 2 === 1) {
+            const ITgames = []
+            $(value).children('div').children('div').each((__, game) => {
+              ITgames.push($(game).text())
+            })
+            games = getITGameName(ITgames)
+            console.log(games)
+          } else {
+            for (let i = 0; i < games.length; i++) {
+              const index = getIndexOf(form, data)
+              data[index].entries.push({
+                game: games[i],
+                texts: [
+                  {
+                    name: $(value).text(),
+                    language: 'it'
+                  }
+                ]
+              })
+            }
+          }
+        })
+      })
+    }
+    elem = $(elem).next()
+  }
   return data
 }
 
